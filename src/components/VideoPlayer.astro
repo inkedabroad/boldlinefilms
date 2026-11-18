@@ -1,0 +1,44 @@
+---
+interface Props { film: any; }
+const { film } = Astro.props;
+const v = film.video || {};
+const ratio = { '16:9': '16 / 9', '2.39:1': '2.39 / 1', '9:16': '9 / 16' }[v.aspect as string] || '16 / 9';
+let src = '';
+if (v.provider === 'vimeo' && v.id) src = `https://player.vimeo.com/video/${v.id}?autoplay=1&dnt=1`;
+if (v.provider === 'youtube' && v.id) src = `https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&rel=0`;
+---
+{src && (
+  <div class="player" style={`aspect-ratio:${ratio}`} data-src={src}>
+    {film.poster
+      ? <img src={film.poster} alt={`Still from ${film.title}`} />
+      : <div class="titlecard"><span class="display">{film.title}</span></div>}
+    <button class="play" aria-label={`Play ${film.title}`}><span>▶</span> Watch film</button>
+  </div>
+)}
+
+<script>
+  document.querySelectorAll<HTMLElement>('.player').forEach((el) => {
+    el.querySelector('button')?.addEventListener('click', () => {
+      const f = document.createElement('iframe');
+      f.src = el.dataset.src || '';
+      f.allow = 'autoplay; fullscreen; picture-in-picture';
+      f.allowFullscreen = true;
+      f.title = 'Film player';
+      el.innerHTML = '';
+      el.appendChild(f);
+    });
+  });
+</script>
+
+<style>
+  .player { position: relative; background: var(--bg-2); overflow: hidden; max-height: 85vh; margin: 0 auto; }
+  .player img { width: 100%; height: 100%; object-fit: cover; }
+  .player :global(iframe) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .play {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    background: var(--accent); color: var(--text); border: 0; padding: 1rem 1.6rem; cursor: pointer;
+    font: 600 .8rem var(--body); letter-spacing: .16em; text-transform: uppercase;
+  }
+  .play span { margin-right: .5rem; }
+  .play:hover { background: var(--text); color: var(--bg); }
+</style>

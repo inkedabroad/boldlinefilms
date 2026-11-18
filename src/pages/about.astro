@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+---
+<Base title="About | Dakota Weik, Director & Cinematographer" description="Dakota Weik is a Philadelphia based director and cinematographer who has filmed artists and brands around the world.">
+  <section class="section wrap grid">
+    <div class="portrait frame">
+      {site.heroImage ? <img src={site.heroImage} alt="Dakota Weik on location" /> : <div class="titlecard"><span class="display">Dakota<br />Weik</span></div>}
+    </div>
+    <div class="copy">
+      <p class="label"><span class="num">01</span>About</p>
+      <h1 class="display h1">One filmmaker.<br />Many stories.</h1>
+      <p class="lead">I'm Dakota Weik, a director and cinematographer based in Philadelphia.</p>
+      <p>My work has taken me across the world filming artists, traditions and the people behind extraordinary work. For more than six years I've written, directed, shot and edited my own films, including the original series <em>Life Beyond Ink</em>.</p>
+      <p>That background shapes everything I make, from short commercials to brand films. I know how to find the real story quickly, put people at ease on camera and make any location look cinematic.</p>
+      <p>I work with businesses, brands and creative teams who want a film people actually watch.</p>
+      <p class="roles label">Director · Writer · Cinematographer · Editor</p>
+      <a href="/contact" class="btn primary">Start a project</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+  .portrait { aspect-ratio: 4 / 5; }
+  .h1 { font-size: clamp(3.2rem, 7vw, 6.5rem); margin: 1rem 0 2rem; }
+  .lead { font-size: 1.35rem; }
+  .copy p { max-width: 38rem; }
+  .roles { margin: 2rem 0; }
+  @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
+</style>

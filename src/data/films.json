@@ -1,0 +1,261 @@
+[
+  {
+    "slug": "dakota-joins-dr-pickles",
+    "title": "Dakota Joins Dr. Pickles",
+    "client": "Dr. Pickles",
+    "categories": [
+      "Commercials",
+      "Cinematic Shorts"
+    ],
+    "projectType": "commissioned",
+    "year": 2025,
+    "location": "",
+    "duration": "",
+    "roles": "Writer, Director",
+    "synopsis": "A cinematic comedy spot announcing Dakota's role with the tattoo aftercare brand Dr. Pickles.",
+    "poster": "",
+    "video": {
+      "provider": "",
+      "id": "",
+      "aspect": "16:9"
+    },
+    "deliverables": [],
+    "featured": true,
+    "order": 1,
+    "draft": false,
+    "audiences": [
+      "brands"
+    ]
+  },
+  {
+    "slug": "ez-machine-chinese-magic",
+    "title": "EZ Machine: Chinese Magic",
+    "client": "EZ Tattoo",
+    "categories": [
+      "Commercials",
+      "Cinematic Shorts"
+    ],
+    "projectType": "commissioned",
+    "year": 2025,
+    "location": "",
+    "duration": "",
+    "roles": "Writer, Director",
+    "synopsis": "A comedy spot for EZ Tattoo, written to stand on its own as a short film.",
+    "poster": "",
+    "video": {
+      "provider": "",
+      "id": "",
+      "aspect": "16:9"
+    },
+    "deliverables": [],
+    "featured": true,
+    "order": 2,
+    "draft": false,
+    "audiences": [
+      "brands"
+    ]
+  },
+  {
+    "slug": "a-pound-of-flesh-fistful-of-fun",
+    "title": "Fistful of Fun",
+    "client": "A Pound of Flesh",
+    "categories": [
+      "Commercials",
+      "Cinematic Shorts"
+    ],
+    "projectType": "commissioned",
+    "year": 2025,
+    "location": "",
+    "duration": "",
+    "roles": "Writer, Director",
+    "synopsis": "A comedy spot for A Pound of Flesh, written to stand on its own as a short film.",
+    "poster": "",
+    "video": {
+      "provider": "",
+      "id": "",
+      "aspect": "16:9"
+    },
+    "deliverables": [],
+    "featured": true,
+    "order": 3,
+    "draft": false,
+    "audiences": [
+      "brands"
+    ]
+  },
+  {
+    "slug": "lugano-royale",
+    "title": "Lugano Royale",
+    "client": "Lugano Tattoo Convention",
+    "categories": [
+      "Cinematic Shorts"
+    ],
+    "projectType": "commissioned",
+    "year": 2025,
+    "location": "Lugano, Switzerland",
+    "duration": "",
+    "roles": "Writer, Director",
+    "synopsis": "A short film made for the Lugano Tattoo Convention.",
+    "poster": "",
+    "video": {
+      "provider": "",
+      "id": "",
+      "aspect": "16:9"
+    },
+    "deliverables": [],
+    "featured": true,
+    "order": 4,
+    "draft": false,
+    "audiences": [
+      "conventions"
+    ]
+  },
+  {
+    "slug": "austin-invitational-say-it",
+    "title": "Say It!!",
+    "client": "Austin Invitational",
+    "categories": [
+      "Cinematic Shorts"
+    ],
+    "projectType": "commissioned",
+    "year": 2025,
+    "location": "Austin, Texas",
+    "duration": "",
+    "roles": "Writer, Director",
+    "synopsis": "A comedy short made for the Austin Invitational tattoo event.",
+    "poster": "",
+    "video": {
+      "provider": "",
+      "id": "",
+      "aspect": "16:9"
+    },
+    "deliverables": [],
+    "featured": true,
+    "order": 5,
+    "draft": false,
+    "audiences": [
+      "conventions"
+    ]
+  },
+  {
+    "slug": "life-beyond-ink",
+    "title": "Life Beyond Ink",
+    "client": "",
+    "categories": [
+      "Films"
+    ],
+    "projectType": "original",
+    "year": 2025,
+    "location": "Worldwide",
+    "duration": "Series",
+    "roles": "Creator, Director, Cinematographer, Editor",
+    "synopsis": "An original film series profiling remarkable tattoo artists around the world, filmed on location across multiple countries.",
+    "poster": "",
+    "video": {
+      "provider": "",
+      "id": "",
+      "aspect": "16:9"
+    },
+    "externalUrl": "https://youtube.com/@inkedabroad",
+    "deliverables": [],
+    "featured": false,
+    "order": 6,
+    "draft": false,
+    "audiences": [
+      "tattoo-artists"
+    ]
+  },
+  {
+    "slug": "made-in-pennsylvania-the-craft",
+    "title": "Made in Pennsylvania: The Craft",
+    "client": "",
+    "categories": [
+      "Brand Stories"
+    ],
+    "projectType": "spec",
+    "year": 2026,
+    "location": "Philadelphia, Pennsylvania",
+    "duration": "",
+    "roles": "Director, Cinematographer, Editor",
+    "synopsis": "",
+    "poster": "",
+    "video": {
+      "provider": "",
+      "id": "",
+      "aspect": "16:9"
+    },
+    "deliverables": [
+      "Hero film",
+      "Vertical cut",
+      "Stills"
+    ],
+    "featured": false,
+    "order": 10,
+    "draft": true,
+    "audiences": [
+      "local-business"
+    ]
+  },
+  {
+    "slug": "made-in-pennsylvania-the-energy",
+    "title": "Made in Pennsylvania: The Energy",
+    "client": "",
+    "categories": [
+      "Brand Stories"
+    ],
+    "projectType": "spec",
+    "year": 2026,
+    "location": "Philadelphia, Pennsylvania",
+    "duration": "",
+    "roles": "Director, Cinematographer, Editor",
+    "synopsis": "",
+    "poster": "",
+    "video": {
+      "provider": "",
+      "id": "",
+      "aspect": "16:9"
+    },
+    "deliverables": [
+      "Hero film",
+      "Vertical cut",
+      "Stills"
+    ],
+    "featured": false,
+    "order": 11,
+    "draft": true,
+    "audiences": [
+      "local-business"
+    ]
+  },
+  {
+    "slug": "made-in-pennsylvania-the-experience",
+    "title": "Made in Pennsylvania: The Experience",
+    "client": "",
+    "categories": [
+      "Brand Stories"
+    ],
+    "projectType": "spec",
+    "year": 2026,
+    "location": "Philadelphia, Pennsylvania",
+    "duration": "",
+    "roles": "Director, Cinematographer, Editor",
+    "synopsis": "",
+    "poster": "",
+    "video": {
+      "provider": "",
+      "id": "",
+      "aspect": "16:9"
+    },
+    "deliverables": [
+      "Hero film",
+      "Vertical cut",
+      "Stills"
+    ],
+    "featured": false,
+    "order": 12,
+    "draft": true,
+    "audiences": [
+      "local-business"
+    ]
+  }
+]

@@ -1,0 +1,86 @@
+---
+import Base from '../../layouts/Base.astro';
+import FilmTile from '../../components/FilmTile.astro';
+import services from '../../data/services.json';
+import { films } from '../../data/films';
+
+export function getStaticPaths() {
+  return services.map((s) => ({ params: { slug: s.slug }, props: { s } }));
+}
+const { s } = Astro.props;
+const work = films.filter((f) => f.audiences.includes(s.slug));
+const others = services.filter((o) => o.slug !== s.slug);
+---
+<Base title={`Films for ${s.name} | Dakota Weik, Philadelphia`} description={s.intro}>
+  <section class="section wrap">
+    <p class="label"><span class="num">For</span>{s.name}</p>
+    <h1 class="display h1">{s.tagline}</h1>
+    <p class="intro">{s.intro}</p>
+    <a href={`/contact?for=${s.slug}`} class="btn primary">Book a call</a>
+  </section>
+
+  <section class="wrap">
+    <p class="label"><span class="num">01</span>Packages</p>
+    <div class="pk-grid">
+      {s.packages.map((p) => (
+        <div class="pk">
+          <p class="price display">{p.price}</p>
+          <h2 class="display">{p.name}</h2>
+          <p class="sum">{p.summary}</p>
+          <ul>{p.includes.map((x) => <li>{x}</li>)}</ul>
+          <a href={`/contact?for=${s.slug}&package=${encodeURIComponent(p.name)}`} class="btn">Choose this</a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {s.addons.length > 0 && (
+    <section class="section wrap">
+      <p class="label"><span class="num">02</span>Add ons</p>
+      <ul class="addons">
+        {s.addons.map((a) => <li><span>{a.name}</span><span class="label">{a.price}</span></li>)}
+      </ul>
+      <p class="muted small">50% deposit books your date. Travel outside Philadelphia quoted separately.</p>
+    </section>
+  )}
+
+  <section class="section wrap">
+    <p class="label"><span class="num">03</span>Work</p>
+    <h2 class="display h2">Films for {s.name.toLowerCase()}</h2>
+    {work.length > 0
+      ? <div class="grid">{work.map((f) => <FilmTile film={f} />)}</div>
+      : <p class="muted">New films for {s.name.toLowerCase()} are being added now. <a href="/work" class="link">See all work</a>.</p>}
+  </section>
+
+  <section class="section closing">
+    <div class="wrap">
+      <h2 class="display closing-title">Let's make<br />something worth watching.</h2>
+      <a href={`/contact?for=${s.slug}`} class="btn primary">Start a project</a>
+      <p class="label others">Also for: {others.map((o, i) => <>{i > 0 && ' · '}<a href={`/services/${o.slug}`}>{o.name}</a></>)}</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .h1 { font-size: clamp(3.2rem, 8vw, 7rem); margin: 1rem 0 1.5rem; }
+  .intro { font-size: 1.2rem; max-width: 40rem; color: var(--text-2); margin-bottom: 2rem; }
+  .pk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
+  .pk { background: var(--bg-2); padding: 2rem; display: flex; flex-direction: column; }
+  .price { font-size: 2.6rem; color: var(--accent); }
+  .pk h2 { font-size: 2rem; margin: .5rem 0 .75rem; }
+  .sum { margin: 0 0 1rem; }
+  .pk ul { padding-left: 1.1rem; color: var(--text-2); margin: 0 0 2rem; flex: 1; }
+  .pk .btn { align-self: start; }
+  .addons { list-style: none; padding: 0; margin: 1.5rem 0; max-width: 44rem; }
+  .addons li { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid #2c2c2c; }
+  .addons .label { color: var(--text); }
+  .small { font-size: .9rem; }
+  .h2 { font-size: clamp(2.4rem, 5vw, 4rem); margin: .75rem 0 2rem; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem 2.5rem; }
+  @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+  .link { text-decoration: underline; }
+  .closing { background: var(--bg-2); }
+  .closing-title { font-size: clamp(2.8rem, 7vw, 6rem); margin-bottom: 2rem; }
+  .others { margin-top: 2.5rem; }
+  .others a:hover { color: var(--text); }
+</style>

@@ -1,0 +1,21 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Old Lovable URLs, kept alive for links and search
+[[redirects]]
+  from = "/portfolio"
+  to = "/work"
+  status = 301
+[[redirects]]
+  from = "/mini-films"
+  to = "/work"
+  status = 301
+[[redirects]]
+  from = "/work-with-me"
+  to = "/contact"
+  status = 301
+[[redirects]]
+  from = "/nikon-f2"
+  to = "/about"
+  status = 301

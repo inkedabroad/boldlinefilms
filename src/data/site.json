@@ -1,0 +1,15 @@
+{
+  "name": "Dakota Weik",
+  "title": "Director & Cinematographer",
+  "city": "Philadelphia, Pennsylvania",
+  "email": "info@inkedabroad.com",
+  "heroImage": "",
+  "heroVideo": "",
+  "socials": [
+    { "label": "Instagram", "url": "https://instagram.com/inkedabroad" },
+    { "label": "YouTube", "url": "https://youtube.com/@inkedabroad" },
+    { "label": "TikTok", "url": "https://tiktok.com/@inkedabroad" },
+    { "label": "Facebook", "url": "https://facebook.com/inkedabroad" }
+  ],
+  "clients": ["Dr. Pickles", "EZ Tattoo", "A Pound of Flesh", "Sullen Clothing", "Ray-Ban Meta"]
+}

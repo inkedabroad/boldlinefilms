@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import FilmTile from '../../components/FilmTile.astro';
+import { films, audiences, audienceName } from '../../data/films';
+---
+<Base title="Work | Dakota Weik, Director & Cinematographer" description="Selected commercials, brand stories and cinematic short films directed by Dakota Weik.">
+  <section class="section wrap">
+    <p class="label"><span class="num">01</span>Work</p>
+    <h1 class="display h1">Selected films</h1>
+    <div class="filters" role="group" aria-label="Filter films">
+      <button class="chip on" data-cat="all">All work</button>
+      {audiences.map((a) => <button class="chip" data-cat={a}>{audienceName(a)}</button>)}
+    </div>
+    <div class="grid">
+      {films.map((f) => (
+        <div class="cell" data-cats={f.audiences.join('|')}><FilmTile film={f} /></div>
+      ))}
+    </div>
+  </section>
+</Base>
+
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>('.chip');
+  const cells = document.querySelectorAll<HTMLElement>('.cell');
+  chips.forEach((chip) => chip.addEventListener('click', () => {
+    chips.forEach((c) => c.classList.toggle('on', c === chip));
+    const cat = chip.dataset.cat;
+    cells.forEach((cell) => {
+      cell.hidden = cat !== 'all' && !(cell.dataset.cats || '').split('|').includes(cat || '');
+    });
+  }));
+</script>
+
+<style>
+  .h1 { font-size: clamp(3.5rem, 9vw, 8rem); margin: 1rem 0 2rem; }
+  .filters { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 3rem; }
+  .chip { background: none; border: 1px solid #333; color: var(--text-2); padding: .6rem 1rem; cursor: pointer; font: 600 .72rem var(--body); letter-spacing: .14em; text-transform: uppercase; }
+  .chip.on, .chip:hover { border-color: var(--text); color: var(--text); }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem 2.5rem; }
+  .cell[hidden] { display: none; }
+  @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+</style>
