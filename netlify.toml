@@ -22,3 +22,9 @@
   from = "/nikon-f2"
   to = "/about"
   status = 301
+
+# Studio HQ stays private and out of search
+[[headers]]
+  for = "/hq/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
