@@ -12,10 +12,8 @@ const {
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const path = Astro.url.pathname;
 const nav = [
-  { href: '/work', label: 'Work' },
-  { href: '/services', label: 'Services' },
-  { href: '/about', label: 'About' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/#work', label: 'Work' },
+  { href: '/#inquire', label: 'Inquire' },
 ];
 ---
 <!doctype html>
@@ -46,16 +44,16 @@ const nav = [
       <nav aria-label="Main">
         <ul class="nav-links">
           {nav.map((n) => (
-            <li><a href={n.href} aria-current={path.startsWith(n.href) ? 'page' : undefined}>{n.label}</a></li>
+            <li><a href={n.href} >{n.label}</a></li>
           ))}
         </ul>
       </nav>
-      <a href="/contact" class="btn primary head-cta">Start a project</a>
+      <a href="/#inquire" class="btn primary head-cta">Inquire</a>
       <button class="menu-btn" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
     </div>
     <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile" hidden>
       {nav.map((n) => <a href={n.href} class="display">{n.label}</a>)}
-      <a href="/contact" class="btn primary">Start a project</a>
+      <a href="/#inquire" class="btn primary">Inquire</a>
     </nav>
   </header>
 
@@ -88,6 +86,7 @@ const nav = [
       if (menu) menu.hidden = open;
       document.body.style.overflow = open ? '' : 'hidden';
     });
+    menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => btn?.dispatchEvent(new Event('click'))));
   </script>
 </body>
 </html>

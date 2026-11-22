@@ -5,22 +5,42 @@
 [build.environment]
   NODE_VERSION = "22.23.4"
 
-# Old Lovable URLs, kept alive for links and search
+# Old URLs, kept alive for links and search
 [[redirects]]
   from = "/portfolio"
-  to = "/work"
+  to = "/#work"
   status = 301
 [[redirects]]
   from = "/mini-films"
-  to = "/work"
+  to = "/#work"
+  status = 301
+[[redirects]]
+  from = "/work"
+  to = "/#work"
   status = 301
 [[redirects]]
   from = "/work-with-me"
-  to = "/contact"
+  to = "/#inquire"
+  status = 301
+[[redirects]]
+  from = "/contact"
+  to = "/#inquire"
+  status = 301
+[[redirects]]
+  from = "/services/*"
+  to = "/#inquire"
+  status = 301
+[[redirects]]
+  from = "/services"
+  to = "/#inquire"
+  status = 301
+[[redirects]]
+  from = "/about"
+  to = "/"
   status = 301
 [[redirects]]
   from = "/nikon-f2"
-  to = "/about"
+  to = "/"
   status = 301
 
 # Studio HQ stays private and out of search

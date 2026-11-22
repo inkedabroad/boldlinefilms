@@ -1,0 +1,37 @@
+---
+import site from '../data/site.json';
+const types = ['Tattoo artist', 'Tattoo shop', 'Local business', 'Convention', 'Brand', 'Other'];
+---
+<form name="inquiry" method="POST" action="/thanks" data-netlify="true" netlify-honeypot="company_site" class="form">
+  <input type="hidden" name="form-name" value="inquiry" />
+  <p class="hp"><label>Leave this empty <input name="company_site" tabindex="-1" autocomplete="off" /></label></p>
+  <div class="row">
+    <label>Name<input name="name" required autocomplete="name" maxlength="120" /></label>
+    <label>Email<input type="email" name="email" required autocomplete="email" maxlength="160" /></label>
+  </div>
+  <div class="row">
+    <label>Business or Instagram<input name="business" maxlength="200" /></label>
+    <label>I am a
+      <select name="client_type" required>
+        <option value="" disabled selected>Choose one</option>
+        {types.map((t) => <option>{t}</option>)}
+      </select>
+    </label>
+  </div>
+  <label>Tell me about the project<textarea name="message" rows="5" required maxlength="4000" placeholder="What you want filmed, where, and when."></textarea></label>
+  <button type="submit" class="btn primary">Send inquiry</button>
+  <p class="muted small">Or email <a href={`mailto:${site.email}`}>{site.email}</a></p>
+</form>
+
+<style>
+  .form { display: grid; gap: 1.1rem; max-width: 760px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+  label { display: grid; gap: .45rem; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-2); }
+  input, select, textarea { background: var(--bg-2); border: 1px solid #2f2f2f; color: var(--text); padding: .9rem 1rem; font: 400 1rem var(--body); border-radius: 0; width: 100%; }
+  input:focus, select:focus, textarea:focus { border-color: var(--text-2); }
+  .hp { position: absolute; left: -9999px; }
+  .form .btn { justify-self: start; }
+  .small { font-size: .9rem; margin: 0; }
+  .small a { text-decoration: underline; }
+  @media (max-width: 720px) { .row { grid-template-columns: 1fr; } }
+</style>

@@ -1,11 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
 import FilmTile from '../components/FilmTile.astro';
+import Inquiry from '../components/Inquiry.astro';
 import site from '../data/site.json';
-import services from '../data/services.json';
 import { films } from '../data/films';
-const featured = films.filter((f) => f.featured).slice(0, 6);
-const series = films.find((f) => f.slug === 'life-beyond-ink');
+const filming = [
+  ['Tattoo artists', 'Your process, your work, your story.'],
+  ['Tattoo shops', 'Shop films, artist features, guest spots and flash days.'],
+  ['Local businesses', 'Restaurants, bars, coffee shops, gyms and makers.'],
+  ['Conventions', 'Full weekend coverage, hosting and recaps.'],
+];
 ---
 <Base>
   <section class="hero">
@@ -14,114 +18,52 @@ const series = films.find((f) => f.slug === 'life-beyond-ink');
       : site.heroImage && <img class="hero-media" src={site.heroImage} alt="" fetchpriority="high" />}
     <div class="hero-shade"></div>
     <div class="wrap hero-inner">
-      <p class="label"><span class="num">01</span>Director & Cinematographer · Philadelphia</p>
-      <h1 class="display hero-title">Films that make<br />people feel something.</h1>
-      <p class="hero-sub">Films for tattoo artists, tattoo shops, local businesses and conventions. Philadelphia based. Available worldwide.</p>
+      <p class="label">{site.title} · {site.city}</p>
+      <h1 class="display hero-title">{site.name}</h1>
       <div class="hero-ctas">
-        <a href="/work" class="btn">View selected work</a>
-        <a href="/contact" class="btn primary">Start a project</a>
+        <a href="#work" class="btn">See the work</a>
+        <a href="#inquire" class="btn primary">Inquire</a>
       </div>
     </div>
   </section>
 
-  <section class="section wrap">
-    <div class="sec-head">
-      <p class="label"><span class="num">02</span>Selected work</p>
-      <h2 class="display h2">Stories made to move people.</h2>
-    </div>
+  <section id="work" class="section wrap">
+    <p class="label"><span class="num">01</span>Work</p>
     <div class="grid">
-      {featured.map((f, i) => <FilmTile film={f} size={i === 0 ? 'large' : 'normal'} />)}
-    </div>
-    <p class="more"><a href="/work" class="btn">View all work</a></p>
-  </section>
-
-  <hr class="rule" />
-
-  <section class="section wrap split">
-    <div>
-      <p class="label"><span class="num">03</span>For business</p>
-      <h2 class="display h2">Your business<br />has a story.</h2>
-    </div>
-    <div class="split-copy">
-      <p>I make films that show people what makes a business worth knowing. The people behind the work, the products they build, the room where it all happens. Every film starts with finding something real and filming it beautifully.</p>
-      <p class="muted">Coming soon: <em>Made in Pennsylvania</em>, a short series of films about the people who make things in this region.</p>
+      {films.map((f) => <FilmTile film={f} />)}
     </div>
   </section>
 
   <section class="section wrap">
-    <div class="sec-head">
-      <p class="label"><span class="num">04</span>Who I film for</p>
-      <h2 class="display h2">Pick your package</h2>
-    </div>
-    <div class="svc-grid">
-      {services.map((s) => (
-        <a href={`/services/${s.slug}`} class="svc">
-          <h3 class="display">{s.name}</h3>
-          <p class="muted">{s.tagline}</p>
-          <p class="label">{s.packages.length} {s.packages.length === 1 ? 'package' : 'packages'} · See options</p>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  {series && (
-    <section class="section wrap split">
-      <div>
-        <p class="label"><span class="num">05</span>Original films</p>
-        <h2 class="display h2">Built on<br />real stories.</h2>
-      </div>
-      <div class="split-copy">
-        <p>Years of filming artists across the world taught me how to find a story fast, earn trust on camera and shoot beautifully in any location. That experience goes into every commercial I make.</p>
-        <p class="muted"><em>Life Beyond Ink</em> is my original film series profiling remarkable tattoo artists around the world.</p>
-        <a href={`/work/${series.slug}`} class="btn">Explore Life Beyond Ink</a>
-      </div>
-    </section>
-  )}
-
-  <section class="section wrap">
-    <p class="label"><span class="num">06</span>Selected collaborations</p>
-    <ul class="clients">
-      {site.clients.map((c) => <li class="display">{c}</li>)}
+    <p class="label"><span class="num">02</span>What I film</p>
+    <ul class="what">
+      {filming.map(([t, d]) => <li><span class="display">{t}</span><span class="muted">{d}</span></li>)}
     </ul>
   </section>
 
-  <section class="section closing">
+  <section id="inquire" class="section inquire">
     <div class="wrap">
-      <h2 class="display closing-title">Let's make something<br />worth watching.</h2>
-      <p class="muted">Have a business, product or story worth telling? Tell me what you're working on.</p>
-      <div class="hero-ctas">
-        <a href="/contact" class="btn primary">Start a project</a>
-        <a href={`mailto:${site.email}`} class="btn">Email me</a>
-      </div>
+      <p class="label"><span class="num">03</span>Inquire</p>
+      <h2 class="display h2">Let's film something.</h2>
+      <Inquiry />
     </div>
   </section>
 </Base>
 
 <style>
-  .hero { position: relative; min-height: calc(100svh - 72px); display: flex; align-items: flex-end; overflow: hidden; }
+  html { scroll-behavior: smooth; }
+  .hero { position: relative; min-height: calc(85svh - 72px); display: flex; align-items: flex-end; overflow: hidden; }
   .hero-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .hero-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16,16,16,.15) 0%, rgba(16,16,16,.9) 100%); }
+  .hero-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16,16,16,.1) 0%, rgba(16,16,16,.9) 100%); }
   .hero-inner { position: relative; width: 100%; padding-bottom: clamp(3rem, 8vw, 6rem); }
-  .hero-title { font-size: clamp(3.6rem, 11vw, 10rem); margin: 1rem 0 1.25rem; }
-  .hero-sub { max-width: 34rem; font-size: 1.1rem; color: var(--text-2); margin: 0 0 2rem; }
+  .hero-title { font-size: clamp(4rem, 13vw, 12rem); margin: 1rem 0 2rem; }
   .hero-ctas { display: flex; flex-wrap: wrap; gap: .75rem; }
-  .sec-head { margin-bottom: 3rem; }
-  .h2 { font-size: clamp(2.8rem, 6vw, 5.5rem); margin-top: .75rem; }
-  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(2rem, 4vw, 3.5rem) clamp(1.25rem, 3vw, 2.5rem); }
-  .grid > :global(.large) { grid-column: 1 / -1; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem 2.5rem; margin-top: 2.5rem; }
   @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
-  .more { margin-top: 3.5rem; }
-  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
-  .split-copy { font-size: 1.1rem; max-width: 36rem; }
-  .split-copy p { margin: 0 0 1.25rem; }
-  @media (max-width: 820px) { .split { grid-template-columns: 1fr; } }
-  .svc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); border-top: 1px solid #2c2c2c; }
-  .svc { padding: 2rem 1.5rem 2rem 0; border-bottom: 1px solid #2c2c2c; transition: color .2s; }
-  .svc h3 { font-size: 2rem; margin-bottom: .75rem; }
-  .svc:hover h3 { color: var(--accent); }
-  .clients { list-style: none; padding: 0; margin: 2rem 0 0; display: flex; flex-wrap: wrap; gap: 1rem 3rem; }
-  .clients li { font-size: clamp(1.8rem, 3.5vw, 3rem); color: var(--text-2); }
-  .closing { background: var(--bg-2); }
-  .closing-title { font-size: clamp(3rem, 8vw, 7.5rem); margin-bottom: 1.5rem; }
-  .closing p { font-size: 1.1rem; margin: 0 0 2rem; }
+  .what { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); border-top: 1px solid #2c2c2c; }
+  .what li { display: grid; gap: .5rem; padding: 1.75rem 1.5rem 1.75rem 0; border-bottom: 1px solid #2c2c2c; }
+  .what .display { font-size: 2.2rem; }
+  .inquire { background: var(--bg-2); }
+  .h2 { font-size: clamp(2.8rem, 7vw, 6rem); margin: 1rem 0 2.5rem; }
+  .inquire :global(input), .inquire :global(select), .inquire :global(textarea) { background: var(--bg); }
 </style>
