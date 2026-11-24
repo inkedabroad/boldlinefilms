@@ -19,6 +19,10 @@
   to = "/#work"
   status = 301
 [[redirects]]
+  from = "/work/*"
+  to = "/#work"
+  status = 301
+[[redirects]]
   from = "/work-with-me"
   to = "/#inquire"
   status = 301

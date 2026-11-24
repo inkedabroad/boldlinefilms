@@ -1,37 +1,119 @@
 ---
 import site from '../data/site.json';
-const types = ['Tattoo artist', 'Tattoo shop', 'Local business', 'Convention', 'Brand', 'Other'];
+const types = [['convention','Convention'],['artist','Tattoo artist'],['shop','Tattoo shop'],['business','Local business'],['brand','Brand'],['other','Something else']];
+const budgets = ['Below $2,500','$2,500 to $4,999','$5,000 to $7,499','$7,500 to $14,999','$15,000 or more','Not set yet'];
 ---
-<form name="inquiry" method="POST" action="/thanks" data-netlify="true" netlify-honeypot="company_site" class="form">
+<form name="inquiry" method="POST" action="/thanks" data-netlify="true" netlify-honeypot="company_site" class="form" id="inquiry-form" novalidate>
   <input type="hidden" name="form-name" value="inquiry" />
+  <input type="hidden" name="from_project" id="from_project" />
   <p class="hp"><label>Leave this empty <input name="company_site" tabindex="-1" autocomplete="off" /></label></p>
+
+  <label class="field">What are you planning?
+    <select name="client_type" id="client_type" required>
+      <option value="" disabled selected>Choose one</option>
+      {types.map(([v, l]) => <option value={v}>{l}</option>)}
+    </select>
+  </label>
   <div class="row">
-    <label>Name<input name="name" required autocomplete="name" maxlength="120" /></label>
-    <label>Email<input type="email" name="email" required autocomplete="email" maxlength="160" /></label>
+    <label class="field">Your name<input name="name" required autocomplete="name" maxlength="120" /></label>
+    <label class="field">Email<input type="email" name="email" required autocomplete="email" maxlength="160" /></label>
   </div>
+  <label class="field"><span id="biz_label">Business name or Instagram</span><input name="business" maxlength="200" /></label>
+  <label class="field">Tell me about the project
+    <textarea name="message" id="message" rows="5" required maxlength="4000" placeholder="What would you like to make, and what should it help you achieve?"></textarea>
+  </label>
+
+  <fieldset class="checks" data-show="convention" hidden>
+    <legend>What would you like covered?</legend>
+    {['Event recap','Social films','Hosting','35mm photography','Help me decide'].map((c) => <label><input type="checkbox" name="convention_coverage" value={c} /> {c}</label>)}
+  </fieldset>
+  <fieldset class="checks" data-show="brand" hidden>
+    <legend>Where will the film be used?</legend>
+    {['Website','Organic social','Paid advertising','Other','Not decided'].map((c) => <label><input type="checkbox" name="brand_usage" value={c} /> {c}</label>)}
+  </fieldset>
+
   <div class="row">
-    <label>Business or Instagram<input name="business" maxlength="200" /></label>
-    <label>I am a
-      <select name="client_type" required>
-        <option value="" disabled selected>Choose one</option>
-        {types.map((t) => <option>{t}</option>)}
-      </select>
-    </label>
+    <label class="field">Where will we film?<input name="location" required maxlength="160" placeholder="A city is enough. Not decided is fine." /></label>
+    <label class="field" data-hide="convention"><span id="when_label">When do you need it?</span><input name="timing" id="timing" required maxlength="160" placeholder="A date, month or rough timeframe." /></label>
+    <div class="field dates" data-show="convention" hidden>
+      <span>Convention dates</span>
+      <div class="date-row"><input type="date" name="event_start" aria-label="Start date" /><input type="date" name="event_end" aria-label="End date" /></div>
+      <label class="inline"><input type="checkbox" name="dates_tbc" value="yes" /> Dates not confirmed</label>
+    </div>
   </div>
-  <label>Tell me about the project<textarea name="message" rows="5" required maxlength="4000" placeholder="What you want filmed, where, and when."></textarea></label>
+  <label class="field">Production budget (USD)
+    <select name="budget" required>
+      <option value="" disabled selected>Choose one</option>
+      {budgets.map((b) => <option>{b}</option>)}
+    </select>
+    <small class="muted">An estimate is fine. Choose Not set yet if you need guidance.</small>
+  </label>
+  <p class="note" data-show="convention" hidden>Convention coverage starts at $6,500. Travel is quoted separately.</p>
+
+  <p class="error" id="form-error" role="alert" hidden>Your inquiry could not be sent. Please try again or email {site.email}. Your details are still here.</p>
   <button type="submit" class="btn primary">Send inquiry</button>
-  <p class="muted small">Or email <a href={`mailto:${site.email}`}>{site.email}</a></p>
+  <p class="muted small">I use these details to respond to your inquiry and plan your project.<br />Prefer email? <a href={`mailto:${site.email}`}>{site.email}</a></p>
 </form>
 
+<script>
+  const form = document.getElementById('inquiry-form') as HTMLFormElement | null;
+  const type = document.getElementById('client_type') as HTMLSelectElement | null;
+  const biz = document.getElementById('biz_label');
+  const when = document.getElementById('when_label');
+  const timing = document.getElementById('timing') as HTMLInputElement | null;
+  const msg = document.getElementById('message') as HTMLTextAreaElement | null;
+  const bizLabels: Record<string, string> = { convention: 'Convention name or website', artist: 'Artist name or Instagram', shop: 'Shop name or Instagram', business: 'Business name or website', brand: 'Brand name or website' };
+  const prompts: Record<string, string> = { artist: 'A promo, a profile, a guest spot? Tell me what you have in mind.', shop: 'Tell me about the shop, your artists or an upcoming event.', business: 'Tell me about the business and what you want to promote.' };
+  function apply() {
+    const v = type?.value || '';
+    document.querySelectorAll<HTMLElement>('[data-show]').forEach((el) => (el.hidden = el.dataset.show !== v));
+    document.querySelectorAll<HTMLElement>('[data-hide]').forEach((el) => (el.hidden = el.dataset.hide === v));
+    if (biz) biz.textContent = bizLabels[v] || 'Business name or Instagram';
+    if (when) when.textContent = v === 'brand' ? 'Target launch date' : 'When do you need it?';
+    if (timing) timing.required = v !== 'convention';
+    if (msg) msg.placeholder = prompts[v] || 'What would you like to make, and what should it help you achieve?';
+  }
+  type?.addEventListener('change', apply);
+  // preselect from service buttons and carry project context
+  const params = new URLSearchParams(location.search);
+  const want = params.get('for'); if (want && type) { type.value = want; apply(); }
+  const proj = params.get('project'); if (proj) (document.getElementById('from_project') as HTMLInputElement).value = proj;
+  document.addEventListener('inquiry:preset', ((e: CustomEvent) => { if (type && e.detail?.type) { type.value = e.detail.type; apply(); } if (e.detail?.project) (document.getElementById('from_project') as HTMLInputElement).value = e.detail.project; }) as EventListener);
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const err = document.getElementById('form-error')!; err.hidden = true;
+    form.querySelectorAll('.invalid').forEach((el) => el.classList.remove('invalid'));
+    const bad = [...form.querySelectorAll<HTMLInputElement>('input,select,textarea')].filter((el) => !el.closest('[hidden]') && !el.checkValidity());
+    if (bad.length) { bad.forEach((el) => el.closest('.field')?.classList.add('invalid')); bad[0].focus(); return; }
+    const btn = form.querySelector('button[type=submit]') as HTMLButtonElement; btn.disabled = true; btn.textContent = 'Sending inquiry';
+    try {
+      const res = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(new FormData(form) as any).toString() });
+      if (!res.ok) throw new Error(String(res.status));
+      location.href = '/thanks';
+    } catch { err.hidden = false; btn.disabled = false; btn.textContent = 'Send inquiry'; }
+  });
+</script>
+
 <style>
-  .form { display: grid; gap: 1.1rem; max-width: 760px; }
-  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
-  label { display: grid; gap: .45rem; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-2); }
-  input, select, textarea { background: var(--bg-2); border: 1px solid #2f2f2f; color: var(--text); padding: .9rem 1rem; font: 400 1rem var(--body); border-radius: 0; width: 100%; }
-  input:focus, select:focus, textarea:focus { border-color: var(--text-2); }
+  .form { display: grid; gap: 1.2rem; max-width: 760px; margin: 0 auto; text-align: left; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .field { display: grid; gap: .45rem; font-family: var(--deco); font-weight: 700; font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+  .field[hidden], [hidden] { display: none !important; }
+  input, select, textarea { background: var(--bg); border: 1px solid rgba(201,164,92,.4); color: var(--text); padding: .9rem 1rem; font: 400 1rem var(--body); letter-spacing: normal; text-transform: none; border-radius: 0; width: 100%; }
+  input:focus, select:focus, textarea:focus { border-color: var(--gold-2); }
+  .invalid input, .invalid select, .invalid textarea { border-color: #d0574a; }
+  small { font-family: var(--body); letter-spacing: normal; text-transform: none; font-weight: 400; font-size: .85rem; }
+  .checks { border: 1px solid rgba(201,164,92,.3); padding: 1rem 1.2rem; display: flex; flex-wrap: wrap; gap: .6rem 1.4rem; }
+  .checks legend { font-family: var(--deco); font-weight: 700; font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); padding: 0 .4rem; }
+  .checks label, .inline { display: flex; align-items: center; gap: .5rem; font-size: .95rem; text-transform: none; letter-spacing: normal; font-family: var(--body); font-weight: 400; color: var(--text); }
+  .checks input, .inline input { width: auto; accent-color: var(--gold); }
+  .date-row { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+  .note { border-left: 2px solid var(--gold); padding-left: 1rem; color: var(--gold-2); margin: 0; }
+  .error { color: #e08a7f; margin: 0; }
   .hp { position: absolute; left: -9999px; }
   .form .btn { justify-self: start; }
-  .small { font-size: .9rem; margin: 0; }
+  .small { font-size: .92rem; margin: 0; }
   .small a { text-decoration: underline; }
   @media (max-width: 720px) { .row { grid-template-columns: 1fr; } }
 </style>

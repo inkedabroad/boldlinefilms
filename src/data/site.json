@@ -1,15 +1,20 @@
 {
   "name": "Dakota Weik",
-  "title": "Director & Cinematographer",
+  "title": "Tattoo ethnographer & filmmaker",
   "city": "Philadelphia, Pennsylvania",
   "email": "info@inkedabroad.com",
-  "heroImage": "",
-  "heroVideo": "",
   "socials": [
-    { "label": "Instagram", "url": "https://instagram.com/inkedabroad" },
-    { "label": "YouTube", "url": "https://youtube.com/@inkedabroad" },
-    { "label": "TikTok", "url": "https://tiktok.com/@inkedabroad" },
-    { "label": "Facebook", "url": "https://facebook.com/inkedabroad" }
+    { "label": "TikTok", "handle": "@inkedabroad", "followers": "940K", "url": "https://www.tiktok.com/@inkedabroad" },
+    { "label": "Instagram", "handle": "@inkedabroad", "followers": "627K", "url": "https://www.instagram.com/inkedabroad" },
+    { "label": "Facebook", "handle": "Inked Abroad", "followers": "506K", "url": "https://www.facebook.com/inkedabroad" },
+    { "label": "YouTube", "handle": "@inkedabroad", "followers": "145K", "url": "https://www.youtube.com/@inkedabroad" }
   ],
-  "clients": ["Dr. Pickles", "EZ Tattoo", "A Pound of Flesh", "Sullen Clothing", "Ray-Ban Meta"]
+  "totalFollowers": "2.2M",
+  "clients": ["Dr. Pickles", "EZ Tattoo", "A Pound of Flesh", "Austin Invitational", "Lugano Tattoo Convention"],
+  "services": [
+    { "slug": "convention", "name": "Convention Coverage", "price": "Starting at $6,500", "text": "Film coverage across your event, with a cinematic recap and social edits. Hosting and Nikon F2 photography can be built into the schedule.", "note": "Up to three event days. Travel quoted separately.", "cta": "Discuss your convention" },
+    { "slug": "artist", "name": "Artist Promos", "price": "Starting at $1,500", "text": "A focused film introducing your work, your process or your next guest spot.", "note": "Artist profiles and larger projects receive a custom proposal.", "cta": "Plan an artist promo" },
+    { "slug": "business", "name": "Shop & Business Films", "price": "Starting at $2,500", "text": "Films for tattoo shops, restaurants, bars, coffee shops, gyms and independent businesses. A main film plus short edits for your website and socials.", "note": "", "cta": "Tell me about your business" },
+    { "slug": "brand", "name": "Branded Skits & Campaigns", "price": "Quoted by project", "text": "Original concepts, writing, direction and production for brands with a story to tell.", "note": "", "cta": "Discuss a brand project" }
+  ]
 }
