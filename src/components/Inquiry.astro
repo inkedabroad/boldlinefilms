@@ -86,10 +86,10 @@ const types = [['convention','Convention coverage'],['artist','Artist or shop fi
 <style>
   .form { display: grid; gap: 1.15rem; }
   .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.15rem; }
-  .field { display: grid; gap: .4rem; font-family: var(--sans); font-size: 15px; font-weight: 600; color: var(--ink); }
+  .field { display: grid; gap: .4rem; font-family: var(--serif); font-size: 16px; font-weight: 600; color: var(--ink); }
   .opt { font-weight: 400; color: var(--ink-2); }
   [hidden] { display: none !important; }
-  .conv { display: grid; gap: 1.15rem; padding: 1rem; border-left: 2px solid var(--red); background: rgba(251,247,237,.6); }
+  .conv { display: grid; gap: 1.15rem; padding: 1rem; border-left: 2px solid var(--red); background: rgba(233,184,74,.12); }
   input, select, textarea { background: var(--paper-2); border: 1px solid #8f846f; border-radius: 0; color: var(--ink); padding: .8rem .9rem; font: 400 17px var(--serif); width: 100%; -webkit-appearance: none; appearance: none; }
   textarea { resize: vertical; min-height: 140px; }
   select { background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%), linear-gradient(135deg, var(--ink) 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 2.4rem; }
@@ -101,10 +101,10 @@ const types = [['convention','Convention coverage'],['artist','Artist or shop fi
   input[type=date] { min-width: 0; font-size: 16px; padding-inline: .6rem; }
   .inline { display: flex; align-items: center; gap: .6rem; font-weight: 400; font-family: var(--serif); font-size: 17px; }
   .inline input { width: 20px; height: 20px; padding: 0; -webkit-appearance: checkbox; appearance: auto; accent-color: var(--green); }
-  .error { margin: 0; padding: .8rem 1rem; border: 1px solid var(--red); color: var(--red); background: var(--paper-2); font-family: var(--sans); font-size: 15px; }
+  .error { margin: 0; padding: .8rem 1rem; border: 1px solid var(--red); color: var(--red); background: var(--paper-2); font-family: var(--serif); font-size: 15px; }
   .hp { position: absolute; left: -9999px; }
   .send { justify-self: start; padding: 1rem 2rem; font-size: 16px; }
-  .mail { margin: 0; font-family: var(--sans); font-size: 15px; color: var(--ink-2); }
-  .mail a { color: var(--ink); font-weight: 600; text-decoration: none; border-bottom: 1.5px solid var(--red); }
+  .mail { margin: 0; font-family: var(--serif); font-size: 16px; color: var(--ink-2); }
+  .mail a { color: var(--ink); font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--red); }
   @media (max-width: 640px) { .row, .date-row { grid-template-columns: 1fr; } .send { justify-self: stretch; } }
 </style>
