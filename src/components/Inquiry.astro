@@ -1,7 +1,6 @@
 ---
 import site from '../data/site.json';
 const types = [['convention','Convention coverage'],['artist','Artist or shop film'],['business','Philadelphia business promo'],['brand','Branded skit'],['other','Something else']];
-const budgets = ['Under $2,500','$2,500 to $5,000','$5,000 to $10,000','$10,000 or more','Not sure yet'];
 ---
 <form name="inquiry" method="POST" action="/thanks" data-netlify="true" netlify-honeypot="company_site" class="form" id="inquiry-form" novalidate>
   <input type="hidden" name="form-name" value="inquiry" />
@@ -31,12 +30,6 @@ const budgets = ['Under $2,500','$2,500 to $5,000','$5,000 to $10,000','$10,000 
 
   <label class="field">Tell me about your project
     <textarea name="message" required rows="5" maxlength="4000"></textarea>
-  </label>
-  <label class="field"><span>Budget <span class="opt">(optional)</span></span>
-    <select name="budget">
-      <option value="" selected>Choose one</option>
-      {budgets.map((b) => <option>{b}</option>)}
-    </select>
   </label>
 
   <p class="error" id="form-error" role="alert" hidden>Your inquiry did not send. Your details are still here, so please try again, or email {site.email}.</p>
