@@ -15,6 +15,8 @@ export interface Film {
   runtime?: string;
   description?: string;
   youtube?: string;
+  /** Leads the Portfolio page at full width. */
+  featured?: boolean;
   /** Full Vimeo share link. Plays on the site. */
   vimeo?: string;
   /** Any other watch link, used when there is no YouTube id. */
@@ -76,11 +78,14 @@ export const conventions: Film[] = [
  * Lugano Royale (Lugano Tattoo Convention), Say It!! (Austin Invitational).
  */
 export const portfolio: Film[] = [
+  { id: 'austin-invitational-promo', title: 'Austin Invitational Promo', subject: '', featured: true, vimeo: 'https://vimeo.com/1249780840/caf5891f8a' },
   { id: 'the-boys-struck-gold', title: 'The Boys Struck Gold', subject: 'EZ Tattoo Machine', vimeo: 'https://vimeo.com/1249776333/d0b7f2caa2' },
   { id: 'the-tattoo-robot', title: 'The Tattoo Robot', subject: 'Scripted Skit', vimeo: 'https://vimeo.com/1249776428/9220f2b203' },
   { id: 'richmond-convention-promo', title: 'Richmond Convention Promo', subject: 'Scripted Skit', vimeo: 'https://vimeo.com/1249778289/20be994002' },
-  { id: 'richmond-convention-teaser', title: 'Richmond Tattoo Convention Teaser', subject: '', vimeo: 'https://vimeo.com/1249777027/acebef1232' },
+  { id: 'richmond-convention-teaser', title: 'Richmond Tattoo Convention Teaser', subject: 'Life Beyond Ink', vimeo: 'https://vimeo.com/1249777027/acebef1232' },
   { id: 'formosa-convention-promo', title: 'Formosa Convention Promo', subject: '', vimeo: 'https://vimeo.com/1165028381/bedd121239' },
+  { id: 'paul-booth-teaser', title: 'Paul Booth Teaser', subject: 'Life Beyond Ink', vimeo: 'https://vimeo.com/1249781404/b120314e2a' },
+  { id: 'paul-booth-teaser-2', title: 'Paul Booth Teaser', subject: 'Life Beyond Ink', vimeo: 'https://vimeo.com/1249781405/b2a60e70d4' },
   { id: 'jacci-gresham-teaser', title: 'Jacci Gresham Teaser', subject: 'Life Beyond Ink', vimeo: 'https://vimeo.com/1249777583/342399be7a' },
   { id: 'buscalan-teaser', title: 'Buscalan Teaser', subject: 'Indigenous Revival', vimeo: 'https://vimeo.com/1247773569/20afd40472' },
 ];
