@@ -10,7 +10,7 @@ const src = vimeoEmbed(film);
       <iframe src={src} title={film.title} loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
     </div>
     <h3 class="title">{film.title}</h3>
-    <p class="brand">{film.subject}</p>
+    {film.subject && <p class="brand">{film.subject}</p>}
   </article>
 )}
 <style>

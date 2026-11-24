@@ -72,9 +72,15 @@ export const conventions: Film[] = [
 /**
  * Shorts from all of Dakota's filming. Each entry needs a Vimeo link, a title and a brand.
  * Waiting on links: Dakota Joins Dr. Pickles (Dr. Pickles), EZ Machine: Chinese Magic (EZ Tattoo),
- * EZ We Struck Gold (EZ Tattoo), Fistful of Fun (A Pound of Flesh),
+ * Fistful of Fun (A Pound of Flesh),
  * Lugano Royale (Lugano Tattoo Convention), Say It!! (Austin Invitational).
  */
 export const portfolio: Film[] = [
+  { id: 'the-boys-struck-gold', title: 'The Boys Struck Gold', subject: 'EZ Tattoo Machine', vimeo: 'https://vimeo.com/1249776333/d0b7f2caa2' },
+  { id: 'the-tattoo-robot', title: 'The Tattoo Robot', subject: 'Scripted Skit', vimeo: 'https://vimeo.com/1249776428/9220f2b203' },
+  { id: 'richmond-convention-promo', title: 'Richmond Convention Promo', subject: 'Scripted Skit', vimeo: 'https://vimeo.com/1249778289/20be994002' },
+  { id: 'richmond-convention-teaser', title: 'Richmond Tattoo Convention Teaser', subject: '', vimeo: 'https://vimeo.com/1249777027/acebef1232' },
+  { id: 'formosa-convention-promo', title: 'Formosa Convention Promo', subject: '', vimeo: 'https://vimeo.com/1165028381/bedd121239' },
+  { id: 'jacci-gresham-teaser', title: 'Jacci Gresham Teaser', subject: 'Life Beyond Ink', vimeo: 'https://vimeo.com/1249777583/342399be7a' },
   { id: 'buscalan-teaser', title: 'Buscalan Teaser', subject: 'Indigenous Revival', vimeo: 'https://vimeo.com/1247773569/20afd40472' },
 ];
