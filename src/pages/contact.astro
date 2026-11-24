@@ -1,0 +1,100 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import { site } from '../data/site';
+const kinds = [
+  ['convention', 'Convention film'],
+  ['scripted', 'Scripted mini film'],
+  ['custom', 'Custom inquiry'],
+] as const;
+---
+<Base title="Contact" description={`Contact Dakota Weik at ${site.email}.`}>
+  <PageHead title="Contact Me"><p><a href={`mailto:${site.email}`}>{site.email}</a></p></PageHead>
+  <form name="inquiry" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="company_site" id="inquiry" novalidate>
+    <input type="hidden" name="form-name" value="inquiry" />
+    <input type="hidden" name="subject" value="New inquiry from inkedabroadfilm.com" />
+    <p class="trap" aria-hidden="true"><label>Leave this empty <input name="company_site" tabindex="-1" autocomplete="off" /></label></p>
+    <div class="pair">
+      <label>Name<input name="name" required autocomplete="name" maxlength="120" /></label>
+      <label>Email<input type="email" name="email" required autocomplete="email" maxlength="160" inputmode="email" /></label>
+    </div>
+    <label>Inquiry
+      <select name="inquiry_type" id="inquiry_type" required>
+        {kinds.map(([value, label]) => <option value={value}>{label}</option>)}
+      </select>
+    </label>
+    <label>Message<textarea name="message" required rows="7" maxlength="5000"></textarea></label>
+    <p class="status" id="status" role="alert" hidden></p>
+    <button type="submit" class="button">Send</button>
+  </form>
+</Base>
+
+<script>
+  import { site } from '../data/site';
+  const form = document.getElementById('inquiry') as HTMLFormElement;
+  const kind = document.getElementById('inquiry_type') as HTMLSelectElement;
+  const status = document.getElementById('status') as HTMLParagraphElement;
+  const button = form.querySelector('button') as HTMLButtonElement;
+  const DRAFT = 'inquiry-draft';
+
+  // Carry the inquiry type in from the page that sent the visitor here.
+  const wanted = new URLSearchParams(location.search).get('for');
+  if (wanted && [...kind.options].some((o) => o.value === wanted)) kind.value = wanted;
+
+  // Restore anything typed before a failed send or a reload.
+  try {
+    const draft = JSON.parse(sessionStorage.getItem(DRAFT) || 'null') as Record<string, string> | null;
+    if (draft) for (const [name, value] of Object.entries(draft)) {
+      const field = form.elements.namedItem(name);
+      if (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement || field instanceof HTMLSelectElement) {
+        if (field.type !== 'hidden' && name !== 'company_site') field.value = value;
+      }
+    }
+  } catch { /* storage unavailable: the form still works */ }
+
+  const saveDraft = () => {
+    try { sessionStorage.setItem(DRAFT, JSON.stringify(Object.fromEntries(new FormData(form) as any))); } catch { /* ignore */ }
+  };
+  form.addEventListener('input', saveDraft);
+
+  const fail = (message: string) => { status.textContent = message; status.hidden = false; button.disabled = false; button.textContent = 'Send'; };
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    status.hidden = true;
+    form.querySelectorAll('.invalid').forEach((el) => el.classList.remove('invalid'));
+    const invalid = [...form.querySelectorAll<HTMLInputElement>('input[required], select[required], textarea[required]')].filter((el) => !el.checkValidity());
+    if (invalid.length) {
+      invalid.forEach((el) => el.closest('label')?.classList.add('invalid'));
+      invalid[0].focus();
+      return fail('Please fill in your name, a valid email and a message.');
+    }
+    button.disabled = true; button.textContent = 'Sending';
+    saveDraft();
+    try {
+      const body = new URLSearchParams(new FormData(form) as any).toString();
+      const response = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });
+      if (!response.ok) throw new Error(`Form endpoint returned ${response.status}`);
+      try { sessionStorage.removeItem(DRAFT); } catch { /* ignore */ }
+      location.assign('/thanks/');
+    } catch {
+      fail(`Your message did not send. Everything you typed is still here. Try again, or email ${site.email}.`);
+    }
+  });
+</script>
+
+<style>
+  form { display: grid; gap: 1.2rem; max-width: 680px; margin: 0 auto; padding: clamp(1.3rem, 4vw, 2.6rem); background: var(--paper-2); border: 1px solid var(--ink); border-radius: 18px; }
+  .pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.2rem; }
+  label { display: grid; gap: .45rem; font-family: var(--type); font-size: .86rem; letter-spacing: .08em; text-transform: uppercase; min-width: 0; }
+  input, select, textarea { width: 100%; min-width: 0; font: 400 1.08rem/1.4 var(--body); letter-spacing: 0; text-transform: none; color: var(--ink); background: #fffdf6; border: 1px solid var(--ink); border-radius: 10px; padding: .8rem .9rem; -webkit-appearance: none; appearance: none; }
+  select { background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%), linear-gradient(135deg, var(--ink) 50%, transparent 50%); background-position: calc(100% - 21px) 50%, calc(100% - 15px) 50%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 2.6rem; }
+  textarea { resize: vertical; min-height: 9rem; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--red); outline-offset: 1px; }
+  .invalid input, .invalid select, .invalid textarea { border-color: var(--red); box-shadow: 0 0 0 1px var(--red); }
+  .status { margin: 0; padding: .8rem 1rem; border: 1px solid var(--red); border-radius: 10px; color: var(--red); font-family: var(--type); font-size: .92rem; }
+  .trap { position: absolute; left: -9999px; }
+  .button { justify-self: start; }
+  :global(.lede) a { font-family: var(--type); font-style: normal; text-decoration: none; border-bottom: 2px solid var(--red); }
+  @media (max-width: 600px) { .pair { grid-template-columns: minmax(0, 1fr); } .button { justify-self: stretch; } }
+</style>

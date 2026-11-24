@@ -1,0 +1,17 @@
+---
+interface Props { title: string; }
+const { title } = Astro.props;
+---
+<header class="page-head">
+  <hr class="rule" />
+  <h1>{title}</h1>
+  <hr class="rule" />
+  <div class="lede"><slot /></div>
+</header>
+<style>
+  .page-head { text-align: center; margin: clamp(1.6rem, 4vw, 2.8rem) 0 clamp(1.8rem, 4vw, 3rem); }
+  h1 { font-family: var(--display); font-weight: 800; font-size: clamp(2.4rem, 7vw, 4.6rem); line-height: 1; letter-spacing: -.01em; margin: .9rem 0 1rem; }
+  .lede { max-width: 40rem; margin: 1.4rem auto 0; font-size: clamp(1.15rem, 1.6vw, 1.35rem); font-style: italic; line-height: 1.5; }
+  .lede:empty { display: none; }
+  .lede :global(p) { margin: 0; }
+</style>

@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import FilmGrid from '../components/FilmGrid.astro';
+import { scripted, watchUrl } from '../data/films';
+const lede = 'Scripted skits created to promote in a different way.';
+const live = scripted.filter((film) => watchUrl(film));
+const pending = scripted.filter((film) => !watchUrl(film));
+---
+<Base title="Scripted Mini Films" description={lede}>
+  <PageHead title="Scripted Mini Films"><p>{lede}</p></PageHead>
+  {live.length > 0 && <FilmGrid films={live} />}
+  {pending.length > 0 && (
+    <ul class="slate type">
+      {pending.map((film) => <li><span>{film.title}</span><span class="for">{film.subject}</span></li>)}
+    </ul>
+  )}
+  <p class="cta"><a class="button" href="/contact/?for=scripted">Contact me</a></p>
+</Base>
+<style>
+  .slate { list-style: none; padding: 0; margin: 0 auto; max-width: 720px; border-top: 1px solid var(--ink); }
+  .slate li { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: .9rem .1rem .7rem; border-bottom: 1px solid var(--ink); text-transform: uppercase; font-size: .98rem; }
+  .for { color: var(--red); }
+  .cta { text-align: center; margin: clamp(2.5rem, 6vw, 4rem) 0 0; }
+</style>

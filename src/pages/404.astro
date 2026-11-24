@@ -1,16 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
 ---
-<Base compact title="Page not found | Dakota Weik">
-  <section class="wrap done">
-    <p class="kicker">Page not found</p>
-    <h1 class="h-display">This page could not be found.</h1>
-    <p>You can see the work or tell me about your project.</p>
-    <p class="acts"><a href="/#work" class="link">See the work</a> <a href="/#inquire" class="btn">Start a project</a></p>
-  </section>
+<Base title="Page not found">
+  <PageHead title="Page Not Found" />
+  <p style="text-align:center"><a class="button" href="/">Back to the films</a></p>
 </Base>
-<style>
-  .done { text-align: center; padding-block: clamp(3rem, 8vw, 6rem); }
-  h1 { font-size: clamp(34px, 5vw, 56px); margin: .3rem 0 1rem; }
-  .acts { display: flex; gap: 1.4rem; justify-content: center; align-items: center; flex-wrap: wrap; }
-</style>

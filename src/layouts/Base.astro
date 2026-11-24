@@ -1,76 +1,71 @@
 ---
-import '@fontsource/playfair-display/400.css';
-import '@fontsource/playfair-display/400-italic.css';
-import '@fontsource/playfair-display/700.css';
-import '@fontsource/league-gothic';
-import '@fontsource/yellowtail';
-import '@fontsource/source-serif-4/400.css';
-import '@fontsource/source-serif-4/400-italic.css';
-import '@fontsource/source-serif-4/600.css';
-import '../styles/global.css';
-interface Props { title?: string; description?: string; image?: string; compact?: boolean; }
-const {
-  title = 'Dakota Weik | Tattoo Ethnographer and Filmmaker',
-  description = 'Films for tattoo conventions, artists, independent businesses and brands by Dakota Weik. Based in Philadelphia and available worldwide.',
-  image = '/media/dakota-hero.jpg',
-  compact = false,
-} = Astro.props;
+import '@fontsource/alegreya/400.css';
+import '@fontsource/alegreya/400-italic.css';
+import '@fontsource/alegreya/700.css';
+import '@fontsource/alegreya/800.css';
+import '@fontsource/im-fell-english/400.css';
+import '@fontsource/special-elite/400.css';
+import '../styles/site.css';
+import { site, nav } from '../data/site';
+
+interface Props { title?: string; description?: string; }
+const { title, description = site.tagline } = Astro.props;
+const fullTitle = title ? `${title} | ${site.name}` : `${site.name} | ${site.roles.join(' and ')}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const path = Astro.url.pathname.replace(/\/?$/, '/');
+const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+const person = {
+  '@context': 'https://schema.org', '@type': 'Person', name: site.name, jobTitle: site.roles.join(', '),
+  url: site.url, email: `mailto:${site.email}`, worksFor: { '@type': 'Organization', name: site.studio },
+};
 ---
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>{title}</title>
+  <title>{fullTitle}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
-  <meta property="og:title" content={title} />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={fullTitle} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content={new URL(image, Astro.site)} />
-  <meta name="theme-color" content="#EFE6D0" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={new URL('/og.jpg', Astro.site)} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#F0E8D5" />
+  <script type="application/ld+json" set:html={JSON.stringify(person)} />
 </head>
 <body>
-  <div class="zigzag" aria-hidden="true"></div>
-  <header class:list={['mast', { compact }]}>
-    <a href="/" class="mast-name">Inked Abroad</a>
-    <div class="band">
-      <nav aria-label="Main" class="wrap">
-        <a href="/#work">Work</a>
-        <a href="/" class="seal" aria-label="Home"><span aria-hidden="true">IA</span></a>
-        <a href="/#inquire">Inquire</a>
-      </nav>
-    </div>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="mast wrap">
+    <p class="dateline type"><span>{site.studio}</span><span>{site.city}</span></p>
+    <hr class="rule-thin" />
+    <a href="/" class="plate">{site.name}</a>
+    <p class="roles type">{site.roles.join(' / ')}</p>
+    <hr class="rule" />
+    <nav aria-label="Main">
+      <ul>{nav.map((item) => <li><a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a></li>)}</ul>
+    </nav>
+    <hr class="rule-thin" />
   </header>
-  <main><slot /></main>
-  <footer class="foot">
-    <div class="wrap">
-      <hr class="rule-double" />
-      <div class="foot-row">
-        <p>Inked Abroad · Dakota Weik · Philadelphia, Pennsylvania</p>
-        <p class="foot-links"><a href="/#work">Work</a><a href="/#about">About</a><a href="/#inquire">Inquire</a></p>
-      </div>
-    </div>
-    <div class="zigzag flip" aria-hidden="true"></div>
+  <main id="main" class="wrap"><slot /></main>
+  <footer class="foot wrap">
+    <hr class="rule" />
+    <p class="type"><span>{site.studio} · {site.name}</span><a href={`mailto:${site.email}`}>{site.email}</a></p>
   </footer>
 </body>
 </html>
 <style>
-  .mast { text-align: center; padding-top: clamp(12px, 2vw, 22px); }
-  .strap { font-family: var(--gothic); font-size: clamp(13px, 1.2vw, 16px); letter-spacing: .4em; text-transform: uppercase; color: var(--ink-2); margin: 0 0 .2rem; }
-  .mast-name { display: inline-block; text-decoration: none; font-family: var(--gothic); text-transform: uppercase; font-size: clamp(56px, 13vw, 150px); line-height: .9; letter-spacing: .04em; color: var(--brick); text-shadow: 2px 2px 0 var(--paper), 4px 4px 0 rgba(42,37,30,.35); white-space: nowrap; }
-  .band { margin-top: clamp(6px, 1vw, 12px); background: repeating-linear-gradient(0deg, rgba(42,37,30,.12) 0 1px, transparent 1px 4px); border-block: 2px solid var(--ink); }
-  nav { display: flex; justify-content: center; align-items: center; gap: clamp(1.4rem, 6vw, 4rem); padding-block: .35rem; }
-  nav a { font-family: var(--gothic); font-size: clamp(20px, 2vw, 24px); letter-spacing: .22em; text-transform: uppercase; text-decoration: none; color: var(--ink); }
-  nav a:hover { color: var(--red); }
-  .seal { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: var(--brick); color: var(--paper) !important; border: 2px solid var(--paper); outline: 2px solid var(--brick); font-size: 20px !important; letter-spacing: .05em !important; }
-  .compact .mast-name { font-size: clamp(44px, 8vw, 90px); }
-  .foot { margin-top: var(--space); }
-  .foot-line { text-align: center; font-family: var(--display); font-style: italic; text-transform: uppercase; letter-spacing: .12em; font-size: clamp(15px, 2.2vw, 26px); margin: 1.4rem 0 1rem; }
-  .foot-line span { font-style: italic; color: var(--red); font-weight: 700; letter-spacing: .08em; }
-  .foot-row { margin-top: 1rem; display: flex; justify-content: space-between; gap: .6rem 1.5rem; flex-wrap: wrap; padding: 1rem 0 1.6rem; border-top: 1px solid var(--ink); font-family: var(--gothic); letter-spacing: .14em; text-transform: uppercase; font-size: 16px; }
-  .foot-row p { margin: 0; }
-  .foot-links { display: flex; gap: 1.4rem; }
-  .foot-links a { text-decoration: none; } .foot-links a:hover { color: var(--red); }
-  .flip { transform: rotate(180deg); }
+  .mast { text-align: center; padding-top: 10px; }
+  .dateline { display: flex; justify-content: space-between; gap: 1rem; margin: 0 0 6px; font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); }
+  .plate { display: block; font-family: var(--plate); font-size: clamp(3.1rem, 13.5vw, 9.5rem); line-height: .95; letter-spacing: -.01em; text-decoration: none; margin: clamp(8px, 1.6vw, 18px) 0 0; white-space: nowrap; }
+  .roles { margin: clamp(2px, .6vw, 8px) 0 clamp(10px, 1.6vw, 16px); font-size: clamp(.8rem, 1.5vw, 1.05rem); letter-spacing: .34em; text-transform: uppercase; color: var(--red); }
+  nav ul { list-style: none; margin: 0; padding: .55rem 0 .4rem; display: flex; flex-wrap: wrap; justify-content: center; gap: .2rem clamp(.9rem, 3.4vw, 2.6rem); }
+  nav a { font-family: var(--type); font-size: clamp(.8rem, 1.2vw, .98rem); letter-spacing: .1em; text-transform: uppercase; text-decoration: none; padding: .3rem 0; display: inline-block; border-bottom: 2px solid transparent; }
+  nav a:hover { border-color: var(--ink); }
+  nav a[aria-current='page'] { border-color: var(--red); color: var(--red); }
+  .foot { margin-top: clamp(3.5rem, 8vw, 6rem); padding-bottom: 2rem; }
+  .foot p { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .4rem 1.5rem; margin: 1rem 0 0; font-size: .82rem; letter-spacing: .06em; text-transform: uppercase; }
+  .foot a { text-decoration: none; border-bottom: 1px solid var(--red); }
 </style>

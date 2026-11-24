@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import portrait from '../assets/photos/dakota.jpg';
+---
+<Base title="About" description="Dakota Weik is a tattoo ethnographer and filmmaker who studies and films tattooing across the world.">
+  <PageHead title="About Me" />
+  <div class="about">
+    <figure><Image src={portrait} alt="Dakota Weik" widths={[420, 640, 900]} sizes="(max-width: 860px) 92vw, 440px" loading="eager" /></figure>
+    <div class="copy">
+      <p class="first">I’m Dakota Weik, a tattoo ethnographer and filmmaker. I study and film tattooing across the world, showcasing the world’s greatest tattoos, their artists, their history and their cultures. I’m also a tattoo artist.</p>
+      <p>I create, write, direct and edit the film series Life Beyond Ink and Indigenous Revival.</p>
+      <p>I film tattooing in a cinematic way, to capture it through unique storytelling.</p>
+      <p><a class="button" href="/contact/">Contact me</a></p>
+    </div>
+  </div>
+</Base>
+<style>
+  .about { display: grid; grid-template-columns: minmax(0, 440px) minmax(0, 1fr); gap: clamp(1.5rem, 5vw, 4rem); align-items: start; }
+  figure { margin: 0; border: 1px solid var(--ink); padding: 8px; background: var(--paper-2); }
+  figure :global(img) { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 22%; }
+  .copy { max-width: 36rem; font-size: clamp(1.15rem, 1.5vw, 1.32rem); }
+  .copy p { margin: 0 0 1.1rem; }
+  @media (max-width: 860px) { .about { grid-template-columns: minmax(0, 1fr); } figure { max-width: 440px; margin-inline: auto; } }
+</style>

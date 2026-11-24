@@ -1,0 +1,39 @@
+---
+import { Image } from 'astro:assets';
+import { posterOf, watchUrl, fallbackThumb, type Film } from '../data/films';
+interface Props { film: Film; eager?: boolean; }
+const { film, eager = false } = Astro.props;
+const poster = posterOf(film);
+const href = watchUrl(film);
+const thumb = poster ? undefined : fallbackThumb(film);
+const meta = [film.place ? '' : film.subject !== film.title ? film.subject : '', film.place, film.runtime].filter(Boolean).join(' · ');
+const Tag = href ? 'a' : 'div';
+const linkProps = href ? { href, target: '_blank', rel: 'noopener', 'aria-label': `Watch ${film.title} on YouTube` } : {};
+---
+<article class="film">
+  <Tag class="bubble" {...linkProps}>
+    {poster && (
+      <Image src={poster} alt={`Poster for ${film.title}`} widths={[320, 480, 640, 800]}
+        sizes="(max-width: 560px) 92vw, (max-width: 980px) 46vw, 290px" loading={eager ? 'eager' : 'lazy'} />
+    )}
+    {thumb && <img src={thumb} alt={`Still from ${film.title}`} loading={eager ? 'eager' : 'lazy'} decoding="async" width="480" height="360" />}
+    {!poster && !thumb && <span class="blank">{film.title}</span>}
+    {href && <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M8 5v14l11-7z" fill="currentColor" /></svg></span>}
+  </Tag>
+  <h3 class="title">{href ? <a href={href} target="_blank" rel="noopener">{film.title}</a> : film.title}</h3>
+  {meta && <p class="meta">{meta}</p>}
+  {film.description && <p class="desc">{film.description}</p>}
+</article>
+<style>
+  .film { min-width: 0; }
+  .bubble { position: relative; display: block; aspect-ratio: 5 / 7; border-radius: 18px; overflow: hidden; background: var(--ink); box-shadow: 0 1px 0 rgba(31,28,23,.25), 0 14px 26px -14px rgba(31,28,23,.55); transition: transform .25s ease, box-shadow .25s ease; }
+  .bubble img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  a.bubble:hover, a.bubble:focus-visible { transform: translateY(-4px); box-shadow: 0 1px 0 rgba(31,28,23,.25), 0 22px 34px -16px rgba(31,28,23,.6); }
+  .blank { position: absolute; inset: 0; display: grid; place-items: center; padding: 1.2rem; text-align: center; font-family: var(--display); font-size: 1.7rem; line-height: 1.1; color: var(--paper); }
+  .play { position: absolute; right: 12px; bottom: 12px; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; padding-left: 3px; background: var(--paper); color: var(--ink); box-shadow: 0 2px 8px rgba(0,0,0,.35); }
+  .title { font-family: var(--type); font-weight: 400; font-size: 1.02rem; line-height: 1.35; letter-spacing: .01em; margin: 1rem 0 .15rem; text-transform: uppercase; }
+  .title a { text-decoration: none; }
+  .title a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .meta { font-family: var(--type); font-size: .82rem; color: var(--red); margin: 0 0 .45rem; }
+  .desc { font-family: var(--type); font-size: .9rem; line-height: 1.55; color: var(--ink-2); margin: 0; }
+</style>

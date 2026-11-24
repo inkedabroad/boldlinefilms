@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import FilmGrid from '../components/FilmGrid.astro';
+import { conventions } from '../data/films';
+const lede = 'I make special films for conventions. I spend the entire weekend there capturing the energy, the heart and the culture of the convention.';
+---
+<Base title="Convention Films" description={lede}>
+  <PageHead title="Conventions"><p>{lede}</p></PageHead>
+  <FilmGrid films={conventions} />
+  <p class="cta"><a class="button" href="/contact/?for=convention">Contact me</a></p>
+</Base>
+<style>.cta { text-align: center; margin: clamp(2.5rem, 6vw, 4rem) 0 0; }</style>
