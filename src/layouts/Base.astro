@@ -6,35 +6,35 @@ import '@fontsource/alegreya-sans/400.css';
 import '@fontsource/alegreya-sans/500.css';
 import '../styles/global.css';
 import site from '../data/site.json';
-interface Props { title?: string; description?: string; }
+interface Props { title?: string; description?: string; image?: string; }
 const {
-  title = 'Dakota Weik | Ethnographer and Filmmaker',
-  description = 'Films by Dakota Weik for tattoo conventions, artists, shops and brands. Based in Philadelphia, available worldwide.',
+  title = 'Dakota Weik | Tattoo Ethnographer and Filmmaker',
+  description = 'Films for tattoo conventions, artists, independent businesses and brands by Dakota Weik. Based in Philadelphia and available worldwide.',
+  image = '/media/dakota-hero.jpg',
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const nav = [{ href: '/#films', label: 'Films' }, { href: '/#conventions', label: 'Conventions' }, { href: '/#services', label: 'Services' }, { href: '/#about', label: 'About' }];
 ---
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content={new URL('/media/dakota-hero.jpg', Astro.site)} />
+  <meta property="og:image" content={new URL(image, Astro.site)} />
   <meta name="theme-color" content="#000000" />
+  <slot name="head" />
 </head>
 <body>
   <header class="top">
-    <a href="/" class="brand" aria-label="Dakota Weik home"><img src="/media/inked-abroad-logo.png" alt="Inked Abroad" width="642" height="428" /></a>
-    <nav aria-label="Main"><ul>{nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}</ul></nav>
-    <a href="/#hire" class="btn top-cta">Work With Me</a>
+    <a href="/" class="brand">Dakota Weik</a>
+    <nav aria-label="Main"><a href="/#work">Work</a><a href="/#inquire" class="inq">Inquire</a></nav>
   </header>
   <main><slot /></main>
-  <a href="/#hire" class="float-cta btn">Work With Me</a>
+  <a href="/#inquire" class="float-cta btn">Start a project</a>
   <footer class="foot wrap">
     <p class="foot-name">Dakota Weik</p>
     <ul>
@@ -44,36 +44,31 @@ const nav = [{ href: '/#films', label: 'Films' }, { href: '/#conventions', label
     <p class="muted small">© {new Date().getFullYear()} Inked Abroad · {site.city}</p>
   </footer>
   <script>
-    const top = document.querySelector('.top') as HTMLElement;
     const cta = document.querySelector('.float-cta') as HTMLElement;
-    const hire = document.getElementById('hire');
     const update = () => {
-      top?.classList.toggle('solid', window.scrollY > 40);
-      const atForm = hire ? hire.getBoundingClientRect().top < window.innerHeight : false;
-      cta?.classList.toggle('show', window.scrollY > window.innerHeight * 0.8 && !atForm);
+      const inq = document.getElementById('inquire');
+      const atForm = inq ? inq.getBoundingClientRect().top < window.innerHeight : false;
+      cta?.classList.toggle('show', window.scrollY > window.innerHeight * 0.6 && !atForm);
     };
     addEventListener('scroll', update, { passive: true }); update();
-    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.15 });
-    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
   </script>
 </body>
 </html>
 <style>
-  .top { position: fixed; inset: 0 0 auto 0; z-index: 50; display: flex; align-items: center; gap: 2rem; padding: .9rem var(--pad); transition: background .3s, border-color .3s; border-bottom: 1px solid transparent; }
-  .top:global(.solid) { background: rgba(0,0,0,.88); backdrop-filter: blur(8px); border-color: var(--line); }
-  .brand img { width: 92px; height: auto; }
-  nav { margin-left: auto; }
-  nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 2.2rem; }
-  nav a { font-family: var(--sans); font-size: .78rem; letter-spacing: .24em; text-transform: uppercase; color: #ddd; }
+  .top { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; gap: 1.5rem; height: 56px; padding: 0 var(--pad); background: rgba(0,0,0,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  .brand { font-size: 1.3rem; margin-right: auto; }
+  nav { display: flex; gap: 1.6rem; align-items: center; }
+  nav a { font-family: var(--sans); font-size: .74rem; letter-spacing: .24em; text-transform: uppercase; color: #ccc; }
   nav a:hover { color: #fff; }
-  .top-cta { padding: .75rem 1.3rem; font-size: .72rem; }
-  @media (max-width: 760px) { nav { display: none; } .top-cta { margin-left: auto; } .brand img { width: 78px; } }
-  .float-cta { position: fixed; right: 1rem; bottom: 1rem; z-index: 40; opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity .25s, transform .25s, background .25s, color .25s; }
+  nav .inq { color: #fff; border: 1px solid rgba(255,255,255,.5); padding: .5rem .9rem; }
+  nav .inq:hover { background: #fff; color: #000; }
+  .float-cta { position: fixed; left: 1rem; right: 1rem; bottom: max(1rem, env(safe-area-inset-bottom)); z-index: 40; text-align: center; opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity .25s, transform .25s, background .25s, color .25s; }
   .float-cta:global(.show) { opacity: 1; pointer-events: auto; transform: none; }
   @media (min-width: 761px) { .float-cta { display: none; } }
-  .foot { border-top: 1px solid var(--line); padding-block: 3rem; text-align: center; }
-  .foot-name { font-size: 1.8rem; margin: 0; }
-  .foot ul { list-style: none; padding: 0; margin: 1rem 0; display: flex; justify-content: center; flex-wrap: wrap; gap: .5rem 1.8rem; font-family: var(--sans); font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; }
+  .foot { border-top: 1px solid var(--line); padding-block: 3rem 5.5rem; text-align: center; }
+  .foot-name { font-size: 1.6rem; margin: 0; }
+  .foot ul { list-style: none; padding: 0; margin: 1rem 0; display: flex; justify-content: center; flex-wrap: wrap; gap: .5rem 1.8rem; font-family: var(--sans); font-size: .76rem; letter-spacing: .18em; text-transform: uppercase; }
   .foot a:hover { color: #fff; text-decoration: underline; }
   .small { font-size: .85rem; margin: 0; }
+  @media (min-width: 761px) { .foot { padding-bottom: 3rem; } }
 </style>

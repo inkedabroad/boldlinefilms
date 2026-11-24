@@ -1,111 +1,296 @@
 {
- "films": [
-  {
-   "title": "The Prince of Dark Tattooing",
-   "sub": "Paul Booth",
-   "runtime": "26 min",
-   "youtube": "SjkT-VwLgZo",
-   "still": "https://i.ytimg.com/vi/SjkT-VwLgZo/maxresdefault.jpg"
-  },
-  {
-   "title": "The Woman Who Changed Tattooing",
-   "sub": "Kari Barba",
-   "runtime": "31 min",
-   "youtube": "2o8NyUlzCO4",
-   "poster": "/media/posters/kari-barba.webp"
-  },
-  {
-   "title": "America's First Black Female Tattooer",
-   "sub": "Jacci Gresham",
-   "runtime": "27 min",
-   "youtube": "PXi0x8pNdrE",
-   "still": "/media/posters/jacci-gresham-still.webp"
-  },
-  {
-   "title": "Tattoos for the Grim Hearted",
-   "sub": "The Murray Brothers",
-   "runtime": "18 min",
-   "youtube": "5Ohft0apssg",
-   "poster": "/media/posters/murray-brothers.webp"
-  },
-  {
-   "title": "The Story of the Tattoo Man",
-   "sub": "Gill Montie",
-   "runtime": "25 min",
-   "youtube": "XA6xculqbno",
-   "poster": "/media/posters/gill-montie.webp"
-  },
-  {
-   "title": "The Rugged Ramblers",
-   "sub": "Sergey Fedotov",
-   "runtime": "23 min",
-   "youtube": "XAuIb4JUdus",
-   "poster": "/media/posters/sergey-fedotov.webp"
-  },
-  {
-   "title": "The Girl Behind the Glitter",
-   "sub": "Amanda Graves",
-   "runtime": "25 min",
-   "youtube": "bwBufwU7Hxs",
-   "poster": "/media/posters/amanda-graves.webp"
-  }
+ "featuredOrder": [
+  "austin-invitational-recap",
+  "lugano-recap",
+  "mondial-du-tatouage"
  ],
- "conventions": [
+ "selected": [
+  "bucharest-convention",
+  "shop-promo-slot",
+  "dakota-joins-dr-pickles",
+  "ez-machine-chinese-magic",
+  "fistful-of-fun",
+  "kari-barba"
+ ],
+ "seriesLink": "https://lifebeyondinkseries.com/films",
+ "projects": [
   {
+   "slug": "mondial-du-tatouage",
    "title": "Mondial du Tatouage: The Last Show",
-   "sub": "Paris \u00b7 Tin Tin",
+   "event": "Mondial du Tatouage",
+   "place": "Paris, France",
+   "kind": "convention",
+   "label": "Convention film",
+   "made": "A 22 minute film on the show and its founder, Tin Tin",
+   "role": "Writer, director and editor",
    "runtime": "22 min",
    "youtube": "irYW4juk8tE",
-   "poster": "/media/posters/mondial-du-tatouage.webp"
+   "poster": "/media/posters/mondial-du-tatouage.webp",
+   "still": "/media/stills/mondial-portrait.webp",
+   "synopsis": "The story of Mondial du Tatouage and the man who built it, told by its legendary judging panel.",
+   "related": []
   },
   {
-   "title": "Bucharest Tattoo Convention",
-   "sub": "Romania \u00b7 Costi Azoitei",
+   "slug": "bucharest-convention",
+   "title": "The Bucharest Tattoo Convention",
+   "event": "Bucharest Tattoo Convention",
+   "place": "Bucharest, Romania",
+   "kind": "convention",
+   "label": "Convention film",
+   "made": "A 13 minute convention film with Costi Azoitei",
+   "role": "Writer, director and editor",
    "runtime": "13 min",
    "youtube": "8ehAXXBcGGM",
-   "poster": "/media/posters/bucharest-convention.webp"
+   "poster": "/media/posters/bucharest-convention.webp",
+   "synopsis": "A convention in Romania that turned into a road trip through the Carpathians.",
+   "related": []
   },
   {
+   "slug": "belfast-tattoo-convention",
    "title": "Belfast Tattoo Convention",
-   "sub": "Northern Ireland \u00b7 Christopher Crooks",
+   "event": "Belfast Tattoo Convention",
+   "place": "Belfast, Northern Ireland",
+   "kind": "convention",
+   "label": "Convention film",
+   "made": "An 18 minute convention film with Christopher Crooks",
+   "role": "Writer, director and editor",
    "runtime": "18 min",
    "youtube": "P08_JbAN-5w",
-   "still": "/media/posters/belfast-still.webp"
+   "poster": "/media/posters/belfast-still.webp",
+   "synopsis": "A tattoo convention inside the hotel that survived more than 30 bombings during The Troubles.",
+   "related": []
   },
   {
+   "slug": "nordic-tattoo-moot",
    "title": "The Nordic Tattoo Moot",
-   "sub": "York \u00b7 Isar Oakmund",
+   "event": "Nordic Tattoo Moot",
+   "place": "York, England",
+   "kind": "convention",
+   "label": "Convention film",
+   "made": "A 14 minute convention film with Isar Oakmund",
+   "role": "Writer, director and editor",
    "runtime": "14 min",
    "youtube": "UxL8GxBZ64I",
-   "poster": "/media/posters/isar-oakmund.webp"
-  }
- ],
- "skits": [
-  {
-   "title": "Dakota Joins Dr. Pickles",
-   "sub": "Dr. Pickles",
-   "vimeo": ""
+   "poster": "/media/posters/isar-oakmund.webp",
+   "synopsis": "The Nordic tattooers of the world gather in the city the Vikings called Jorvik.",
+   "related": []
   },
   {
-   "title": "EZ Machine: Chinese Magic",
-   "sub": "EZ Tattoo",
-   "vimeo": ""
+   "slug": "kari-barba",
+   "title": "The Woman Who Changed Tattooing",
+   "event": "Kari Barba",
+   "kind": "lbi",
+   "label": "Life Beyond Ink",
+   "made": "A 31 minute artist film",
+   "role": "Creator, writer, director and editor",
+   "runtime": "31 min",
+   "youtube": "2o8NyUlzCO4",
+   "poster": "/media/posters/kari-barba.webp",
+   "synopsis": "Inside the oldest tattoo shop in America with the woman who saved it.",
+   "related": [],
+   "place": ""
   },
   {
-   "title": "Fistful of Fun",
-   "sub": "A Pound of Flesh",
-   "vimeo": ""
+   "slug": "paul-booth",
+   "title": "The Prince of Dark Tattooing",
+   "event": "Paul Booth",
+   "kind": "lbi",
+   "label": "Life Beyond Ink",
+   "made": "A 26 minute artist film",
+   "role": "Creator, writer, director and editor",
+   "runtime": "26 min",
+   "youtube": "SjkT-VwLgZo",
+   "synopsis": "Dakota enters the world of Paul Booth, the Prince of Darkness of tattooing.",
+   "related": [],
+   "place": ""
   },
   {
+   "slug": "jacci-gresham",
+   "title": "America's First Black Female Tattooer",
+   "event": "Jacci Gresham",
+   "kind": "lbi",
+   "label": "Life Beyond Ink",
+   "made": "A 27 minute artist film",
+   "role": "Creator, writer, director and editor",
+   "runtime": "27 min",
+   "youtube": "PXi0x8pNdrE",
+   "poster": "/media/posters/jacci-gresham-still.webp",
+   "synopsis": "A weekend on the ranch of the first Black woman to tattoo professionally in the United States.",
+   "related": [],
+   "place": ""
+  },
+  {
+   "slug": "murray-brothers",
+   "title": "Tattoos for the Grim Hearted",
+   "event": "The Murray Brothers",
+   "kind": "lbi",
+   "label": "Life Beyond Ink",
+   "made": "An 18 minute artist film",
+   "role": "Creator, writer, director and editor",
+   "runtime": "18 min",
+   "youtube": "5Ohft0apssg",
+   "poster": "/media/posters/murray-brothers.webp",
+   "synopsis": "Identical twins making black and gray work rooted in Salem's dark history.",
+   "related": [],
+   "place": ""
+  },
+  {
+   "slug": "gill-montie",
+   "title": "The Story of the Tattoo Man",
+   "event": "Gill Montie",
+   "kind": "lbi",
+   "label": "Life Beyond Ink",
+   "made": "A 25 minute artist film",
+   "role": "Creator, writer, director and editor",
+   "runtime": "25 min",
+   "youtube": "XA6xculqbno",
+   "poster": "/media/posters/gill-montie.webp",
+   "synopsis": "More than fifty years of tattooing, told over one weekend at the home of The Drill.",
+   "related": [],
+   "place": ""
+  },
+  {
+   "slug": "sergey-fedotov",
+   "title": "The Rugged Ramblers",
+   "event": "Sergey Fedotov",
+   "kind": "lbi",
+   "label": "Life Beyond Ink",
+   "made": "A 23 minute artist film",
+   "role": "Creator, writer, director and editor",
+   "runtime": "23 min",
+   "youtube": "XAuIb4JUdus",
+   "poster": "/media/posters/sergey-fedotov.webp",
+   "synopsis": "A Moscow born artist finding freedom on the forgotten highways of America.",
+   "related": [],
+   "place": ""
+  },
+  {
+   "slug": "amanda-graves",
+   "title": "The Girl Behind the Glitter",
+   "event": "Amanda Graves",
+   "kind": "lbi",
+   "label": "Life Beyond Ink",
+   "made": "A 25 minute artist film",
+   "role": "Creator, writer, director and editor",
+   "runtime": "25 min",
+   "youtube": "bwBufwU7Hxs",
+   "poster": "/media/posters/amanda-graves.webp",
+   "synopsis": "The artist who pioneered the glitter realism tattoo.",
+   "related": [],
+   "place": ""
+  },
+  {
+   "slug": "austin-invitational-recap",
+   "title": "Austin Tattoo Invitational",
+   "event": "Austin Tattoo Invitational",
+   "place": "Austin, Texas",
+   "kind": "convention",
+   "label": "Convention recap",
+   "made": "Event recap",
+   "role": "",
+   "vimeo": "",
+   "youtube": "",
+   "mp4": "",
+   "poster": "",
+   "related": [
+    "austin-invitational-say-it"
+   ],
+   "runtime": "",
+   "synopsis": ""
+  },
+  {
+   "slug": "lugano-recap",
+   "title": "Lugano Tattoo Royale",
+   "event": "Lugano Tattoo Royale",
+   "place": "Lugano, Switzerland",
+   "kind": "convention",
+   "label": "Convention recap",
+   "made": "Event recap",
+   "role": "",
+   "vimeo": "",
+   "youtube": "",
+   "mp4": "",
+   "poster": "",
+   "related": [
+    "lugano-royale"
+   ],
+   "runtime": "",
+   "synopsis": ""
+  },
+  {
+   "slug": "lugano-royale",
    "title": "Lugano Royale",
-   "sub": "Lugano Tattoo Convention",
-   "vimeo": ""
+   "event": "Lugano Tattoo Royale",
+   "place": "Lugano, Switzerland",
+   "kind": "skit",
+   "label": "Short film",
+   "made": "A commissioned short film",
+   "role": "Writer and director",
+   "vimeo": "",
+   "poster": "",
+   "related": [],
+   "runtime": "",
+   "synopsis": ""
   },
   {
+   "slug": "austin-invitational-say-it",
    "title": "Say It!!",
-   "sub": "Austin Invitational",
-   "vimeo": ""
+   "event": "Austin Tattoo Invitational",
+   "place": "Austin, Texas",
+   "kind": "skit",
+   "label": "Short film",
+   "made": "A commissioned comedy short",
+   "role": "Writer and director",
+   "vimeo": "",
+   "poster": "",
+   "related": [],
+   "runtime": "",
+   "synopsis": ""
+  },
+  {
+   "slug": "dakota-joins-dr-pickles",
+   "title": "Dakota Joins Dr. Pickles",
+   "event": "Dr. Pickles",
+   "kind": "skit",
+   "label": "Branded skit",
+   "made": "A branded comedy spot",
+   "role": "Writer and director",
+   "vimeo": "",
+   "poster": "",
+   "related": [],
+   "place": "",
+   "runtime": "",
+   "synopsis": ""
+  },
+  {
+   "slug": "ez-machine-chinese-magic",
+   "title": "EZ Machine: Chinese Magic",
+   "event": "EZ Tattoo",
+   "kind": "skit",
+   "label": "Branded skit",
+   "made": "A branded comedy spot",
+   "role": "Writer and director",
+   "vimeo": "",
+   "poster": "",
+   "related": [],
+   "place": "",
+   "runtime": "",
+   "synopsis": ""
+  },
+  {
+   "slug": "fistful-of-fun",
+   "title": "Fistful of Fun",
+   "event": "A Pound of Flesh",
+   "kind": "skit",
+   "label": "Branded skit",
+   "made": "A branded comedy spot",
+   "role": "Writer and director",
+   "vimeo": "",
+   "poster": "",
+   "related": [],
+   "place": "",
+   "runtime": "",
+   "synopsis": ""
   }
- ],
- "seriesLink": "https://lifebeyondinkseries.com/films"
+ ]
 }

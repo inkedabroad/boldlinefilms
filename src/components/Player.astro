@@ -1,0 +1,43 @@
+---
+import { embedOf, stillOf, watchLinkOf, type Project } from '../data/work';
+const { project } = Astro.props as { project: Project };
+const embed = embedOf(project);
+const still = stillOf(project);
+const watch = watchLinkOf(project);
+---
+<div class="player-wrap">
+  <div class="player" data-player data-embed={embed} data-mp4={project.mp4 || ''}>
+    {still && <img src={still} alt={`Still from ${project.title}`} class="poster" data-fallback={project.youtube ? `https://i.ytimg.com/vi/${project.youtube}/hqdefault.jpg` : ''} />}
+    <button class="play" aria-label={`Play ${project.title}`}>
+      <span class="circle"><svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+      <span class="play-label">Play the film{project.runtime && ` · ${project.runtime}`}</span>
+    </button>
+  </div>
+  {watch && <p class="direct"><a href={watch.href} target="_blank" rel="noopener">{watch.label} ↗</a></p>}
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-player]').forEach((el) => {
+    const img = el.querySelector<HTMLImageElement>('img.poster');
+    img?.addEventListener('error', () => { if (img.dataset.fallback && img.src !== img.dataset.fallback) img.src = img.dataset.fallback; }, { once: true });
+    el.querySelector('.play')?.addEventListener('click', () => {
+      if (el.dataset.mp4) {
+        el.innerHTML = `<video src="${el.dataset.mp4}" controls autoplay playsinline preload="metadata"></video>`;
+      } else if (el.dataset.embed) {
+        el.innerHTML = `<iframe src="${el.dataset.embed}" title="Film player" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen></iframe>`;
+      }
+    });
+  });
+</script>
+<style>
+  .player { position: relative; aspect-ratio: 16 / 9; background: #0b0b0b; overflow: hidden; }
+  .player .poster { width: 100%; height: 100%; object-fit: cover; }
+  .play { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .8rem; background: linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.45)); border: 0; color: #fff; cursor: pointer; }
+  .circle { width: 84px; height: 84px; border-radius: 50%; background: #fff; color: #000; display: grid; place-items: center; padding-left: 5px; transition: transform .2s; box-shadow: 0 8px 30px rgba(0,0,0,.5); }
+  .play:hover .circle { transform: scale(1.06); }
+  .play-label { font-family: var(--sans); font-size: .76rem; letter-spacing: .24em; text-transform: uppercase; text-shadow: 0 1px 8px rgba(0,0,0,.8); }
+  @media (max-width: 640px) { .circle { width: 66px; height: 66px; } }
+  .player :global(iframe), .player :global(video) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; }
+  .direct { margin: .8rem 0 0; font-family: var(--sans); font-size: .76rem; letter-spacing: .2em; text-transform: uppercase; }
+  .direct a { color: #ccc; border-bottom: 1px solid #555; padding-bottom: 2px; }
+  .direct a:hover { color: #fff; border-color: #fff; }
+</style>

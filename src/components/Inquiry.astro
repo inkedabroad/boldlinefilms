@@ -1,84 +1,76 @@
 ---
 import site from '../data/site.json';
-const types = [['convention','Convention'],['artist','Tattoo artist'],['shop','Tattoo shop'],['business','Local business'],['brand','Brand'],['other','Something else']];
-const budgets = ['Below $2,500','$2,500 to $4,999','$5,000 to $7,499','$7,500 to $14,999','$15,000 or more','Not set yet'];
+const types = [['convention','Convention coverage'],['artist','Artist or shop film'],['business','Philadelphia business promo'],['brand','Branded skit'],['other','Something else']];
+const budgets = ['Under $2,500','$2,500 to $5,000','$5,000 to $10,000','$10,000 or more','Not sure yet'];
 ---
 <form name="inquiry" method="POST" action="/thanks" data-netlify="true" netlify-honeypot="company_site" class="form" id="inquiry-form" novalidate>
   <input type="hidden" name="form-name" value="inquiry" />
   <input type="hidden" name="from_project" id="from_project" />
   <p class="hp"><label>Leave this empty <input name="company_site" tabindex="-1" autocomplete="off" /></label></p>
 
-  <label class="field">What are you planning?
-    <select name="client_type" id="client_type" required>
+  <div class="row">
+    <label class="field">Name<input name="name" required autocomplete="name" maxlength="120" /></label>
+    <label class="field">Email<input type="email" name="email" required autocomplete="email" maxlength="160" /></label>
+  </div>
+  <label class="field">Project type
+    <select name="project_type" id="project_type" required>
       <option value="" disabled selected>Choose one</option>
       {types.map(([v, l]) => <option value={v}>{l}</option>)}
     </select>
   </label>
-  <div class="row">
-    <label class="field">Your name<input name="name" required autocomplete="name" maxlength="120" /></label>
-    <label class="field">Email<input type="email" name="email" required autocomplete="email" maxlength="160" /></label>
-  </div>
-  <label class="field"><span id="biz_label">Business name or Instagram</span><input name="business" maxlength="200" /></label>
-  <label class="field">Tell me about the project
-    <textarea name="message" id="message" rows="5" required maxlength="4000" placeholder="What would you like to make, and what should it help you achieve?"></textarea>
-  </label>
+  <label class="field">Business name or Instagram <span class="opt">Optional</span><input name="business" maxlength="200" /></label>
 
-  <fieldset class="checks" data-show="convention" hidden>
-    <legend>What would you like covered?</legend>
-    {['Event recap','Social films','Hosting','35mm photography','Help me decide'].map((c) => <label><input type="checkbox" name="convention_coverage" value={c} /> {c}</label>)}
-  </fieldset>
-  <fieldset class="checks" data-show="brand" hidden>
-    <legend>Where will the film be used?</legend>
-    {['Website','Organic social','Paid advertising','Other','Not decided'].map((c) => <label><input type="checkbox" name="brand_usage" value={c} /> {c}</label>)}
-  </fieldset>
-
-  <div class="row">
-    <label class="field">Where will we film?<input name="location" required maxlength="160" placeholder="A city is enough. Not decided is fine." /></label>
-    <label class="field" data-hide="convention"><span id="when_label">When do you need it?</span><input name="timing" id="timing" required maxlength="160" placeholder="A date, month or rough timeframe." /></label>
-    <div class="field dates" data-show="convention" hidden>
-      <span>Convention dates</span>
+  <div class="conv" data-show="convention" hidden>
+    <label class="field">Event city<input name="event_city" id="event_city" maxlength="120" /></label>
+    <div class="field">
+      <span>Event dates</span>
       <div class="date-row"><input type="date" name="event_start" aria-label="Start date" /><input type="date" name="event_end" aria-label="End date" /></div>
-      <label class="inline"><input type="checkbox" name="dates_tbc" value="yes" /> Dates not confirmed</label>
+      <label class="inline"><input type="checkbox" name="dates_unconfirmed" value="yes" /> Dates not confirmed yet</label>
     </div>
   </div>
-  <label class="field">Production budget (USD)
-    <select name="budget" required>
-      <option value="" disabled selected>Choose one</option>
+
+  <label class="field">Tell me about your project
+    <textarea name="message" required rows="5" maxlength="4000"></textarea>
+  </label>
+  <label class="field">Budget <span class="opt">Optional</span>
+    <select name="budget">
+      <option value="" selected>Choose one</option>
       {budgets.map((b) => <option>{b}</option>)}
     </select>
-    <small class="muted">An estimate is fine. Choose Not set yet if you need guidance.</small>
   </label>
-  <p class="note" data-show="convention" hidden>Convention coverage starts at $6,500. Travel is quoted separately.</p>
 
-  <p class="error" id="form-error" role="alert" hidden>Your inquiry could not be sent. Please try again or email {site.email}. Your details are still here.</p>
-  <button type="submit" class="btn">Send inquiry</button>
-  <p class="muted small">I use these details to respond to your inquiry and plan your project.<br />Prefer email? <a href={`mailto:${site.email}`}>{site.email}</a></p>
+  <p class="error" id="form-error" role="alert" hidden>Your inquiry did not send. Your details are still here, so please try again, or email {site.email}.</p>
+  <button type="submit" class="btn send">Send inquiry</button>
+  <p class="mail">Or email <a href={`mailto:${site.email}`}>{site.email}</a></p>
 </form>
 
 <script>
   const form = document.getElementById('inquiry-form') as HTMLFormElement | null;
-  const type = document.getElementById('client_type') as HTMLSelectElement | null;
-  const biz = document.getElementById('biz_label');
-  const when = document.getElementById('when_label');
-  const timing = document.getElementById('timing') as HTMLInputElement | null;
-  const msg = document.getElementById('message') as HTMLTextAreaElement | null;
-  const bizLabels: Record<string, string> = { convention: 'Convention name or website', artist: 'Artist name or Instagram', shop: 'Shop name or Instagram', business: 'Business name or website', brand: 'Brand name or website' };
-  const prompts: Record<string, string> = { artist: 'A promo, a profile, a guest spot? Tell me what you have in mind.', shop: 'Tell me about the shop, your artists or an upcoming event.', business: 'Tell me about the business and what you want to promote.' };
+  const type = document.getElementById('project_type') as HTMLSelectElement | null;
+  const city = document.getElementById('event_city') as HTMLInputElement | null;
+  const KEY = 'inquiry-draft';
   function apply() {
     const v = type?.value || '';
     document.querySelectorAll<HTMLElement>('[data-show]').forEach((el) => (el.hidden = el.dataset.show !== v));
-    document.querySelectorAll<HTMLElement>('[data-hide]').forEach((el) => (el.hidden = el.dataset.hide === v));
-    if (biz) biz.textContent = bizLabels[v] || 'Business name or Instagram';
-    if (when) when.textContent = v === 'brand' ? 'Target launch date' : 'When do you need it?';
-    if (timing) timing.required = v !== 'convention';
-    if (msg) msg.placeholder = prompts[v] || 'What would you like to make, and what should it help you achieve?';
+    if (city) city.required = v === 'convention';
   }
   type?.addEventListener('change', apply);
-  // preselect from service buttons and carry project context
+  // restore a draft kept after a failed send
+  try {
+    const saved = JSON.parse(sessionStorage.getItem(KEY) || 'null');
+    if (saved && form) for (const [k, v] of Object.entries(saved)) {
+      const el = form.elements.namedItem(k) as any; if (!el || k === 'form-name') continue;
+      if (el.type === 'checkbox') el.checked = v === el.value; else el.value = v;
+    }
+  } catch {}
+  const preset = (t?: string, project?: string) => {
+    if (type && t && [...type.options].some((o) => o.value === t)) { type.value = t; }
+    if (project) (document.getElementById('from_project') as HTMLInputElement).value = project;
+    apply();
+  };
   const params = new URLSearchParams(location.search);
-  const want = params.get('for'); if (want && type) { type.value = want; apply(); }
-  const proj = params.get('project'); if (proj) (document.getElementById('from_project') as HTMLInputElement).value = proj;
-  document.addEventListener('inquiry:preset', ((e: CustomEvent) => { if (type && e.detail?.type) { type.value = e.detail.type; apply(); } if (e.detail?.project) (document.getElementById('from_project') as HTMLInputElement).value = e.detail.project; }) as EventListener);
+  preset(params.get('for') || undefined, params.get('project') || undefined);
+  document.addEventListener('inquiry:preset', ((e: CustomEvent) => preset(e.detail?.type, e.detail?.project)) as EventListener);
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -86,34 +78,36 @@ const budgets = ['Below $2,500','$2,500 to $4,999','$5,000 to $7,499','$7,500 to
     form.querySelectorAll('.invalid').forEach((el) => el.classList.remove('invalid'));
     const bad = [...form.querySelectorAll<HTMLInputElement>('input,select,textarea')].filter((el) => !el.closest('[hidden]') && !el.checkValidity());
     if (bad.length) { bad.forEach((el) => el.closest('.field')?.classList.add('invalid')); bad[0].focus(); return; }
-    const btn = form.querySelector('button[type=submit]') as HTMLButtonElement; btn.disabled = true; btn.textContent = 'Sending inquiry';
+    const data = new FormData(form);
+    try { sessionStorage.setItem(KEY, JSON.stringify(Object.fromEntries(data as any))); } catch {}
+    const btn = form.querySelector('.send') as HTMLButtonElement; btn.disabled = true; btn.textContent = 'Sending';
     try {
-      const res = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(new FormData(form) as any).toString() });
+      const res = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(data as any).toString() });
       if (!res.ok) throw new Error(String(res.status));
+      try { sessionStorage.removeItem(KEY); } catch {}
       location.href = '/thanks';
     } catch { err.hidden = false; btn.disabled = false; btn.textContent = 'Send inquiry'; }
   });
 </script>
 
 <style>
-  .form { display: grid; gap: 1.1rem; max-width: 720px; margin: 0 auto; }
+  .form { display: grid; gap: 1.1rem; max-width: 680px; }
   .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
   .field { display: grid; gap: .5rem; font-family: var(--sans); font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: #bbb; }
+  .opt { color: #777; letter-spacing: .14em; margin-left: .4rem; }
   [hidden] { display: none !important; }
-  input, select, textarea { background: #000; border: 1px solid #555; border-radius: 0; color: #fff; padding: 1rem 1.1rem; font: 400 1.05rem var(--serif); letter-spacing: normal; text-transform: none; width: 100%; }
+  .conv { display: grid; gap: 1.1rem; }
+  input, select, textarea { background: #000; border: 1px solid #555; border-radius: 0; color: #fff; padding: .95rem 1rem; font: 400 1.05rem var(--serif); letter-spacing: normal; text-transform: none; width: 100%; -webkit-appearance: none; appearance: none; }
+  select { background-image: linear-gradient(45deg, transparent 50%, #aaa 50%), linear-gradient(135deg, #aaa 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%; background-size: 5px 5px; background-repeat: no-repeat; }
   input:focus, select:focus, textarea:focus { border-color: #fff; outline: none; }
   .invalid input, .invalid select, .invalid textarea { border-color: #e5484d; }
-  small { font-family: var(--serif); font-size: .9rem; letter-spacing: normal; text-transform: none; }
-  .checks { border: 1px solid #555; padding: .9rem 1.1rem; display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; }
-  .checks legend { font-family: var(--sans); font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: #bbb; padding: 0 .4rem; }
-  .checks label, .inline { display: flex; align-items: center; gap: .5rem; font-size: 1rem; font-weight: 400; color: #eee; font-family: var(--serif); letter-spacing: normal; text-transform: none; }
-  .checks input, .inline input { width: auto; accent-color: #fff; }
   .date-row { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
-  .note { border-left: 2px solid #fff; padding-left: .9rem; margin: 0; }
+  .inline { display: flex; align-items: center; gap: .6rem; font-family: var(--serif); font-size: 1rem; letter-spacing: normal; text-transform: none; color: #ddd; }
+  .inline input { width: 20px; height: 20px; padding: 0; -webkit-appearance: checkbox; appearance: auto; accent-color: #fff; }
   .error { color: #ff8a80; margin: 0; }
   .hp { position: absolute; left: -9999px; }
-  .form .btn { justify-self: start; padding: .95rem 2.2rem; }
-  .small { font-size: .88rem; margin: 0; }
-  .small a { text-decoration: underline; }
-  @media (max-width: 640px) { .row { grid-template-columns: 1fr; } .form .btn { justify-self: stretch; } }
+  .send { justify-self: start; padding: 1.05rem 2.4rem; }
+  .mail { margin: 0; font-size: 1rem; color: var(--text-2); }
+  .mail a { color: #fff; border-bottom: 1px solid #666; }
+  @media (max-width: 640px) { .row { grid-template-columns: 1fr; } .send { justify-self: stretch; text-align: center; } }
 </style>

@@ -1,20 +1,74 @@
 {
   "name": "Dakota Weik",
-  "title": "Tattoo ethnographer & filmmaker",
+  "title": "Tattoo ethnographer and filmmaker",
   "city": "Philadelphia, Pennsylvania",
   "email": "info@inkedabroad.com",
   "socials": [
-    { "label": "TikTok", "handle": "@inkedabroad", "followers": "940K", "url": "https://www.tiktok.com/@inkedabroad" },
-    { "label": "Instagram", "handle": "@inkedabroad", "followers": "627K", "url": "https://www.instagram.com/inkedabroad" },
-    { "label": "Facebook", "handle": "Inked Abroad", "followers": "506K", "url": "https://www.facebook.com/inkedabroad" },
-    { "label": "YouTube", "handle": "@inkedabroad", "followers": "145K", "url": "https://www.youtube.com/@inkedabroad" }
+    {
+      "label": "TikTok",
+      "handle": "@inkedabroad",
+      "followers": "940K",
+      "url": "https://www.tiktok.com/@inkedabroad"
+    },
+    {
+      "label": "Instagram",
+      "handle": "@inkedabroad",
+      "followers": "627K",
+      "url": "https://www.instagram.com/inkedabroad"
+    },
+    {
+      "label": "Facebook",
+      "handle": "Inked Abroad",
+      "followers": "506K",
+      "url": "https://www.facebook.com/inkedabroad"
+    },
+    {
+      "label": "YouTube",
+      "handle": "@inkedabroad",
+      "followers": "145K",
+      "url": "https://www.youtube.com/@inkedabroad"
+    }
   ],
   "totalFollowers": "2.2M",
-  "clients": ["Dr. Pickles", "EZ Tattoo", "A Pound of Flesh", "Austin Invitational", "Lugano Tattoo Convention"],
+  "clients": [
+    "Dr. Pickles",
+    "EZ Tattoo",
+    "A Pound of Flesh",
+    "Austin Invitational",
+    "Lugano Tattoo Convention"
+  ],
   "services": [
-    { "slug": "convention", "name": "Convention Coverage", "price": "Starting at $6,500", "text": "Film coverage across your event, with a cinematic recap and social edits. Hosting and Nikon F2 photography can be built into the schedule.", "note": "Up to three event days. Travel quoted separately.", "cta": "Discuss your convention" },
-    { "slug": "artist", "name": "Artist Promos", "price": "Starting at $1,500", "text": "A focused film introducing your work, your process or your next guest spot.", "note": "Artist profiles and larger projects receive a custom proposal.", "cta": "Plan an artist promo" },
-    { "slug": "business", "name": "Shop & Business Films", "price": "Starting at $2,500", "text": "Films for tattoo shops, restaurants, bars, coffee shops, gyms and independent businesses. A main film plus short edits for your website and socials.", "note": "", "cta": "Tell me about your business" },
-    { "slug": "brand", "name": "Branded Skits & Campaigns", "price": "Quoted by project", "text": "Original concepts, writing, direction and production for brands with a story to tell.", "note": "", "cta": "Discuss a brand project" }
+    {
+      "slug": "convention",
+      "name": "Convention coverage",
+      "price": "Starting at $6,500",
+      "text": "Weekend filming at your event, with a recap film, social edits, hosting and Nikon F2 photography included according to the scope we agree.",
+      "note": "Travel is quoted separately.",
+      "cta": "Plan your convention"
+    },
+    {
+      "slug": "artist",
+      "name": "Artist and shop films",
+      "price": "Quoted by project",
+      "text": "Films about a tattoo artist, a shop, a guest spot or the work itself.",
+      "note": "",
+      "cta": "Plan an artist or shop film"
+    },
+    {
+      "slug": "business",
+      "name": "Philadelphia business promos",
+      "price": "Quoted by project",
+      "text": "Promos for independent Philadelphia businesses, made for your website and socials.",
+      "note": "",
+      "cta": "Plan a business promo"
+    },
+    {
+      "slug": "brand",
+      "name": "Branded skits",
+      "price": "Quoted by project",
+      "text": "Original comedy written, directed and filmed for brands and events.",
+      "note": "",
+      "cta": "Plan a branded skit"
+    }
   ]
 }

@@ -1,0 +1,62 @@
+---
+import Base from '../../layouts/Base.astro';
+import Player from '../../components/Player.astro';
+import { projects, relatedTo, posterOf, stillOf, inquiryType, type Project } from '../../data/work';
+export function getStaticPaths() {
+  return projects.map((p) => ({ params: { slug: p.slug }, props: { project: p } }));
+}
+const { project } = Astro.props as { project: Project };
+const related = relatedTo(project);
+const idx = projects.findIndex((p) => p.slug === project.slug);
+const next = projects[(idx + 1) % projects.length];
+const details = [['Made', project.made], ['My role', project.role], ['Where', project.place], ['Length', project.runtime]].filter(([, v]) => v);
+const t = inquiryType(project);
+---
+<Base title={`${project.title} | Dakota Weik`} description={project.synopsis || `${project.title}, a film by Dakota Weik.`} image={posterOf(project).startsWith('/') ? posterOf(project) : undefined}>
+  <article class="wrap page">
+    <p class="label">{project.label}</p>
+    <h1 class="h1">{project.title}</h1>
+    {project.event && project.event !== project.title && <p class="sub muted">{project.event}</p>}
+    <Player project={project} />
+    <div class="body">
+      {project.synopsis && <p class="lead">{project.synopsis}</p>}
+      <dl>{details.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
+    </div>
+    {related.length > 0 && (
+      <section class="related">
+        <p class="label">From the same event</p>
+        <div class="rel-grid">{related.map((r) => <a href={`/work/${r.slug}/`}><img src={stillOf(r)} alt="" loading="lazy" /><span>{r.title}</span><small>{r.label}</small></a>)}</div>
+      </section>
+    )}
+    <section class="cta">
+      <h2 class="h2">Want a film like this?</h2>
+      <a href={`/?for=${t}&project=${project.slug}#inquire`} class="btn">Start a project</a>
+    </section>
+    {next && next.slug !== project.slug && (
+      <a href={`/work/${next.slug}/`} class="next"><span class="label">Next film</span><span class="next-title">{next.title} →</span></a>
+    )}
+  </article>
+</Base>
+<style>
+  .page { padding-block: 2rem 4rem; max-width: 1100px; }
+  .h1 { font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 400; line-height: 1.05; margin: 0 0 .3rem; }
+  .sub { margin: 0 0 1.4rem; font-size: 1.15rem; }
+  .h1 + :global(.player-wrap) { margin-top: 1.4rem; }
+  .body { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2.5rem; margin-top: 2.4rem; }
+  .lead { font-size: clamp(1.2rem, 2.2vw, 1.45rem); line-height: 1.5; margin: 0; }
+  dl { margin: 0; display: grid; gap: 1rem; }
+  dt { font-family: var(--sans); font-size: .7rem; letter-spacing: .24em; text-transform: uppercase; color: var(--text-2); }
+  dd { margin: .15rem 0 0; }
+  @media (max-width: 760px) { .body { grid-template-columns: 1fr; gap: 1.6rem; margin-top: 1.8rem; } }
+  .related { margin-top: 3rem; }
+  .rel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.4rem; }
+  .rel-grid a { display: grid; gap: .3rem; }
+  .rel-grid img { aspect-ratio: 16 / 9; object-fit: cover; width: 100%; }
+  .rel-grid small { font-family: var(--sans); font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--text-2); }
+  .cta { margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
+  .cta .h2 { margin: 0; }
+  @media (max-width: 640px) { .cta .btn { width: 100%; text-align: center; } }
+  .next { display: grid; gap: .3rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+  .next-title { font-size: 1.6rem; }
+  .next:hover .next-title { text-decoration: underline; text-underline-offset: 5px; }
+</style>
