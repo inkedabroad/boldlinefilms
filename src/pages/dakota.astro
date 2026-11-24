@@ -14,8 +14,6 @@ import { socials, artistBox, drPickles, ezTattoo, shelf } from '../data/links';
 import { lifeBeyondInk, conventions, posterOf } from '../data/films';
 
 const films = [...lifeBeyondInk, ...conventions];
-const paul = lifeBeyondInk.find((f) => f.id === 'paul-booth')!;
-const paulPoster = posterOf(paul);
 const posters = shelf.flatMap((entry) => {
   const film = films.find((f) => f.id === entry.film);
   const poster = film && posterOf(film);
@@ -40,27 +38,27 @@ const posters = shelf.flatMap((entry) => {
         </div>
       </header>
 
-      <a class="dakotaBubble dakotaFeature" href={`https://youtu.be/${paul.youtube}`} target="_blank" rel="noopener noreferrer">
-        {paulPoster && <Image src={paulPoster} alt="Paul Booth" widths={[440, 880]} sizes="(max-width: 472px) 92vw, 408px" loading="eager" />}
-        <span class="dakotaFeatureBar"><strong>Watch the full Paul Booth film</strong><span class="dakotaGo">Watch free</span></span>
-      </a>
-
-      <nav class="dakotaMainCards dakotaCompact" aria-label="Explore Dakota's work">
-        <a href="https://lifebeyondinkseries.com" class="dakotaBubble dakotaRow" target="_blank" rel="noopener noreferrer">
-          <Image class="dakotaRowArt" src={lbiTitle} alt="" width={360} height={152} />
-          <span class="dakotaRowText"><strong>Watch Life Beyond Ink</strong><small>Free films inside the lives of extraordinary tattoo artists.</small></span>
-          <span class="dakotaGo">Watch free</span>
+      <nav class="dakotaMainCards" aria-label="Explore Dakota's work">
+        <a href="https://hallsofinkarchives.com" class="dakotaBubble dakotaMainCard dakotaMainCardFeatured">
+          <Image class="dakotaBrandLogo" src={hallsLogo} alt="" width={220} height={275} />
+          <span><strong>THE HALLS OF INK</strong><small>Find the world's best tattoo artists and the world's tattoo museum.</small></span>
+          <svg class="dakotaChevron" viewBox="0 0 10 16" fill="none" aria-hidden="true"><path d="m2 3 5 5-5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
         </a>
-        <a href="https://hallsofinkarchives.com" class="dakotaBubble dakotaRow">
-          <Image class="dakotaRowArt" src={hallsLogo} alt="" width={220} height={275} />
-          <span class="dakotaRowText"><strong>Find your next tattoo artist</strong><small>Explore The Halls of Ink artist archive and tattoo museum.</small></span>
-          <span class="dakotaGo">Explore</span>
+        <a href="https://lifebeyondinkseries.com" class="dakotaBubble dakotaMainCard" target="_blank" rel="noopener noreferrer">
+          <Image class="dakotaTitleArt" src={lbiTitle} alt="" width={360} height={152} />
+          <span><strong class="dakotaSrOnly">LIFE BEYOND INK</strong><small>Inside the lives of the world's most extraordinary tattoo artists.</small><em class="dakotaCardCredit">Original films by @inkedabroad</em></span>
+          <svg class="dakotaChevron" viewBox="0 0 10 16" fill="none" aria-hidden="true"><path d="m2 3 5 5-5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
         </a>
-        <a href="/" class="dakotaBubble dakotaRow">
-          <Image class="dakotaRowArt" src={iaLogo} alt="" width={642} height={428} />
-          <span class="dakotaRowText"><strong>Hire me to make your film</strong><small>Films for artists, brands and businesses.</small></span>
-          <span class="dakotaGo">View my work</span>
+        <a href="/" class="dakotaBubble dakotaMainCard dakotaLogoCard dakotaWorkCard">
+          <Image class="dakotaBrandLogo" src={iaLogo} alt="" width={642} height={428} />
+          <span><strong>WORK WITH ME</strong></span>
+          <span class="dakotaGo">Open</span>
         </a>
+        <div class="dakotaBubble dakotaMainCard dakotaLogoCard dakotaCardPending" aria-disabled="true">
+          <Image class="dakotaBrandLogo" src={iaLogo} alt="" width={642} height={428} />
+          <span><strong>MERCH AND PRINTS</strong></span>
+          <span class="dakotaPendingTag">Coming soon</span>
+        </div>
       </nav>
 
       <a href={artistBox.href} class="dakotaBox" target="_blank" rel="sponsored noopener noreferrer"
