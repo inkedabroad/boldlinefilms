@@ -8,8 +8,8 @@ import '@fontsource/special-elite/400.css';
 import '../styles/site.css';
 import { site, nav } from '../data/site';
 
-interface Props { title?: string; description?: string; }
-const { title, description = site.tagline } = Astro.props;
+interface Props { title?: string; description?: string; /** Page supplies its own header and footer. */ bare?: boolean; }
+const { title, description = site.tagline, bare = false } = Astro.props;
 const fullTitle = title ? `${title} | ${site.name}` : `${site.name} | ${site.roles.join(' and ')}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const path = Astro.url.pathname.replace(/\/?$/, '/');
@@ -38,6 +38,7 @@ const person = {
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
+  {!bare && (
   <header class="mast wrap">
     <p class="dateline type"><span>{site.studio}</span><span>{site.city}</span></p>
     <hr class="rule-thin" />
@@ -49,11 +50,14 @@ const person = {
     </nav>
     <hr class="rule-thin" />
   </header>
-  <main id="main" class="wrap"><slot /></main>
+  )}
+  <main id="main" class:list={{ wrap: !bare }}><slot /></main>
+  {!bare && (
   <footer class="foot wrap">
     <hr class="rule" />
     <p class="type"><span>{site.studio} · {site.name}</span><a href={`mailto:${site.email}`}>{site.email}</a></p>
   </footer>
+  )}
 </body>
 </html>
 <style>
