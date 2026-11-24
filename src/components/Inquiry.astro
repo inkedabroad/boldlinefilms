@@ -51,7 +51,7 @@ const budgets = ['Below $2,500','$2,500 to $4,999','$5,000 to $7,499','$7,500 to
   <p class="note" data-show="convention" hidden>Convention coverage starts at $6,500. Travel is quoted separately.</p>
 
   <p class="error" id="form-error" role="alert" hidden>Your inquiry could not be sent. Please try again or email {site.email}. Your details are still here.</p>
-  <button type="submit" class="btn primary">Send inquiry</button>
+  <button type="submit" class="btn">Send inquiry</button>
   <p class="muted small">I use these details to respond to your inquiry and plan your project.<br />Prefer email? <a href={`mailto:${site.email}`}>{site.email}</a></p>
 </form>
 
@@ -96,24 +96,24 @@ const budgets = ['Below $2,500','$2,500 to $4,999','$5,000 to $7,499','$7,500 to
 </script>
 
 <style>
-  .form { display: grid; gap: 1.2rem; max-width: 760px; margin: 0 auto; text-align: left; }
-  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-  .field { display: grid; gap: .45rem; font-family: var(--deco); font-weight: 700; font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
-  .field[hidden], [hidden] { display: none !important; }
-  input, select, textarea { background: var(--bg); border: 1px solid rgba(201,164,92,.4); color: var(--text); padding: .9rem 1rem; font: 400 1rem var(--body); letter-spacing: normal; text-transform: none; border-radius: 0; width: 100%; }
-  input:focus, select:focus, textarea:focus { border-color: var(--gold-2); }
-  .invalid input, .invalid select, .invalid textarea { border-color: #d0574a; }
-  small { font-family: var(--body); letter-spacing: normal; text-transform: none; font-weight: 400; font-size: .85rem; }
-  .checks { border: 1px solid rgba(201,164,92,.3); padding: 1rem 1.2rem; display: flex; flex-wrap: wrap; gap: .6rem 1.4rem; }
-  .checks legend { font-family: var(--deco); font-weight: 700; font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); padding: 0 .4rem; }
-  .checks label, .inline { display: flex; align-items: center; gap: .5rem; font-size: .95rem; text-transform: none; letter-spacing: normal; font-family: var(--body); font-weight: 400; color: var(--text); }
-  .checks input, .inline input { width: auto; accent-color: var(--gold); }
+  .form { display: grid; gap: 1.1rem; max-width: 720px; margin: 0 auto; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+  .field { display: grid; gap: .4rem; font-size: .88rem; font-weight: 600; color: #ddd; }
+  [hidden] { display: none !important; }
+  input, select, textarea { background: #000; border: 1px solid #333; border-radius: 10px; color: #fff; padding: .85rem 1rem; font: 400 1rem var(--body); width: 100%; }
+  input:focus, select:focus, textarea:focus { border-color: #fff; outline: none; }
+  .invalid input, .invalid select, .invalid textarea { border-color: #e5484d; }
+  small { font-weight: 400; font-size: .82rem; }
+  .checks { border: 1px solid #333; border-radius: 10px; padding: .9rem 1.1rem; display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; }
+  .checks legend { font-size: .88rem; font-weight: 600; color: #ddd; padding: 0 .3rem; }
+  .checks label, .inline { display: flex; align-items: center; gap: .5rem; font-size: .95rem; font-weight: 400; color: #eee; }
+  .checks input, .inline input { width: auto; accent-color: #fff; }
   .date-row { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
-  .note { border-left: 2px solid var(--gold); padding-left: 1rem; color: var(--gold-2); margin: 0; }
-  .error { color: #e08a7f; margin: 0; }
+  .note { border-left: 2px solid #fff; padding-left: .9rem; margin: 0; }
+  .error { color: #ff8a80; margin: 0; }
   .hp { position: absolute; left: -9999px; }
-  .form .btn { justify-self: start; }
-  .small { font-size: .92rem; margin: 0; }
+  .form .btn { justify-self: start; padding: .95rem 2.2rem; }
+  .small { font-size: .88rem; margin: 0; }
   .small a { text-decoration: underline; }
-  @media (max-width: 720px) { .row { grid-template-columns: 1fr; } }
+  @media (max-width: 640px) { .row { grid-template-columns: 1fr; } .form .btn { justify-self: stretch; } }
 </style>

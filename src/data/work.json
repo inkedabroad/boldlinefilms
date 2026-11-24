@@ -1,43 +1,111 @@
 {
-  "sections": [
-    {
-      "id": "conventions",
-      "title": "Convention Films",
-      "line": "The artists, atmosphere and moments that define an event.",
-      "items": [
-        { "title": "The End of Paris's Legendary Tattoo Show", "sub": "Mondial du Tatouage · Tin Tin", "runtime": "22 min", "youtube": "irYW4juk8tE" },
-        { "title": "The Bucharest Tattoo Convention", "sub": "Costi Azoitei", "runtime": "13 min", "youtube": "8ehAXXBcGGM" },
-        { "title": "Belfast Tattoo Convention", "sub": "Christopher Crooks", "runtime": "18 min", "youtube": "P08_JbAN-5w" },
-        { "title": "The Nordic Tattoo Moot", "sub": "Isar Oakmund", "runtime": "14 min", "youtube": "UxL8GxBZ64I" }
-      ]
-    },
-    {
-      "id": "skits",
-      "title": "Branded Skits & Shorts",
-      "line": "Original comedy written and filmed for brands and events.",
-      "vertical": true,
-      "items": [
-        { "title": "Dakota Joins Dr. Pickles", "sub": "Dr. Pickles · Branded comedy", "runtime": "", "vimeo": "" },
-        { "title": "EZ Machine: Chinese Magic", "sub": "EZ Tattoo · Branded comedy", "runtime": "", "vimeo": "" },
-        { "title": "Fistful of Fun", "sub": "A Pound of Flesh · Branded comedy", "runtime": "", "vimeo": "" },
-        { "title": "Lugano Royale", "sub": "Lugano Tattoo Convention · Commissioned short", "runtime": "", "vimeo": "" },
-        { "title": "Say It!!", "sub": "Austin Invitational · Commissioned comedy short", "runtime": "", "vimeo": "" }
-      ]
-    },
-    {
-      "id": "artists",
-      "title": "Artist Films",
-      "line": "From Life Beyond Ink, my original series on remarkable tattoo artists.",
-      "items": [
-        { "title": "The Prince of Dark Tattooing", "sub": "Paul Booth", "runtime": "26 min", "youtube": "SjkT-VwLgZo" },
-        { "title": "America's First Black Female Tattooer", "sub": "Jacci Gresham", "runtime": "27 min", "youtube": "PXi0x8pNdrE" },
-        { "title": "The Woman Who Changed Tattooing", "sub": "Kari Barba", "runtime": "31 min", "youtube": "2o8NyUlzCO4" },
-        { "title": "The Story of the Tattoo Man", "sub": "Gill Montie", "runtime": "25 min", "youtube": "XA6xculqbno" },
-        { "title": "Tattoos for the Grim Hearted", "sub": "The Murray Brothers", "runtime": "18 min", "youtube": "5Ohft0apssg" },
-        { "title": "Sergey Fedotov and the Rugged Ramblers", "sub": "Sergey Fedotov", "runtime": "23 min", "youtube": "XAuIb4JUdus" },
-        { "title": "The Girl Behind the Glitter Tattoo", "sub": "Amanda Graves", "runtime": "25 min", "youtube": "bwBufwU7Hxs" }
-      ]
-    }
-  ],
-  "seriesLink": "https://lifebeyondinkseries.com/films"
+ "films": [
+  {
+   "title": "The Prince of Dark Tattooing",
+   "sub": "Paul Booth",
+   "runtime": "26 min",
+   "youtube": "SjkT-VwLgZo",
+   "still": "https://i.ytimg.com/vi/SjkT-VwLgZo/maxresdefault.jpg"
+  },
+  {
+   "title": "The Woman Who Changed Tattooing",
+   "sub": "Kari Barba",
+   "runtime": "31 min",
+   "youtube": "2o8NyUlzCO4",
+   "poster": "/media/posters/kari-barba.webp"
+  },
+  {
+   "title": "America's First Black Female Tattooer",
+   "sub": "Jacci Gresham",
+   "runtime": "27 min",
+   "youtube": "PXi0x8pNdrE",
+   "still": "/media/posters/jacci-gresham-still.webp"
+  },
+  {
+   "title": "Tattoos for the Grim Hearted",
+   "sub": "The Murray Brothers",
+   "runtime": "18 min",
+   "youtube": "5Ohft0apssg",
+   "poster": "/media/posters/murray-brothers.webp"
+  },
+  {
+   "title": "The Story of the Tattoo Man",
+   "sub": "Gill Montie",
+   "runtime": "25 min",
+   "youtube": "XA6xculqbno",
+   "poster": "/media/posters/gill-montie.webp"
+  },
+  {
+   "title": "The Rugged Ramblers",
+   "sub": "Sergey Fedotov",
+   "runtime": "23 min",
+   "youtube": "XAuIb4JUdus",
+   "poster": "/media/posters/sergey-fedotov.webp"
+  },
+  {
+   "title": "The Girl Behind the Glitter",
+   "sub": "Amanda Graves",
+   "runtime": "25 min",
+   "youtube": "bwBufwU7Hxs",
+   "poster": "/media/posters/amanda-graves.webp"
+  }
+ ],
+ "conventions": [
+  {
+   "title": "Mondial du Tatouage: The Last Show",
+   "sub": "Paris \u00b7 Tin Tin",
+   "runtime": "22 min",
+   "youtube": "irYW4juk8tE",
+   "poster": "/media/posters/mondial-du-tatouage.webp"
+  },
+  {
+   "title": "Bucharest Tattoo Convention",
+   "sub": "Romania \u00b7 Costi Azoitei",
+   "runtime": "13 min",
+   "youtube": "8ehAXXBcGGM",
+   "poster": "/media/posters/bucharest-convention.webp"
+  },
+  {
+   "title": "Belfast Tattoo Convention",
+   "sub": "Northern Ireland \u00b7 Christopher Crooks",
+   "runtime": "18 min",
+   "youtube": "P08_JbAN-5w",
+   "still": "/media/posters/belfast-still.webp"
+  },
+  {
+   "title": "The Nordic Tattoo Moot",
+   "sub": "York \u00b7 Isar Oakmund",
+   "runtime": "14 min",
+   "youtube": "UxL8GxBZ64I",
+   "poster": "/media/posters/isar-oakmund.webp"
+  }
+ ],
+ "skits": [
+  {
+   "title": "Dakota Joins Dr. Pickles",
+   "sub": "Dr. Pickles",
+   "vimeo": ""
+  },
+  {
+   "title": "EZ Machine: Chinese Magic",
+   "sub": "EZ Tattoo",
+   "vimeo": ""
+  },
+  {
+   "title": "Fistful of Fun",
+   "sub": "A Pound of Flesh",
+   "vimeo": ""
+  },
+  {
+   "title": "Lugano Royale",
+   "sub": "Lugano Tattoo Convention",
+   "vimeo": ""
+  },
+  {
+   "title": "Say It!!",
+   "sub": "Austin Invitational",
+   "vimeo": ""
+  }
+ ],
+ "seriesLink": "https://lifebeyondinkseries.com/films"
 }
