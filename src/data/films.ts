@@ -60,7 +60,7 @@ export const conventions: Film[] = [
 ];
 
 /** Add `url` (and a poster file) to publish each one. Films without a link stay off the page. */
-export const scripted: Film[] = [
+export const portfolio: Film[] = [
   { id: 'dakota-joins-dr-pickles', title: 'Dakota Joins Dr. Pickles', subject: 'Dr. Pickles' },
   { id: 'ez-machine-chinese-magic', title: 'EZ Machine: Chinese Magic', subject: 'EZ Tattoo' },
   { id: 'fistful-of-fun', title: 'Fistful of Fun', subject: 'A Pound of Flesh' },

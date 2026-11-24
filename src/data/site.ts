@@ -11,8 +11,8 @@ export const site = {
 
 export const nav = [
   { href: '/', label: 'Life Beyond Ink' },
+  { href: '/portfolio/', label: 'Portfolio' },
   { href: '/conventions/', label: 'Conventions' },
-  { href: '/scripted/', label: 'Scripted' },
   { href: '/about/', label: 'About' },
   { href: '/contact/', label: 'Contact' },
 ] as const;
