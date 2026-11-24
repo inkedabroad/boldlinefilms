@@ -1,0 +1,22 @@
+---
+import { vimeoEmbed, type Film } from '../data/films';
+interface Props { film: Film; }
+const { film } = Astro.props;
+const src = vimeoEmbed(film);
+---
+{src && (
+  <article class="video">
+    <div class="bubble">
+      <iframe src={src} title={film.title} loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <h3 class="title">{film.title}</h3>
+    <p class="brand">{film.subject}</p>
+  </article>
+)}
+<style>
+  .video { min-width: 0; }
+  .bubble { aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; background: var(--ink); box-shadow: 0 1px 0 rgba(31,28,23,.25), 0 14px 26px -14px rgba(31,28,23,.55); }
+  iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .title { font-family: var(--type); font-weight: 400; font-size: 1.05rem; line-height: 1.35; text-transform: uppercase; margin: 1rem 0 .15rem; }
+  .brand { font-family: var(--type); font-size: .88rem; color: var(--red); margin: 0; }
+</style>

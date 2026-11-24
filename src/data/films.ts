@@ -15,6 +15,8 @@ export interface Film {
   runtime?: string;
   description?: string;
   youtube?: string;
+  /** Full Vimeo share link. Plays on the site. */
+  vimeo?: string;
   /** Any other watch link, used when there is no YouTube id. */
   url?: string;
 }
@@ -25,6 +27,14 @@ const posters = new Map(
 );
 
 export const posterOf = (film: Film): ImageMetadata | undefined => posters.get(film.id);
+/** Player address for a Vimeo share link, including the private hash when the link has one. */
+export const vimeoEmbed = (film: Film): string | undefined => {
+  const match = film.vimeo?.match(/vimeo\.com\/(?:video\/)?(\d+)(?:\/([0-9a-f]+))?/);
+  if (!match) return undefined;
+  const [, id, hash] = match;
+  const params = new URLSearchParams({ ...(hash ? { h: hash } : {}), title: '0', byline: '0', portrait: '0', dnt: '1' });
+  return `https://player.vimeo.com/video/${id}?${params}`;
+};
 export const watchUrl = (film: Film): string | undefined =>
   film.youtube ? `https://www.youtube.com/watch?v=${film.youtube}` : film.url || undefined;
 /** Remote thumbnail, used only while a film has no poster file. */
@@ -59,11 +69,12 @@ export const conventions: Film[] = [
     description: 'The Nordic tattooers of the world gather in the city the Vikings called Jorvik.' },
 ];
 
-/** Add `url` (and a poster file) to publish each one. Films without a link stay off the page. */
+/**
+ * Shorts from all of Dakota's filming. Each entry needs a Vimeo link, a title and a brand.
+ * Waiting on links: Dakota Joins Dr. Pickles (Dr. Pickles), EZ Machine: Chinese Magic (EZ Tattoo),
+ * EZ We Struck Gold (EZ Tattoo), Fistful of Fun (A Pound of Flesh),
+ * Lugano Royale (Lugano Tattoo Convention), Say It!! (Austin Invitational).
+ */
 export const portfolio: Film[] = [
-  { id: 'dakota-joins-dr-pickles', title: 'Dakota Joins Dr. Pickles', subject: 'Dr. Pickles' },
-  { id: 'ez-machine-chinese-magic', title: 'EZ Machine: Chinese Magic', subject: 'EZ Tattoo' },
-  { id: 'fistful-of-fun', title: 'Fistful of Fun', subject: 'A Pound of Flesh' },
-  { id: 'lugano-royale', title: 'Lugano Royale', subject: 'Lugano Tattoo Convention' },
-  { id: 'say-it', title: 'Say It!!', subject: 'Austin Invitational' },
+  { id: 'buscalan-teaser', title: 'Buscalan Teaser', subject: 'Indigenous Revival', vimeo: 'https://vimeo.com/1247773569/20afd40472' },
 ];
