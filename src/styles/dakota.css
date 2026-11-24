@@ -162,3 +162,8 @@ body:has(.dakotaLinkPage) .pageTransitionWrapFabSafe { padding-bottom: 0 !import
 .dakotaLinkPage .dakotaTitleArt { display: block; width: 112px; height: auto; mix-blend-mode: lighten; }
 .dakotaLinkPage .dakotaMainCard:has(.dakotaTitleArt) small { margin-top: 0; }
 .dakotaLinkPage .dakotaSrOnly { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Added on the film site: the Inked Abroad cards. */
+.dakotaLinkPage .dakotaMainCard.dakotaLogoCard { grid-template-columns: 84px minmax(0,1fr) auto; }
+.dakotaLinkPage .dakotaLogoCard .dakotaBrandLogo { width: 84px; height: 56px; filter: none; }
+.dakotaLinkPage .dakotaCardPending .dakotaPendingTag { font: 500 12px/1 var(--dakota-ui); font-style: normal; padding: 7px 9px; border-radius: 999px; border-color: var(--dakota-line); }
