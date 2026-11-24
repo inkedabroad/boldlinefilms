@@ -175,3 +175,8 @@ body:has(.dakotaLinkPage) .pageTransitionWrapFabSafe { padding-bottom: 0 !import
 .dakotaLinkPage .dakotaCardPending small { color: var(--dakota-muted); font-weight: 400; }
 .dakotaLinkPage .dakotaCardPending .dakotaPendingTag { font: 500 12px/1 var(--dakota-ui); font-style: normal; padding: 8px 10px; border-radius: 999px; border-color: var(--dakota-line); white-space: nowrap; }
 @media (max-width: 359px) { .dakotaLinkPage .dakotaMainCard.dakotaLogoCard { grid-template-columns: 84px minmax(0,1fr); } .dakotaLinkPage .dakotaLogoCard .dakotaBrandLogo { width: 84px; height: 56px; } .dakotaLinkPage .dakotaLogoCard strong { font-size: 16px; } }
+
+/* Film shelf now sits above the Artist Box. */
+.dakotaLinkPage .dakotaFilms { margin-top: 30px; }
+.dakotaLinkPage .dakotaFilms .dakotaShelfHint { margin-bottom: 22px; }
+.dakotaLinkPage .dakotaFilms + .dakotaBox { margin-top: 0; }

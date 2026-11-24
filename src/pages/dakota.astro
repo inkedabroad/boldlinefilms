@@ -41,7 +41,7 @@ const posters = shelf.flatMap((entry) => {
       <nav class="dakotaMainCards" aria-label="Explore Dakota's work">
         <a href="https://hallsofinkarchives.com" class="dakotaBubble dakotaMainCard dakotaMainCardFeatured">
           <Image class="dakotaBrandLogo" src={hallsLogo} alt="" width={220} height={275} />
-          <span><strong>THE HALLS OF INK</strong><small>Find the world's best tattoo artists and the world's tattoo museum.</small></span>
+          <span><strong>THE HALLS OF INK</strong><small>The Archives of Tattooing</small></span>
           <svg class="dakotaChevron" viewBox="0 0 10 16" fill="none" aria-hidden="true"><path d="m2 3 5 5-5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
         </a>
         <a href="https://lifebeyondinkseries.com" class="dakotaBubble dakotaMainCard" target="_blank" rel="noopener noreferrer">
@@ -61,16 +61,6 @@ const posters = shelf.flatMap((entry) => {
         </div>
       </nav>
 
-      <a href={artistBox.href} class="dakotaBox" target="_blank" rel="sponsored noopener noreferrer"
-        aria-label={`My Artist Box, the custom handmade box I made for artists with Dr Pickles. ${artistBox.price}. Opens the box in the Dr Pickles shop.`}>
-        <span class="dakotaBoxStage"><Image src={boxImage} alt="" width={640} height={545} loading="eager" /></span>
-        <span class="dakotaBoxText">
-          <strong>MY ARTIST BOX</strong>
-          <small>The custom handmade box I made for artists, with Dr Pickles.</small>
-          <span class="dakotaBoxBuy"><span class="dakotaBoxPrice">{artistBox.price}</span><span class="dakotaBoxButton">Shop the box</span></span>
-        </span>
-      </a>
-
       <section class="dakotaFilms" aria-labelledby="dakota-films-title">
         <h2 class="dakotaSectionTitle" id="dakota-films-title">THE FILMS</h2>
         <div class="dakotaFilmShelf" role="region" aria-label="Film posters. Swipe to explore" tabindex="0">
@@ -82,6 +72,16 @@ const posters = shelf.flatMap((entry) => {
         </div>
         <p class="dakotaShelfHint">Swipe the series. Tap a poster to watch.</p>
       </section>
+
+      <a href={artistBox.href} class="dakotaBox" target="_blank" rel="sponsored noopener noreferrer"
+        aria-label={`My Artist Box, the custom handmade box I made for artists with Dr Pickles. ${artistBox.price}. Opens the box in the Dr Pickles shop.`}>
+        <span class="dakotaBoxStage"><Image src={boxImage} alt="" width={640} height={545} loading="eager" /></span>
+        <span class="dakotaBoxText">
+          <strong>MY ARTIST BOX</strong>
+          <small>The custom handmade box I made for artists, with Dr Pickles.</small>
+          <span class="dakotaBoxBuy"><span class="dakotaBoxPrice">{artistBox.price}</span><span class="dakotaBoxButton">Shop the box</span></span>
+        </span>
+      </a>
 
       <section class="dakotaPartners" aria-labelledby="dakota-partners-title">
         <h2 id="dakota-partners-title" class="dakotaSectionTitle">PARTNER CODES</h2>
