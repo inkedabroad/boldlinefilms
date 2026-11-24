@@ -6,15 +6,30 @@ const src = vimeoEmbed(film);
 ---
 {src && (
   <article class="video">
-    <div class="bubble">
+    <div class="bubble" data-vimeo={film.vimeo}>
       <iframe src={src} title={film.title} loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
     </div>
     <h3 class="title">{film.title}</h3>
     {film.subject && <p class="brand">{film.subject}</p>}
   </article>
 )}
+<script>
+  // Size each frame to its video so the picture fills it edge to edge.
+  document.querySelectorAll<HTMLElement>('[data-vimeo]').forEach(async (frame) => {
+    try {
+      const response = await fetch(`https://vimeo.com/api/oembed.json?url=${encodeURIComponent(frame.dataset.vimeo!)}`);
+      if (!response.ok) return;
+      const { width, height } = await response.json();
+      if (width > 0 && height > 0) {
+        frame.style.aspectRatio = `${width} / ${height}`;
+        frame.closest('.video')?.classList.toggle('tall', height > width);
+      }
+    } catch { /* keeps the wide frame */ }
+  });
+</script>
 <style>
   .video { min-width: 0; }
+  .video:global(.tall) { max-width: 420px; width: 100%; justify-self: center; }
   .bubble { aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; background: var(--ink); box-shadow: 0 1px 0 rgba(31,28,23,.25), 0 14px 26px -14px rgba(31,28,23,.55); }
   iframe { width: 100%; height: 100%; border: 0; display: block; }
   .title { font-family: var(--type); font-weight: 400; font-size: 1.05rem; line-height: 1.35; text-transform: uppercase; margin: 1rem 0 .15rem; }
