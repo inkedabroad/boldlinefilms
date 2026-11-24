@@ -20,7 +20,7 @@ const cardImg = (p: any) => p.card || stillOf(p);
     </div>
     <figure class="hero-photo">
       <div class="print tilt-l"><img src="/media/dakota-hero.jpg" alt="Dakota Weik" width="1145" height="1431" fetchpriority="high" /></div>
-      <figcaption class="ribbon hero-ribbon">On location in Buscalan</figcaption>
+      <figcaption class="ribbon hero-ribbon">Buscalan, Philippines</figcaption>
     </figure>
   </section>
 
@@ -28,7 +28,7 @@ const cardImg = (p: any) => p.card || stillOf(p);
 
   <section id="work" class="section wrap">
     <h2 class="h-section"><span class="n">01.</span>Featured film</h2>
-    <p class="sub">The lead story, from one of the great shows in tattooing.</p>
+    <div style="height:1.8rem"></div>
     <div class="feature">
       <a href={`/work/${f.slug}/`} class="print feat-print" aria-label={`Watch ${f.title}`}>
         <picture>
@@ -64,10 +64,9 @@ const cardImg = (p: any) => p.card || stillOf(p);
 
   <section id="services" class="wrap">
     <div class="ad">
-      <h2 class="ad-head"><span class="scribble">Work</span> with me <em>because...</em></h2>
+      <h2 class="ad-head">Work with me</h2>
       <div class="ad-card">
-        <p class="ad-kick"><em>the main event deserves its own</em></p>
-        <h3 class="ad-title">Convention Film!</h3>
+        <h3 class="ad-title">Convention coverage</h3>
         <p>Weekend film coverage, a cinematic recap and social edits. Hosting and Nikon F2 photography can be included in the agreed scope.</p>
         <a href="/?for=convention#inquire" class="btn preset" data-for="convention">Discuss your convention</a>
       </div>
@@ -75,7 +74,7 @@ const cardImg = (p: any) => p.card || stillOf(p);
         {rest.map((s, i) => (
           <li>
             <a href={`/?for=${s.slug}#inquire`} class="panel preset" data-for={s.slug} aria-label={s.cta}>
-              <span class="panel-mark" aria-hidden="true">{['Artists', 'Business', 'Comedy'][i]}</span>
+              
             </a>
             <h3>{s.name}</h3>
             <p>{s.text}</p>
@@ -83,7 +82,6 @@ const cardImg = (p: any) => p.card || stillOf(p);
           </li>
         ))}
       </ul>
-      <p class="ad-foot">Work with <span>Inked Abroad</span> and you work with me</p>
     </div>
   </section>
 
@@ -159,7 +157,7 @@ const cardImg = (p: any) => p.card || stillOf(p);
   .ad-head em { font-style: italic; }
   .ad-card { background: #fff; max-width: 760px; margin: 0 auto clamp(2rem, 4vw, 3rem); padding: clamp(1.3rem, 3vw, 2.2rem); transform: rotate(-2deg); box-shadow: 0 16px 30px -12px rgba(40,28,10,.45); background-image: linear-gradient(90deg, rgba(240,180,60,.18), transparent 30%); }
   .ad-kick { font-family: var(--display); font-size: clamp(18px, 2vw, 24px); margin: 0; color: var(--ink-2); letter-spacing: .02em; }
-  .ad-title { font-family: var(--display); font-style: italic; font-weight: 700; text-transform: uppercase; color: var(--green); font-size: clamp(36px, 5vw, 64px); line-height: .95; margin: .1rem 0 .8rem; }
+  .ad-title { font-family: var(--display); font-style: italic; font-weight: 700; color: var(--green); font-size: clamp(36px, 5vw, 64px); line-height: .95; margin: .1rem 0 .8rem; }
   .ad-card p:not(.ad-kick) { margin: 0 0 1.3rem; max-width: 36rem; }
   .panels { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem; }
   .panel { display: grid; place-items: center; aspect-ratio: 16 / 9; background: var(--salmon); text-decoration: none; margin-bottom: .8rem; position: relative; overflow: hidden; }

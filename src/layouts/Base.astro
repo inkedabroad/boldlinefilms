@@ -33,7 +33,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 <body>
   <div class="zigzag" aria-hidden="true"></div>
   <header class:list={['mast', { compact }]}>
-    <p class="strap">Films · Philadelphia · Worldwide</p>
     <a href="/" class="mast-name">Inked Abroad</a>
     <div class="band">
       <nav aria-label="Main" class="wrap">
@@ -47,7 +46,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <footer class="foot">
     <div class="wrap">
       <hr class="rule-double" />
-      <p class="foot-line">Work with <span>Inked Abroad</span> and work directly with me</p>
       <div class="foot-row">
         <p>Inked Abroad · Dakota Weik · Philadelphia, Pennsylvania</p>
         <p class="foot-links"><a href="/#work">Work</a><a href="/#about">About</a><a href="/#inquire">Inquire</a></p>
@@ -70,7 +68,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   .foot { margin-top: var(--space); }
   .foot-line { text-align: center; font-family: var(--display); font-style: italic; text-transform: uppercase; letter-spacing: .12em; font-size: clamp(15px, 2.2vw, 26px); margin: 1.4rem 0 1rem; }
   .foot-line span { font-style: italic; color: var(--red); font-weight: 700; letter-spacing: .08em; }
-  .foot-row { display: flex; justify-content: space-between; gap: .6rem 1.5rem; flex-wrap: wrap; padding: 1rem 0 1.6rem; border-top: 1px solid var(--ink); font-family: var(--gothic); letter-spacing: .14em; text-transform: uppercase; font-size: 16px; }
+  .foot-row { margin-top: 1rem; display: flex; justify-content: space-between; gap: .6rem 1.5rem; flex-wrap: wrap; padding: 1rem 0 1.6rem; border-top: 1px solid var(--ink); font-family: var(--gothic); letter-spacing: .14em; text-transform: uppercase; font-size: 16px; }
   .foot-row p { margin: 0; }
   .foot-links { display: flex; gap: 1.4rem; }
   .foot-links a { text-decoration: none; } .foot-links a:hover { color: var(--red); }
