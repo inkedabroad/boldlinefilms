@@ -31,10 +31,10 @@ const { items, id, cta = 'Hire Me', ctaFor = '', ctaLine = 'Want a film like thi
   .slide { scroll-snap-align: start; min-width: 0; }
   .slide > :global(*) { width: 100%; }
   @media (max-width: 640px) { .track { grid-auto-columns: 62vw; gap: .8rem; } }
-  .end { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1rem; text-align: center; aspect-ratio: 1 / 1.414; border-radius: 14px; border: 1px solid #333; background: #0d0d0d; padding: 1.2rem; transition: border-color .2s; }
+  .end { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1rem; text-align: center; aspect-ratio: 1 / 1.414; border: 1px solid #333; background: #0d0d0d; padding: 1.2rem; transition: border-color .2s; }
   .end:hover { border-color: #fff; }
-  .end-line { font-size: 1.3rem; font-weight: 700; line-height: 1.2; }
-  .arrow { position: absolute; top: calc(50% - 2.4rem); transform: translateY(-50%); z-index: 3; width: 48px; height: 48px; border-radius: 50%; border: 0; background: #fff; color: #000; font-size: 1.8rem; line-height: 1; cursor: pointer; box-shadow: 0 4px 18px rgba(0,0,0,.6); padding-bottom: 4px; transition: opacity .2s; }
+  .end-line { font-size: 1.5rem; font-style: italic; line-height: 1.25; }
+  .arrow { position: absolute; top: calc(50% - 2.4rem); transform: translateY(-50%); z-index: 3; width: 48px; height: 48px; border-radius: 50%; border: 1px solid #555; background: rgba(0,0,0,.7); color: #fff; font-size: 1.8rem; line-height: 1; cursor: pointer; box-shadow: 0 4px 18px rgba(0,0,0,.6); padding-bottom: 4px; transition: opacity .2s; }
   .prev { left: .6rem; } .next { right: .6rem; }
   .arrow:disabled { opacity: 0; pointer-events: none; }
   @media (hover: none) { .arrow { display: none; } }

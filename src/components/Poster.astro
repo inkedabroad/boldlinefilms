@@ -16,15 +16,15 @@ const img = item.poster || item.still || '';
 </button>
 <style>
   .poster { background: none; border: 0; padding: 0; color: inherit; font: inherit; text-align: left; cursor: pointer; display: grid; gap: .25rem; }
-  .art { position: relative; aspect-ratio: 1 / 1.414; border-radius: 14px; overflow: hidden; background: var(--surface); margin-bottom: .55rem; }
+  .art { position: relative; aspect-ratio: 1 / 1.414; border-radius: 3px; overflow: hidden; background: var(--surface); margin-bottom: .55rem; }
   .art img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
   .poster:hover .art img { transform: scale(1.03); }
   .overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 1.1rem; background: linear-gradient(transparent 45%, rgba(0,0,0,.85)); }
-  .ot { font-weight: 800; text-transform: uppercase; font-size: clamp(.9rem, 3.4vw, 1.25rem); line-height: 1.05; letter-spacing: -.01em; }
-  .by { font-size: clamp(.55rem, 2vw, .72rem); letter-spacing: .12em; text-transform: uppercase; margin-top: .4rem; color: #ccc; }
+  .ot { font-family: var(--serif); font-size: clamp(1.1rem, 3.6vw, 1.5rem); line-height: 1.1; }
+  .by { font-family: var(--sans); font-size: clamp(.55rem, 2vw, .66rem); letter-spacing: .24em; text-transform: uppercase; margin-top: .4rem; color: #ccc; }
   .play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(.9); width: 56px; height: 56px; border-radius: 50%; background: rgba(255,255,255,.92); color: #000; display: grid; place-items: center; opacity: 0; transition: opacity .25s, transform .25s; }
   .poster:hover .play, .poster:focus-visible .play { opacity: 1; transform: translate(-50%, -50%) scale(1); }
   @media (hover: none) { .play { opacity: .9; width: 44px; height: 44px; } }
-  .t { font-weight: 600; font-size: .98rem; line-height: 1.3; }
-  .s { font-size: .85rem; }
+  .t { font-size: 1.12rem; line-height: 1.3; }
+  .s { font-family: var(--sans); font-size: .82rem; }
 </style>
