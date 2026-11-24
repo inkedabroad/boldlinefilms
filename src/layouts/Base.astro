@@ -1,16 +1,17 @@
 ---
-import '@fontsource/alegreya/400.css';
-import '@fontsource/alegreya/400-italic.css';
-import '@fontsource/alegreya/500.css';
-import '@fontsource/alegreya-sans/400.css';
-import '@fontsource/alegreya-sans/500.css';
+import '@fontsource/cormorant-garamond/600.css';
+import '@fontsource/cormorant-garamond/600-italic.css';
+import '@fontsource/source-serif-4/400.css';
+import '@fontsource/source-serif-4/400-italic.css';
+import '@fontsource/source-serif-4/600.css';
 import '../styles/global.css';
-import site from '../data/site.json';
-interface Props { title?: string; description?: string; image?: string; }
+import Ornament from '../components/Ornament.astro';
+interface Props { title?: string; description?: string; image?: string; compact?: boolean; }
 const {
   title = 'Dakota Weik | Tattoo Ethnographer and Filmmaker',
   description = 'Films for tattoo conventions, artists, independent businesses and brands by Dakota Weik. Based in Philadelphia and available worldwide.',
-  image = '/media/dakota-hero.jpg',
+  image = '/media/stills/mondial-lead.jpg',
+  compact = false,
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -25,50 +26,45 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={new URL(image, Astro.site)} />
-  <meta name="theme-color" content="#000000" />
+  <meta name="theme-color" content="#F5EFE2" />
   <slot name="head" />
 </head>
 <body>
-  <header class="top">
-    <a href="/" class="brand">Dakota Weik</a>
-    <nav aria-label="Main"><a href="/#work">Work</a><a href="/#inquire" class="inq">Inquire</a></nav>
+  <header class:list={['mast', { compact }]}>
+    <div class="wrap">
+      <Ornament width={compact ? 70 : 110} class="mast-orn" />
+      <a href="/" class="mast-name" aria-label="Inked Abroad, home"><span aria-hidden="true">Inked<span class="amp">❧</span>Abroad</span></a>
+      <nav aria-label="Main">
+        <a href="/#work">Work</a><span aria-hidden="true">·</span><a href="/#about">About</a><span aria-hidden="true">·</span><a href="/#inquire">Inquire</a>
+      </nav>
+      <hr class="rule-double" />
+    </div>
   </header>
   <main><slot /></main>
-  <a href="/#inquire" class="float-cta btn">Start a project</a>
   <footer class="foot wrap">
-    <p class="foot-name">Dakota Weik</p>
-    <ul>
-      {site.socials.map((s) => <li><a href={s.url} target="_blank" rel="noopener">{s.label}</a></li>)}
-      <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
-    </ul>
-    <p class="muted small">© {new Date().getFullYear()} Inked Abroad · {site.city}</p>
+    <hr class="rule" />
+    <div class="foot-row">
+      <p><span class="foot-name">Inked Abroad</span> · Dakota Weik · Philadelphia, Pennsylvania</p>
+      <p class="foot-links"><a href="/#work">Work</a><a href="/#inquire">Inquire</a></p>
+    </div>
   </footer>
-  <script>
-    const cta = document.querySelector('.float-cta') as HTMLElement;
-    const update = () => {
-      const inq = document.getElementById('inquire');
-      const atForm = inq ? inq.getBoundingClientRect().top < window.innerHeight : false;
-      cta?.classList.toggle('show', window.scrollY > window.innerHeight * 0.6 && !atForm);
-    };
-    addEventListener('scroll', update, { passive: true }); update();
-  </script>
 </body>
 </html>
 <style>
-  .top { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; gap: 1.5rem; height: 56px; padding: 0 var(--pad); background: rgba(0,0,0,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
-  .brand { font-size: 1.3rem; margin-right: auto; }
-  nav { display: flex; gap: 1.6rem; align-items: center; }
-  nav a { font-family: var(--sans); font-size: .74rem; letter-spacing: .24em; text-transform: uppercase; color: #ccc; }
-  nav a:hover { color: #fff; }
-  nav .inq { color: #fff; border: 1px solid rgba(255,255,255,.5); padding: .5rem .9rem; }
-  nav .inq:hover { background: #fff; color: #000; }
-  .float-cta { position: fixed; left: 1rem; right: 1rem; bottom: max(1rem, env(safe-area-inset-bottom)); z-index: 40; text-align: center; opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity .25s, transform .25s, background .25s, color .25s; }
-  .float-cta:global(.show) { opacity: 1; pointer-events: auto; transform: none; }
-  @media (min-width: 761px) { .float-cta { display: none; } }
-  .foot { border-top: 1px solid var(--line); padding-block: 3rem 5.5rem; text-align: center; }
-  .foot-name { font-size: 1.6rem; margin: 0; }
-  .foot ul { list-style: none; padding: 0; margin: 1rem 0; display: flex; justify-content: center; flex-wrap: wrap; gap: .5rem 1.8rem; font-family: var(--sans); font-size: .76rem; letter-spacing: .18em; text-transform: uppercase; }
-  .foot a:hover { color: #fff; text-decoration: underline; }
-  .small { font-size: .85rem; margin: 0; }
-  @media (min-width: 761px) { .foot { padding-bottom: 3rem; } }
+  .mast { text-align: center; padding-top: clamp(14px, 2.4vw, 30px); }
+  .mast :global(.mast-orn) { margin: 0 auto clamp(4px, 1vw, 10px); }
+  .mast-name { display: inline-block; text-decoration: none; font-family: var(--display); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; line-height: .95; font-size: clamp(30px, 9.8vw, 116px); color: var(--ink); white-space: nowrap; }
+  .amp { display: inline-block; font-size: .42em; color: var(--red); vertical-align: .55em; margin: 0 .22em; letter-spacing: 0; text-transform: none; font-family: var(--serif); }
+  nav { display: flex; justify-content: center; align-items: center; gap: .9rem; margin: clamp(8px, 1.4vw, 16px) 0 clamp(10px, 1.4vw, 14px); font-family: var(--sans); font-size: 14px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+  nav a { text-decoration: none; padding: .35rem .1rem; }
+  nav a:hover { color: var(--red); }
+  nav span { color: var(--rule); }
+  .compact .mast-name { font-size: clamp(30px, 4.4vw, 52px); }
+  .compact { padding-top: 12px; }
+  .foot { padding-block: 0 2.5rem; margin-top: var(--space); }
+  .foot-row { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; align-items: baseline; padding-top: 1.2rem; font-family: var(--sans); font-size: 14px; color: var(--ink-2); }
+  .foot-row p { margin: 0; }
+  .foot-name { font-family: var(--display); font-weight: 600; font-size: 1.35rem; color: var(--ink); text-transform: uppercase; letter-spacing: .06em; }
+  .foot-links { display: flex; gap: 1.4rem; }
+  .foot-links a { font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--red); }
 </style>

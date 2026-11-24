@@ -9,7 +9,6 @@
   "shop-promo-slot",
   "dakota-joins-dr-pickles",
   "ez-machine-chinese-magic",
-  "fistful-of-fun",
   "kari-barba"
  ],
  "seriesLink": "https://lifebeyondinkseries.com/films",
@@ -26,9 +25,17 @@
    "runtime": "22 min",
    "youtube": "irYW4juk8tE",
    "poster": "/media/posters/mondial-du-tatouage.webp",
-   "still": "/media/stills/mondial-portrait.webp",
+   "still": "/media/stills/mondial-lead.jpg",
    "synopsis": "The story of Mondial du Tatouage and the man who built it, told by its legendary judging panel.",
-   "related": []
+   "related": [],
+   "stillMobile": "/media/stills/mondial-lead-m.jpg",
+   "stillW": 980,
+   "stillH": 445,
+   "card": "/media/stills/mondial-lead.jpg",
+   "caption": "Still from Mondial du Tatouage: The Last Show, Paris, France.",
+   "deliverables": [
+    "22 minute film"
+   ]
   },
   {
    "slug": "bucharest-convention",
@@ -43,7 +50,12 @@
    "youtube": "8ehAXXBcGGM",
    "poster": "/media/posters/bucharest-convention.webp",
    "synopsis": "A convention in Romania that turned into a road trip through the Carpathians.",
-   "related": []
+   "related": [],
+   "card": "/media/stills/bucharest-convention-4x5.webp",
+   "caption": "Still from The Bucharest Tattoo Convention, Bucharest, Romania.",
+   "deliverables": [
+    "13 minute film"
+   ]
   },
   {
    "slug": "belfast-tattoo-convention",
@@ -58,7 +70,12 @@
    "youtube": "P08_JbAN-5w",
    "poster": "/media/posters/belfast-still.webp",
    "synopsis": "A tattoo convention inside the hotel that survived more than 30 bombings during The Troubles.",
-   "related": []
+   "related": [],
+   "card": "/media/stills/belfast-4x5.webp",
+   "deliverables": [
+    "18 minute film"
+   ],
+   "caption": "Still from Belfast Tattoo Convention, Belfast, Northern Ireland."
   },
   {
    "slug": "nordic-tattoo-moot",
@@ -73,14 +90,19 @@
    "youtube": "UxL8GxBZ64I",
    "poster": "/media/posters/isar-oakmund.webp",
    "synopsis": "The Nordic tattooers of the world gather in the city the Vikings called Jorvik.",
-   "related": []
+   "related": [],
+   "card": "/media/stills/isar-oakmund-4x5.webp",
+   "deliverables": [
+    "14 minute film"
+   ],
+   "caption": "Still from The Nordic Tattoo Moot, York, England."
   },
   {
    "slug": "kari-barba",
    "title": "The Woman Who Changed Tattooing",
    "event": "Kari Barba",
    "kind": "lbi",
-   "label": "Life Beyond Ink",
+   "label": "Original film",
    "made": "A 31 minute artist film",
    "role": "Creator, writer, director and editor",
    "runtime": "31 min",
@@ -88,28 +110,36 @@
    "poster": "/media/posters/kari-barba.webp",
    "synopsis": "Inside the oldest tattoo shop in America with the woman who saved it.",
    "related": [],
-   "place": ""
+   "place": "",
+   "card": "/media/stills/kari-barba-4x5.webp",
+   "caption": "Still from The Woman Who Changed Tattooing.",
+   "deliverables": [
+    "31 minute film"
+   ]
   },
   {
    "slug": "paul-booth",
    "title": "The Prince of Dark Tattooing",
    "event": "Paul Booth",
    "kind": "lbi",
-   "label": "Life Beyond Ink",
+   "label": "Original film",
    "made": "A 26 minute artist film",
    "role": "Creator, writer, director and editor",
    "runtime": "26 min",
    "youtube": "SjkT-VwLgZo",
    "synopsis": "Dakota enters the world of Paul Booth, the Prince of Darkness of tattooing.",
    "related": [],
-   "place": ""
+   "place": "",
+   "deliverables": [
+    "26 minute film"
+   ]
   },
   {
    "slug": "jacci-gresham",
    "title": "America's First Black Female Tattooer",
    "event": "Jacci Gresham",
    "kind": "lbi",
-   "label": "Life Beyond Ink",
+   "label": "Original film",
    "made": "A 27 minute artist film",
    "role": "Creator, writer, director and editor",
    "runtime": "27 min",
@@ -117,14 +147,19 @@
    "poster": "/media/posters/jacci-gresham-still.webp",
    "synopsis": "A weekend on the ranch of the first Black woman to tattoo professionally in the United States.",
    "related": [],
-   "place": ""
+   "place": "",
+   "card": "/media/stills/jacci-gresham-4x5.webp",
+   "deliverables": [
+    "27 minute film"
+   ],
+   "caption": "Still from America's First Black Female Tattooer."
   },
   {
    "slug": "murray-brothers",
    "title": "Tattoos for the Grim Hearted",
    "event": "The Murray Brothers",
    "kind": "lbi",
-   "label": "Life Beyond Ink",
+   "label": "Original film",
    "made": "An 18 minute artist film",
    "role": "Creator, writer, director and editor",
    "runtime": "18 min",
@@ -132,14 +167,19 @@
    "poster": "/media/posters/murray-brothers.webp",
    "synopsis": "Identical twins making black and gray work rooted in Salem's dark history.",
    "related": [],
-   "place": ""
+   "place": "",
+   "card": "/media/stills/murray-brothers-4x5.webp",
+   "deliverables": [
+    "18 minute film"
+   ],
+   "caption": "Still from Tattoos for the Grim Hearted."
   },
   {
    "slug": "gill-montie",
    "title": "The Story of the Tattoo Man",
    "event": "Gill Montie",
    "kind": "lbi",
-   "label": "Life Beyond Ink",
+   "label": "Original film",
    "made": "A 25 minute artist film",
    "role": "Creator, writer, director and editor",
    "runtime": "25 min",
@@ -147,14 +187,19 @@
    "poster": "/media/posters/gill-montie.webp",
    "synopsis": "More than fifty years of tattooing, told over one weekend at the home of The Drill.",
    "related": [],
-   "place": ""
+   "place": "",
+   "card": "/media/stills/gill-montie-4x5.webp",
+   "deliverables": [
+    "25 minute film"
+   ],
+   "caption": "Still from The Story of the Tattoo Man."
   },
   {
    "slug": "sergey-fedotov",
    "title": "The Rugged Ramblers",
    "event": "Sergey Fedotov",
    "kind": "lbi",
-   "label": "Life Beyond Ink",
+   "label": "Original film",
    "made": "A 23 minute artist film",
    "role": "Creator, writer, director and editor",
    "runtime": "23 min",
@@ -162,14 +207,19 @@
    "poster": "/media/posters/sergey-fedotov.webp",
    "synopsis": "A Moscow born artist finding freedom on the forgotten highways of America.",
    "related": [],
-   "place": ""
+   "place": "",
+   "card": "/media/stills/sergey-fedotov-4x5.webp",
+   "deliverables": [
+    "23 minute film"
+   ],
+   "caption": "Still from The Rugged Ramblers."
   },
   {
    "slug": "amanda-graves",
    "title": "The Girl Behind the Glitter",
    "event": "Amanda Graves",
    "kind": "lbi",
-   "label": "Life Beyond Ink",
+   "label": "Original film",
    "made": "A 25 minute artist film",
    "role": "Creator, writer, director and editor",
    "runtime": "25 min",
@@ -177,7 +227,12 @@
    "poster": "/media/posters/amanda-graves.webp",
    "synopsis": "The artist who pioneered the glitter realism tattoo.",
    "related": [],
-   "place": ""
+   "place": "",
+   "card": "/media/stills/amanda-graves-4x5.webp",
+   "deliverables": [
+    "25 minute film"
+   ],
+   "caption": "Still from The Girl Behind the Glitter."
   },
   {
    "slug": "austin-invitational-recap",
@@ -196,7 +251,8 @@
     "austin-invitational-say-it"
    ],
    "runtime": "",
-   "synopsis": ""
+   "synopsis": "",
+   "deliverables": []
   },
   {
    "slug": "lugano-recap",
@@ -215,7 +271,8 @@
     "lugano-royale"
    ],
    "runtime": "",
-   "synopsis": ""
+   "synopsis": "",
+   "deliverables": []
   },
   {
    "slug": "lugano-royale",
@@ -230,7 +287,8 @@
    "poster": "",
    "related": [],
    "runtime": "",
-   "synopsis": ""
+   "synopsis": "",
+   "deliverables": []
   },
   {
    "slug": "austin-invitational-say-it",
@@ -245,7 +303,8 @@
    "poster": "",
    "related": [],
    "runtime": "",
-   "synopsis": ""
+   "synopsis": "",
+   "deliverables": []
   },
   {
    "slug": "dakota-joins-dr-pickles",
@@ -260,7 +319,8 @@
    "related": [],
    "place": "",
    "runtime": "",
-   "synopsis": ""
+   "synopsis": "",
+   "deliverables": []
   },
   {
    "slug": "ez-machine-chinese-magic",
@@ -275,7 +335,8 @@
    "related": [],
    "place": "",
    "runtime": "",
-   "synopsis": ""
+   "synopsis": "",
+   "deliverables": []
   },
   {
    "slug": "fistful-of-fun",
@@ -290,7 +351,8 @@
    "related": [],
    "place": "",
    "runtime": "",
-   "synopsis": ""
+   "synopsis": "",
+   "deliverables": []
   }
  ]
 }

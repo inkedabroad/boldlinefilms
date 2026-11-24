@@ -10,7 +10,7 @@ const watch = watchLinkOf(project);
     {still && <img src={still} alt={`Still from ${project.title}`} class="poster" data-fallback={project.youtube ? `https://i.ytimg.com/vi/${project.youtube}/hqdefault.jpg` : ''} />}
     <button class="play" aria-label={`Play ${project.title}`}>
       <span class="circle"><svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-      <span class="play-label">Play the film{project.runtime && ` · ${project.runtime}`}</span>
+      <span class="play-label">Play film{project.runtime && ` · ${project.runtime}`}</span>
     </button>
   </div>
   {watch && <p class="direct"><a href={watch.href} target="_blank" rel="noopener">{watch.label} ↗</a></p>}
@@ -29,15 +29,14 @@ const watch = watchLinkOf(project);
   });
 </script>
 <style>
-  .player { position: relative; aspect-ratio: 16 / 9; background: #0b0b0b; overflow: hidden; }
+  .player-wrap { border: 1px solid var(--ink); padding: 6px; background: var(--paper-2); }
+  .player { position: relative; aspect-ratio: 16 / 9; background: #1b1a16; overflow: hidden; }
   .player .poster { width: 100%; height: 100%; object-fit: cover; }
-  .play { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .8rem; background: linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.45)); border: 0; color: #fff; cursor: pointer; }
-  .circle { width: 84px; height: 84px; border-radius: 50%; background: #fff; color: #000; display: grid; place-items: center; padding-left: 5px; transition: transform .2s; box-shadow: 0 8px 30px rgba(0,0,0,.5); }
-  .play:hover .circle { transform: scale(1.06); }
-  .play-label { font-family: var(--sans); font-size: .76rem; letter-spacing: .24em; text-transform: uppercase; text-shadow: 0 1px 8px rgba(0,0,0,.8); }
-  @media (max-width: 640px) { .circle { width: 66px; height: 66px; } }
+  .play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: inline-flex; align-items: center; gap: .7rem; padding: .9rem 1.4rem .9rem 1.1rem; background: var(--green); color: #FBF7ED; border: 0; cursor: pointer; font-family: var(--sans); font-weight: 600; font-size: 15px; white-space: nowrap; box-shadow: 0 6px 24px rgba(0,0,0,.35); }
+  .play:hover { background: var(--green-2); }
+  .circle { display: grid; place-items: center; }
+  .circle svg { width: 22px; height: 22px; }
   .player :global(iframe), .player :global(video) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; }
-  .direct { margin: .8rem 0 0; font-family: var(--sans); font-size: .76rem; letter-spacing: .2em; text-transform: uppercase; }
-  .direct a { color: #ccc; border-bottom: 1px solid #555; padding-bottom: 2px; }
-  .direct a:hover { color: #fff; border-color: #fff; }
+  .direct { margin: .7rem 0 .1rem; padding: 0 .2rem; font-family: var(--sans); font-size: 14px; }
+  .direct a { font-weight: 600; text-decoration: none; border-bottom: 1.5px solid var(--red); }
 </style>

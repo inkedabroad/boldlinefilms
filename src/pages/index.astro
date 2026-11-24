@@ -1,93 +1,99 @@
 ---
 import Base from '../layouts/Base.astro';
 import Inquiry from '../components/Inquiry.astro';
+import Ornament from '../components/Ornament.astro';
 import site from '../data/site.json';
-import { featured, selected, relatedTo, posterOf, stillOf, seriesLink } from '../data/work';
+import { featured, selected, relatedTo, stillOf } from '../data/work';
+const f: any = featured;
 const related = relatedTo(featured);
-const featureImg = featured.youtube ? `https://i.ytimg.com/vi/${featured.youtube}/maxresdefault.jpg` : stillOf(featured);
-const heroDesktop = featured.still || stillOf(featured);
-const heroMobile = (featured as any).stillMobile || featured.still || stillOf(featured);
+const clients = ['Dr. Pickles', 'EZ Tattoo', 'A Pound of Flesh'];
+const [lead, ...rest] = site.services;
+const cardImg = (p: any) => p.card || stillOf(p);
 ---
 <Base>
-  <section class="hero">
-    <picture>
-      <source media="(max-width: 760px)" srcset={heroMobile} />
-      <img src={heroDesktop} alt={`${featured.event}, filmed by Dakota Weik`} class="hero-img" fetchpriority="high" />
-    </picture>
-    <div class="hero-shade"></div>
-    <div class="hero-text wrap">
-      <p class="label">Tattoo ethnographer and filmmaker</p>
-      <h1>Dakota Weik</h1>
-      <p class="hero-line">I make films for tattoo conventions, artists, independent businesses and brands. Based in Philadelphia and available worldwide.</p>
-      <div class="hero-ctas"><a href="#inquire" class="btn">Start a project</a><a href="#work" class="see">See the work</a></div>
+  <section class="lead wrap" aria-labelledby="who">
+    <div class="intro">
+      <p class="kicker">Tattoo ethnographer and filmmaker</p>
+      <h1 id="who" class="h-display name">Dakota Weik</h1>
+      <p class="deck">I make films for tattoo conventions, artists, independent businesses and brands. Based in Philadelphia and available worldwide.</p>
+      <div class="actions"><a href="#inquire" class="btn">Start a project</a><a href="#work" class="link">See the work</a></div>
     </div>
-  </section>
-
-  <section id="work" class="feature wrap">
-    <a href={`/work/${featured.slug}/`} class="feat-media">
-      <img src={featureImg} alt={`Still from ${featured.title}`} loading="eager" />
-      <span class="feat-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-    </a>
-    <div class="feat-text">
-      <p class="label">{featured.label}</p>
-      <h2 class="h2">{featured.event}</h2>
-      <p class="muted">{[featured.place, featured.runtime].filter(Boolean).join(' · ')}</p>
-      <a href={`/work/${featured.slug}/`} class="btn">Watch the film</a>
+    <figure class="lead-fig">
+      <a href={`/work/${f.slug}/`} class="frame" aria-label={`Watch ${f.title}`}>
+        <picture>
+          {f.stillMobile && <source media="(max-width: 760px)" srcset={f.stillMobile} width="700" height="525" />}
+          <img src={f.still} alt={`${f.event}, from the film ${f.title}`} width={f.stillW || 980} height={f.stillH || 445} fetchpriority="high" />
+        </picture>
+      </a>
+      <figcaption class="cap">
+        <span class="tag">{f.label}</span>
+        <span class="cap-title">{f.event}</span>
+        <span class="meta">{[f.place, f.runtime].filter(Boolean).join(' · ')}</span>
+        <a href={`/work/${f.slug}/`} class="link">Watch the film</a>
+      </figcaption>
       {related.length > 0 && (
-        <div class="rel">
-          <p class="label">From the same event</p>
-          {related.map((r) => <a href={`/work/${r.slug}/`} class="rel-item"><span>{r.title}</span><small>{r.label}</small></a>)}
-        </div>
+        <p class="rel meta">Also from this event: {related.map((r, i) => <>{i > 0 && ', '}<a href={`/work/${r.slug}/`}>{r.title}</a> ({r.label.toLowerCase()})</>)}</p>
       )}
-    </div>
+    </figure>
   </section>
 
-  <section class="section wrap">
-    <div class="sec-head"><div><p class="label">Selected work</p><h2 class="h2">More films</h2></div><a href={seriesLink} target="_blank" rel="noopener" class="btn ghost">Life Beyond Ink series</a></div>
+  <section id="work" class="section wrap">
+    <div class="sec-head"><h2 class="h-section">Selected work</h2></div>
+    <hr class="rule" />
     <div class="grid">
-      {selected.map((p) => (
-        <a href={`/work/${p.slug}/`} class="card">
-          <div class="card-img"><img src={posterOf(p)} alt={`Poster for ${p.title}`} loading="lazy" decoding="async" /></div>
-          <p class="card-label">{p.label}</p>
-          <h3>{p.title}</h3>
-          <p class="card-meta">{p.made}</p>
-          {p.role && <p class="card-meta">My role: {p.role}</p>}
-        </a>
+      {selected.map((p: any) => (
+        <article class="card">
+          <a href={`/work/${p.slug}/`} class="card-img"><img src={cardImg(p)} alt={p.caption || `Still from ${p.title}`} loading="lazy" decoding="async" width="576" height="720" /></a>
+          <p class="tag">{p.label}</p>
+          <h3 class="card-title"><a href={`/work/${p.slug}/`}>{p.title}</a></h3>
+          <p class="meta">{p.made}{p.role && `. ${p.role}.`}</p>
+        </article>
       ))}
     </div>
+    <p class="clients"><span class="tag">Selected clients</span> {clients.join(' · ')}</p>
   </section>
 
-  <section id="services" class="section wrap services">
-    <div class="svc-main">
-      <p class="label">Work with me</p>
-      <h2 class="h2">What I make</h2>
-      <div class="svc">
-        {site.services.map((s, i) => (
-          <a class:list={['svc-row', 'preset', { lead: i === 0 }]} href={`/?for=${s.slug}#inquire`} data-for={s.slug}>
-            <div>
-              <h3>{s.name}</h3>
-              <p class="muted">{s.text}{s.note && ` ${s.note}`}</p>
-            </div>
-            <div class="svc-right"><span class="price">{s.price}</span><span class="go">Inquire →</span></div>
-          </a>
-        ))}
+  <section id="services" class="wrap">
+    <div class="ad">
+      <h2 class="h-section ad-head">Work with me</h2>
+      <div class="ad-lead">
+        <div>
+          <p class="kicker">{lead.name}</p>
+          <p class="price h-display">{lead.price}</p>
+        </div>
+        <div>
+          <p>Weekend film coverage, a cinematic recap and social edits. Hosting and Nikon F2 photography can be included in the agreed scope. Travel is quoted separately.</p>
+          <a href="/?for=convention#inquire" class="btn preset" data-for="convention">Discuss your convention</a>
+        </div>
       </div>
+      <ul class="ad-list">
+        {rest.map((s) => (
+          <li>
+            <h3>{s.name}</h3>
+            <p>{s.text} <span class="muted">Quoted by project.</span></p>
+            <a href={`/?for=${s.slug}#inquire`} class="link preset" data-for={s.slug}>Inquire</a>
+          </li>
+        ))}
+      </ul>
     </div>
-    <aside class="clients">
-      <p class="label">Clients</p>
-      <ul>{site.clients.map((c) => <li>{c}</li>)}</ul>
-    </aside>
   </section>
 
-  <section id="inquire" class="section wrap inquire">
-    <div class="me">
-      <img src="/media/dakota.jpg" alt="Dakota Weik" loading="lazy" width="1000" height="1250" />
-      <p>I’m Dakota Weik, a tattoo ethnographer and filmmaker based in Philadelphia. I study tattooing around the world and practice it myself. Through Inked Abroad, I make commissioned films and create the original series Life Beyond Ink and Indigenous Revival. When you hire Inked Abroad, you work directly with me.</p>
-    </div>
+  <section id="about" class="section wrap about">
+    <figure>
+      <img src="/media/dakota.jpg" alt="Dakota Weik" width="1000" height="1250" loading="lazy" />
+      <figcaption class="meta">Dakota Weik in Buscalan, Philippines.</figcaption>
+    </figure>
     <div>
-      <p class="label">Inquire</p>
-      <h2 class="h2">Start a project</h2>
-      <p class="muted intro-line">I reply within two business days.</p>
+      <h2 class="h-section">About Dakota</h2>
+      <p class="about-copy">I’m Dakota Weik, a tattoo ethnographer and filmmaker based in Philadelphia. I study tattooing around the world and practice it myself. Through Inked Abroad, I make commissioned films and create the original series Life Beyond Ink and Indigenous Revival. When you hire Inked Abroad, you work directly with me.</p>
+    </div>
+  </section>
+
+  <section id="inquire" class="wrap">
+    <div class="paper-form">
+      <Ornament width={90} class="form-orn" />
+      <h2 class="h-section">Tell me about your project</h2>
+      <p class="muted form-intro">I reply within two business days.</p>
       <Inquiry />
     </div>
   </section>
@@ -102,60 +108,54 @@ const heroMobile = (featured as any).stillMobile || featured.still || stillOf(fe
 </script>
 
 <style>
-  .hero { position: relative; height: min(64svh, 620px); min-height: 430px; display: flex; align-items: flex-end; overflow: hidden; }
-  .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
-  .hero-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.2), rgba(0,0,0,.15) 35%, rgba(0,0,0,.88) 100%), linear-gradient(90deg, rgba(0,0,0,.6), transparent 70%); }
-  .hero-text { position: relative; z-index: 2; width: 100%; padding-bottom: clamp(1.6rem, 4vw, 3rem); }
-  .hero .label { color: #ddd; margin-bottom: .5rem; } .hero .label::after { background: #ddd; }
-  @media (max-width: 760px) { .hero .label::after { display: none; } .hero .label { letter-spacing: .24em; } }
-  .hero h1 { font-size: clamp(3rem, 9vw, 6.5rem); font-weight: 400; line-height: .95; margin: 0 0 .8rem; }
-  .hero-line { font-size: clamp(1.05rem, 1.9vw, 1.3rem); line-height: 1.45; max-width: 34rem; margin: 0 0 1.4rem; color: #eee; }
-  .hero-ctas { display: flex; align-items: center; gap: 1.4rem; flex-wrap: wrap; }
-  .see { font-family: var(--sans); font-size: .78rem; letter-spacing: .22em; text-transform: uppercase; border-bottom: 1px solid #aaa; padding-bottom: 3px; }
-  @media (min-width: 761px) { .hero { height: min(74vh, 720px); } .hero-img { left: auto; width: 58%; object-position: 50% 30%; } .hero-shade { background: linear-gradient(90deg, #000 42%, rgba(0,0,0,.35) 62%, rgba(0,0,0,.05) 85%), linear-gradient(180deg, transparent 70%, rgba(0,0,0,.7)); } .hero-text { align-self: center; padding-bottom: 0; } }
+  .lead { display: grid; grid-template-columns: 1fr 2fr; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; padding-block: clamp(1.4rem, 4vw, 3.5rem) var(--space); }
+  .name { font-size: clamp(40px, 5.6vw, 84px); margin-bottom: .9rem; }
+  .deck { font-style: italic; font-size: clamp(18px, 1.5vw, 21px); line-height: 1.5; color: var(--ink); margin: 0 0 1.5rem; max-width: 26rem; }
+  .actions { display: flex; align-items: center; gap: 1.4rem; flex-wrap: wrap; }
+  .lead-fig { margin: 0; }
+  .frame { display: block; border: 1px solid var(--ink); padding: 7px; background: var(--paper-2); outline: 1px solid var(--rule); outline-offset: 5px; }
+  .frame img { width: 100%; height: auto; }
+  .cap { display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem 1rem; margin-top: 1.1rem; padding-top: .7rem; border-top: 1px solid var(--rule); }
+  .cap-title { font-family: var(--display); font-weight: 600; font-size: clamp(24px, 2.4vw, 32px); line-height: 1.1; }
+  .cap .link { margin-left: auto; }
+  .rel { margin: .6rem 0 0; } .rel a { color: var(--ink); }
+  @media (max-width: 860px) {
+    .lead { grid-template-columns: 1fr; gap: 1.4rem; padding-top: 1.2rem; }
+    .cap .link { margin-left: 0; flex-basis: 100%; }
+    .frame { padding: 5px; outline-offset: 3px; }
+  }
+  .sec-head { margin-bottom: .9rem; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3.5vw, 3rem); margin-top: clamp(1.5rem, 3vw, 2.5rem); }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+  .card-img { display: block; aspect-ratio: 4 / 5; overflow: hidden; background: #1b1a16; margin-bottom: .9rem; }
+  .card-img img { width: 100%; height: 100%; object-fit: cover; }
+  .card .tag { margin: 0 0 .25rem; }
+  .card-title { font-family: var(--display); font-weight: 600; font-size: clamp(27px, 2.5vw, 34px); line-height: 1.08; margin: 0 0 .3rem; }
+  .card-title a { text-decoration: none; }
+  .card-title a:hover { color: var(--red); }
+  .card .meta { margin: 0; }
+  .clients { margin: clamp(2rem, 4vw, 3rem) 0 0; padding-top: 1rem; border-top: 1px solid var(--rule); font-style: italic; font-size: 18px; text-align: center; }
+  .clients .tag { font-style: normal; margin-right: .6rem; }
 
-  .feature { display: grid; grid-template-columns: 1.6fr 1fr; gap: clamp(1.2rem, 4vw, 3.5rem); align-items: end; padding-block: 1.6rem clamp(3rem, 7vw, 5rem); }
-  .feat-media { position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden; background: var(--surface); }
-  .feat-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
-  .feat-media:hover img { transform: scale(1.03); }
-  .feat-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 70px; height: 70px; border-radius: 50%; background: #fff; color: #000; display: grid; place-items: center; padding-left: 4px; box-shadow: 0 8px 30px rgba(0,0,0,.5); }
-  .feat-text .h2 { margin-bottom: .2rem; }
-  .feat-text .muted { margin: 0 0 1.2rem; }
-  .rel { margin-top: 1.8rem; display: grid; gap: .6rem; }
-  .rel .label { margin-bottom: .2rem; }
-  .rel-item { display: flex; justify-content: space-between; gap: 1rem; border-top: 1px solid var(--line); padding-top: .6rem; }
-  .rel-item small { font-family: var(--sans); font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--text-2); }
-  @media (max-width: 760px) { .feature { grid-template-columns: 1fr; padding-top: 1.2rem; } .feat-play { width: 58px; height: 58px; } .feat-text .btn { width: 100%; text-align: center; } }
+  .ad { border: 1px solid var(--ink); outline: 1px solid var(--rule); outline-offset: 5px; background: var(--paper-2); padding: clamp(1.4rem, 4vw, 3rem); }
+  .ad-head { text-align: center; padding-bottom: 1rem; border-bottom: 3px double var(--ink); }
+  .ad-lead { display: grid; grid-template-columns: 1fr 1.4fr; gap: 1.5rem 3rem; align-items: center; padding: clamp(1.5rem, 3vw, 2.5rem) 0; border-bottom: 1px solid var(--rule); }
+  .ad-lead .kicker { font-size: 1.25rem; }
+  .price { font-size: clamp(38px, 4.6vw, 60px); color: var(--green); }
+  .ad-lead p:not(.kicker):not(.price) { margin: 0 0 1.2rem; max-width: 34rem; }
+  .ad-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem 2rem; padding-top: clamp(1.4rem, 3vw, 2rem); }
+  .ad-list h3 { font-family: var(--display); font-weight: 600; font-size: 26px; line-height: 1.1; margin: 0 0 .4rem; }
+  .ad-list p { margin: 0 0 .7rem; font-size: 17px; }
+  @media (max-width: 860px) { .ad-lead, .ad-list { grid-template-columns: 1fr; } .ad-lead .btn { width: 100%; text-align: center; } }
 
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem 2rem; }
-  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; gap: 2.6rem; } }
-  .card { display: block; }
-  .card-img { aspect-ratio: 4 / 5; overflow: hidden; background: var(--surface); margin-bottom: 1rem; }
-  .card-img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; transition: transform .6s; }
-  .card:hover .card-img img { transform: scale(1.03); }
-  .card-label { font-family: var(--sans); font-size: .7rem; letter-spacing: .26em; text-transform: uppercase; color: var(--text-2); margin: 0 0 .3rem; }
-  .card h3 { font-weight: 400; font-size: 1.6rem; line-height: 1.15; margin: 0 0 .35rem; }
-  .card-meta { margin: 0; color: #bbb; font-size: 1rem; }
+  .about { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(1.5rem, 5vw, 4rem); align-items: center; }
+  .about figure { margin: 0; }
+  .about img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border: 1px solid var(--ink); padding: 6px; background: var(--paper-2); }
+  .about figcaption { margin-top: .5rem; font-style: italic; font-family: var(--serif); }
+  .about-copy { font-size: clamp(18px, 1.5vw, 21px); line-height: 1.6; max-width: 36rem; margin: 1rem 0 0; }
+  @media (max-width: 760px) { .about { grid-template-columns: 1fr; } .about figure { max-width: 420px; } }
 
-  .services { display: grid; grid-template-columns: 1fr 260px; gap: clamp(2rem, 5vw, 4rem); border-top: 1px solid var(--line); }
-  .svc { border-top: 1px solid var(--line); margin-top: 1.5rem; }
-  .svc-row { display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: center; padding: 1.4rem .2rem; border-bottom: 1px solid var(--line); }
-  .svc-row:hover { background: #080808; }
-  .svc-row h3 { margin: 0 0 .3rem; font-size: 1.45rem; font-weight: 400; }
-  .svc-row.lead h3 { font-size: 1.8rem; }
-  .svc-row p { margin: 0; max-width: 40rem; }
-  .svc-right { display: grid; justify-items: end; gap: .3rem; text-align: right; }
-  .price { font-style: italic; white-space: nowrap; }
-  .lead .price { font-size: 1.3rem; }
-  .go { font-family: var(--sans); font-size: .7rem; letter-spacing: .22em; text-transform: uppercase; color: var(--text-2); }
-  .svc-row:hover .go { color: #fff; }
-  .clients ul { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: .6rem; font-size: 1.2rem; font-style: italic; }
-  @media (max-width: 900px) { .services { grid-template-columns: 1fr; } .clients ul { display: flex; flex-wrap: wrap; gap: .3rem 1.4rem; margin-top: .6rem; } }
-  @media (max-width: 640px) { .svc-row { grid-template-columns: 1fr; gap: .6rem; } .svc-right { justify-items: start; text-align: left; } }
-
-  .inquire { display: grid; grid-template-columns: 380px 1fr; gap: clamp(2rem, 6vw, 5rem); border-top: 1px solid var(--line); align-items: start; }
-  .me img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 20%; margin-bottom: 1.2rem; }
-  .me p { margin: 0; font-size: 1.12rem; line-height: 1.6; color: #ddd; }
-  .intro-line { margin: 0 0 1.6rem; }
-  @media (max-width: 860px) { .inquire { grid-template-columns: 1fr; } .me { display: grid; grid-template-columns: 120px 1fr; gap: 1rem; align-items: start; } .me img { margin: 0; } .me p { font-size: 1rem; } }
+  .paper-form { background: var(--paper-3); border-top: 3px solid var(--green); padding: clamp(1.4rem, 5vw, 3.5rem); max-width: 760px; margin: 0 auto; }
+  .paper-form :global(.form-orn) { margin: 0 0 .6rem; }
+  .form-intro { margin: .4rem 0 1.6rem; }
 </style>

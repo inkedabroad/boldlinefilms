@@ -1,11 +1,16 @@
 ---
 import Base from '../layouts/Base.astro';
 ---
-<Base title="Page not found | Dakota Weik">
-  <section class="section wrap" style="text-align:center;min-height:60vh">
-    
-    <h1 style="font-size:clamp(2rem,5vw,3rem);margin:1rem 0 1rem">This page could not be found.</h1>
-    <p class="muted" style="margin-bottom:2rem">You can explore my work or tell me about your project.</p>
-    <a href="/#work" class="btn ghost">See the work</a> <a href="/#inquire" class="btn">Start a project</a>
+<Base compact title="Page not found | Dakota Weik">
+  <section class="wrap done">
+    <p class="kicker">Page not found</p>
+    <h1 class="h-display">This page could not be found.</h1>
+    <p>You can see the work or tell me about your project.</p>
+    <p class="acts"><a href="/#work" class="link">See the work</a> <a href="/#inquire" class="btn">Start a project</a></p>
   </section>
 </Base>
+<style>
+  .done { text-align: center; padding-block: clamp(3rem, 8vw, 6rem); }
+  h1 { font-size: clamp(34px, 5vw, 56px); margin: .3rem 0 1rem; }
+  .acts { display: flex; gap: 1.4rem; justify-content: center; align-items: center; flex-wrap: wrap; }
+</style>

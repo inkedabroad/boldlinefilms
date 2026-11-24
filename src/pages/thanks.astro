@@ -1,11 +1,19 @@
 ---
 import Base from '../layouts/Base.astro';
+import Ornament from '../components/Ornament.astro';
 ---
-<Base title="Thank you | Dakota Weik">
-  <section class="section wrap" style="text-align:center;min-height:60vh">
-    
-    <h1 style="font-size:clamp(2rem,5vw,3rem);margin:1rem 0 1rem">Thanks for getting in touch.</h1>
-    <p class="muted" style="max-width:34rem;margin:0 auto 2rem">Your inquiry has been received. I'll reply within two business days. To add a brief, references or another detail, email info@inkedabroad.com.</p>
-    <a href="/#work" class="btn ghost">Back to the work</a>
+<Base compact title="Inquiry received | Dakota Weik">
+  <section class="wrap done">
+    <Ornament width={110} />
+    <p class="kicker">Inquiry received</p>
+    <h1 class="h-display">Thank you. Your inquiry is on my desk.</h1>
+    <p>I reply within two business days. To add a brief, references or dates, email <a href="mailto:info@inkedabroad.com" class="link">info@inkedabroad.com</a>.</p>
+    <a href="/#work" class="btn">Back to the work</a>
   </section>
 </Base>
+<style>
+  .done { text-align: center; padding-block: clamp(3rem, 8vw, 6rem); max-width: calc(720px + var(--gut) * 2); }
+  .done :global(.ornament) { margin: 0 auto 1rem; }
+  h1 { font-size: clamp(34px, 5vw, 56px); margin: .3rem 0 1rem; }
+  p { margin: 0 0 1.8rem; }
+</style>
