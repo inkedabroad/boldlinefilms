@@ -164,6 +164,14 @@ body:has(.dakotaLinkPage) .pageTransitionWrapFabSafe { padding-bottom: 0 !import
 .dakotaLinkPage .dakotaSrOnly { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* Added on the film site: the Inked Abroad cards. */
-.dakotaLinkPage .dakotaMainCard.dakotaLogoCard { grid-template-columns: 84px minmax(0,1fr) auto; }
-.dakotaLinkPage .dakotaLogoCard .dakotaBrandLogo { width: 84px; height: 56px; filter: none; }
-.dakotaLinkPage .dakotaCardPending .dakotaPendingTag { font: 500 12px/1 var(--dakota-ui); font-style: normal; padding: 7px 9px; border-radius: 999px; border-color: var(--dakota-line); }
+.dakotaLinkPage .dakotaMainCard.dakotaLogoCard { grid-template-columns: 112px minmax(0,1fr); row-gap: 10px; min-height: 124px; }
+.dakotaLinkPage .dakotaLogoCard > :first-child { grid-row: 1 / span 2; }
+.dakotaLinkPage .dakotaLogoCard > :last-child { grid-column: 2; justify-self: start; }
+.dakotaLinkPage .dakotaLogoCard .dakotaBrandLogo { width: 112px; height: 76px; filter: none; }
+.dakotaLinkPage .dakotaLogoCard strong { font-size: 19px; letter-spacing: .07em; }
+.dakotaLinkPage .dakotaLogoCard small { color: var(--dakota-gold); font-weight: 500; }
+.dakotaLinkPage .dakotaWorkCard { border: 1.5px solid var(--dakota-gold); background: linear-gradient(180deg, #1c170d 0%, #0b0a08 100%); }
+.dakotaLinkPage .dakotaWorkCard .dakotaGo { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 22px; border-radius: 999px; background: var(--dakota-gold); color: #000; font: 600 14px/1 var(--dakota-ui); white-space: nowrap; }
+.dakotaLinkPage .dakotaCardPending small { color: var(--dakota-muted); font-weight: 400; }
+.dakotaLinkPage .dakotaCardPending .dakotaPendingTag { font: 500 12px/1 var(--dakota-ui); font-style: normal; padding: 8px 10px; border-radius: 999px; border-color: var(--dakota-line); white-space: nowrap; }
+@media (max-width: 359px) { .dakotaLinkPage .dakotaMainCard.dakotaLogoCard { grid-template-columns: 84px minmax(0,1fr); } .dakotaLinkPage .dakotaLogoCard .dakotaBrandLogo { width: 84px; height: 56px; } .dakotaLinkPage .dakotaLogoCard strong { font-size: 16px; } }
