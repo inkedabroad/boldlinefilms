@@ -1,0 +1,164 @@
+/* Copied from the Halls of Ink link page (app/dakota/about.css). Cinzel maps to Alegreya SC and Cormorant Garamond to Alegreya, as on the Halls. */
+/* Cinematic portrait column. Fonts are provided by the site layout. */
+body:has(.dakotaLinkPage) { background: #000 !important; }
+body:has(.dakotaLinkPage) :is(.siteNav, .bottomNav, .museumFooter, .siteNavFabWrap, .siteNavFabBackdrop, .collectorFabRoot, .archiveWelcomePlate) { display: none !important; }
+body:has(.dakotaLinkPage) .pageTransitionWrap { padding: 0 !important; margin: 0 !important; min-height: 100dvh; }
+body:has(.dakotaLinkPage) .pageTransitionWrapFabSafe { padding-bottom: 0 !important; }
+.dakotaLinkPage {
+  --font-cinzel: 'Alegreya SC';
+  --font-cormorant: 'Alegreya';
+  --dakota-gold: #D6B678;
+  --dakota-dim: rgba(196,164,108,.45);
+  --dakota-ivory: #EFE6D4;
+  --dakota-muted: #A89D8A;
+  min-height: 100dvh;
+  padding-bottom: max(36px, env(safe-area-inset-bottom));
+  background: #000;
+  color: var(--dakota-ivory);
+  font-family: var(--font-cormorant), "Cormorant Garamond", serif;
+  font-size: 18px;
+  line-height: 1.35;
+}
+.dakotaLinkPage * { box-sizing: border-box; }
+.dakotaLinkPage a { color: inherit; text-decoration: none; }
+.dakotaLinkPage :is(a, button):focus-visible { outline: 2px solid var(--dakota-ivory); outline-offset: 5px; }
+.dakotaLinkColumn { width: 100%; max-width: 440px; margin: 0 auto; padding: 0 16px; }
+.dakotaLinkIntro { position: relative; height: clamp(380px, 58dvh, 620px); margin: 0 -16px 18px; text-align: center; isolation: isolate; }
+.dakotaLinkPortrait { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; z-index: -2; }
+.dakotaLinkIntro::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 35%, rgba(0,0,0,.55) 68%, #000 100%); pointer-events: none; z-index: -1; }
+.dakotaLinkIdentity { position: absolute; bottom: 0; left: 10px; right: 10px; z-index: 1; }
+.dakotaLinkPage .dakotaLinkName { margin: 0; font-family: var(--font-cinzel), Cinzel, serif; font-size: 34px; font-weight: 500; line-height: 1.3; letter-spacing: .12em; color: var(--dakota-gold); text-shadow: 0 0 18px rgba(196,164,108,.22); text-transform: uppercase; }
+.dakotaLinkPage .dakotaLinkBio { margin: 7px 0 12px; font: italic 20px/1.3 var(--font-cormorant), "Cormorant Garamond", serif; color: var(--dakota-muted); }
+.dakotaLinkSocials { display: flex; justify-content: center; gap: 12px; }
+.dakotaLinkSocial { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; color: var(--dakota-gold) !important; border-radius: 50%; transition: transform 150ms ease; }
+.dakotaLinkPage .dakotaBubble { border: 1px solid var(--dakota-dim); background: #000; box-shadow: 0 0 18px rgba(196,164,108,.10), inset 0 0 14px rgba(196,164,108,.035); transition: transform 150ms ease; }
+.dakotaMainCards { display: grid; gap: 12px; }
+.dakotaMainCard { display: grid; grid-template-columns: 52px minmax(0,1fr) 12px; gap: 14px; align-items: center; min-height: 108px; padding: 19px 17px; border-radius: 20px; }
+.dakotaBrandLogo { display: block; width: 52px; height: 52px; object-fit: contain; filter: drop-shadow(0 0 6px rgba(196,164,108,.20)); }
+.dakotaMainCard strong { display: block; font: 500 16px/1.4 var(--font-cinzel), Cinzel, serif; color: var(--dakota-gold); text-shadow: 0 0 12px rgba(196,164,108,.13); }
+.dakotaMainCard small { display: block; font-size: 17px; color: var(--dakota-muted); margin-top: 5px; line-height: 1.25; }
+.dakotaLinkPage .dakotaMainCardFeatured { border-color: var(--dakota-gold); box-shadow: 0 0 34px rgba(196,164,108,.17), inset 0 0 18px rgba(196,164,108,.055); }
+.dakotaChevron { width: 10px; height: 16px; color: var(--dakota-gold); flex: 0 0 10px; }
+.dakotaFilms { margin-top: 37px; }
+.dakotaLinkPage .dakotaSectionTitle { font: 500 13px/1.4 var(--font-cinzel), Cinzel, serif; color: var(--dakota-gold); letter-spacing: .15em; text-align: center; margin: 0 0 18px; }
+.dakotaFilmShelf { display: flex; gap: 14px; overflow-x: auto; margin: 0 -16px; padding: 8px 0 14px; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.dakotaFilmShelf::-webkit-scrollbar { display: none; }
+.dakotaFilmShelf::before { content: ""; flex: 0 0 max(2px, calc((100% - 242.5px) / 2 - 14px)); }
+.dakotaFilmShelf::after { content: ""; flex: 0 0 max(2px, calc((100% - 231px) / 2 - 14px)); }
+.dakotaFilmPoster { flex: 0 0 auto; height: 342px; border-radius: 12px; overflow: hidden; scroll-snap-align: center; }
+.dakotaFilmPoster img { display: block; width: auto; max-width: none; height: 340px; object-fit: contain; }
+.dakotaLinkPage .dakotaShelfHint { margin: 2px 0 28px; color: var(--dakota-muted); font-size: 17px; font-style: italic; text-align: center; }
+.dakotaLinkRows { display: grid; gap: 8px; }
+.dakotaOtherLinks { margin-top: 16px; }
+.dakotaOtherLinksSummary { display: flex; align-items: center; justify-content: space-between; min-height: 44px; padding: 10px 14px; border-radius: 14px; color: var(--dakota-gold); font: 400 14.5px/1.4 var(--font-cinzel), Cinzel, serif; cursor: pointer; list-style: none; }
+.dakotaOtherLinksSummary::-webkit-details-marker { display: none; }
+.dakotaOtherLinksSummary:focus-visible { outline: 2px solid var(--dakota-ivory); outline-offset: 5px; }
+.dakotaOtherLinks[open] > .dakotaOtherLinksSummary .dakotaChevron { transform: rotate(90deg); }
+.dakotaOtherLinksContent { padding-top: 12px; }
+.dakotaLinkRow { min-height: 66px; border-radius: 14px; display: flex; align-items: center; gap: 12px; padding: 10px 14px; }
+.dakotaLinkRow .dakotaBrandLogo { width: 29px; height: 34px; flex: 0 0 29px; }
+.dakotaRowLabel { flex: 1; font: 400 14.5px/1.4 var(--font-cinzel), Cinzel, serif; color: var(--dakota-gold); }
+.dakotaLinkPending { opacity: .62; }
+.dakotaPendingTag { padding: 4px 7px; border: 1px solid var(--dakota-dim); border-radius: 6px; color: var(--dakota-gold); font-style: italic; font-size: 14px; white-space: nowrap; }
+.dakotaSettingsUnavailable { color: var(--dakota-muted); font-size: 16px; text-align: center; margin: 12px 0 0; }
+.dakotaPartners { margin-top: 34px; }
+.dakotaPartnerGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.dakotaLinkPage .dakotaPartnerTile { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; text-align: center; min-height: 194px; padding: 21px 10px 16px; border-radius: 16px; color: inherit; width: 100%; font: inherit; cursor: pointer; }
+.dakotaPartnerName { font: 500 13px/1.45 var(--font-cinzel), Cinzel, serif; color: var(--dakota-gold); }
+.dakotaPartnerCategory { font-size: 16px; font-style: italic; color: rgba(214,182,120,.8); margin-top: 5px; }
+.dakotaPartnerOffer { font-size: 16px; line-height: 1.2; color: var(--dakota-muted); margin: 9px 0 15px; }
+.dakotaPartnerChip { display: inline-flex; align-items: center; justify-content: center; min-height: 34px; min-width: 75px; border: 1px solid var(--dakota-dim); border-radius: 6px; padding: 5px 9px; color: var(--dakota-gold); font-size: 15px; margin-top: auto; }
+.dakotaPartnerChipCode { border-style: dashed; font-size: 11px; letter-spacing: .06em; font-family: var(--font-cinzel), Cinzel, serif; }
+.dakotaPartnerChipCopied { background: var(--dakota-gold); border-color: var(--dakota-gold); color: #000; }
+.dakotaEmailRow { display: flex; align-items: center; gap: 4px; margin-top: 28px; border-radius: 14px; padding: 7px 8px 7px 14px; }
+.dakotaEmailRow a { flex: 1; min-width: 0; display: flex; align-items: center; min-height: 44px; font: 400 12px/1.4 var(--font-cinzel), Cinzel, serif; color: var(--dakota-gold); }
+.dakotaEmailRow button { border: 1px solid var(--dakota-dim); color: var(--dakota-gold); background: #000; border-radius: 8px; padding: 0 10px; min-height: 44px; min-width: 61px; font: inherit; cursor: pointer; }
+.dakotaLinkBottom { display: flex; align-items: center; justify-content: center; min-height: 44px; margin: 18px auto 0; color: var(--dakota-muted) !important; font-size: 17px; font-style: italic; text-align: center; }
+.dakotaLinkToast { position: fixed; z-index: 10000; bottom: max(20px, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); width: max-content; max-width: calc(100vw - 32px); padding: 12px 20px; border: 1px solid var(--dakota-dim); border-radius: 14px; background: #000; color: var(--dakota-ivory); text-align: center; font: inherit; }
+.dakotaLinkToast:empty { display: none; }
+.dakotaLinkPage :is(a, button):active { transform: scale(.97); }
+.dakotaLinkError { text-align: center; padding-top: 20dvh; }
+.dakotaLinkError p { margin: 0 0 24px; }
+.dakotaLinkPage .dakotaLinkPill { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 20px; border: 1px solid var(--dakota-dim); border-radius: 14px; background: #000; color: var(--dakota-gold); font: inherit; cursor: pointer; }
+@media (max-width: 520px) { .dakotaLinkIntro, .dakotaFilmShelf { width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); } }
+@media (min-width: 521px) { .dakotaLinkIntro { margin-left: 0; margin-right: 0; border-radius: 0 0 24px 24px; overflow: hidden; } }
+@media (max-width: 359px) { .dakotaLinkPage .dakotaLinkName { font-size: 29px; } .dakotaMainCard { gap: 10px; padding-inline: 13px; } .dakotaMainCard strong { font-size: 14px; } .dakotaEmailRow a { font-size: 10.5px; } }
+@media (hover: hover) {
+  .dakotaLinkPage a.dakotaBubble:hover, .dakotaLinkPage button.dakotaBubble:hover { border-color: var(--dakota-gold); box-shadow: 0 0 22px rgba(196,164,108,.17), inset 0 0 14px rgba(196,164,108,.04); }
+  .dakotaLinkSocial:hover { background: rgba(214,182,120,.07); }
+  .dakotaLinkBottom:hover { color: var(--dakota-ivory) !important; }
+}
+@media (prefers-reduced-motion: reduce) { .dakotaLinkPage * { transition: none !important; scroll-behavior: auto !important; } }
+
+/* Dr Pickles: the one playful tile, in pickle green, wearing Dakota's own artwork. */
+.dakotaPartnerGrid:has(.dakotaPickles) { grid-template-columns: 1fr; }
+.dakotaLinkPage .dakotaPartnerGrid:has(.dakotaPickles) > .dakotaPartnerTile:not(.dakotaPickles) { min-height: 0; padding: 20px 16px; }
+.dakotaLinkPage .dakotaPartnerTile.dakotaPickles { grid-column: 1 / -1; min-height: 0; padding: 0 0 18px; overflow: hidden; border: 1.5px solid #6fae4c; background: linear-gradient(180deg, #13240f 0%, #0a1508 100%); box-shadow: 0 0 0 1px rgba(111,174,76,.18), 0 10px 34px rgba(111,174,76,.16); }
+.dakotaPickles .dakotaPartnerArt { display: block; width: 100%; height: auto; aspect-ratio: 1200 / 849; object-fit: cover; margin: 0 0 16px; border-bottom: 1.5px solid #6fae4c; }
+.dakotaPickles .dakotaPartnerName { font-size: 17px; letter-spacing: .08em; color: #b9e58f; }
+.dakotaPickles .dakotaPartnerCategory { color: #8fc46a; }
+.dakotaPickles .dakotaPartnerOffer { color: #e6f3d8; font-size: 18px; }
+.dakotaPickles .dakotaPartnerChip { border-color: #6fae4c; color: #b9e58f; border-radius: 999px; min-width: 150px; min-height: 40px; }
+.dakotaPickles .dakotaPartnerChipCopied { background: #6fae4c; border-color: #6fae4c; color: #0a1508; }
+.dakotaLinkPage .dakotaPartnerTile.dakotaPickles:hover, .dakotaLinkPage .dakotaPartnerTile.dakotaPickles:focus-visible { border-color: #9fd877; transform: translateY(-1px); }
+@media (prefers-reduced-motion: reduce) { .dakotaLinkPage .dakotaPartnerTile.dakotaPickles:hover { transform: none; } }
+
+/* The link page, November 2026, with an Apple finish on Dakota's black, ivory and gold: flat cards with fine
+   gold hairlines, the system font for small text, the Artist Box as a product tile, and the partner codes as passes. */
+.dakotaLinkPage { --dakota-ui: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif; --dakota-card: #0d0c0a; --dakota-line: rgba(214,182,120,.26); }
+.dakotaLinkPage .dakotaBubble { box-shadow: none; }
+.dakotaLinkPage .dakotaMainCards { gap: 12px; }
+.dakotaLinkPage .dakotaMainCard { grid-template-columns: 60px minmax(0,1fr) 12px; gap: 16px; min-height: 104px; padding: 18px 18px; border-radius: 22px; background: var(--dakota-card); border-color: var(--dakota-line); }
+.dakotaLinkPage .dakotaMainCardFeatured { min-height: 124px; border-color: var(--dakota-gold); background: linear-gradient(180deg, #14120d 0%, #0b0a08 100%); box-shadow: none; }
+.dakotaLinkPage .dakotaMainCardFeatured .dakotaBrandLogo { width: 60px; height: 75px; filter: none; }
+.dakotaLinkPage .dakotaMainCard strong { font-size: 16.5px; letter-spacing: .05em; text-shadow: none; }
+.dakotaLinkPage .dakotaMainCard small { font: 400 15.5px/1.38 var(--dakota-ui); color: #cfc6b6; margin-top: 6px; letter-spacing: -.005em; }
+.dakotaLinkPage .dakotaCardCredit { display: block; margin-top: 6px; font: 500 13px/1.3 var(--dakota-ui); font-style: normal; color: var(--dakota-gold); }
+.dakotaLinkPage .dakotaChevron { color: rgba(239,230,212,.45); }
+
+/* The Artist Box: a product tile, the box lit on a soft light stage the way a store shows a product. */
+.dakotaLinkPage .dakotaBox { display: block; margin-top: 12px; border-radius: 22px; overflow: hidden; background: var(--dakota-card); border: 1px solid var(--dakota-gold); transition: transform 150ms ease; }
+.dakotaLinkPage .dakotaBoxStage { display: flex; align-items: center; justify-content: center; padding: 20px 28px 16px; background: radial-gradient(120% 90% at 50% 40%, #ffffff 0%, #f2f0ec 70%, #e6e2da 100%); }
+.dakotaLinkPage .dakotaBoxStage img { display: block; width: 100%; max-width: 300px; height: auto; mix-blend-mode: multiply; }
+.dakotaLinkPage .dakotaBoxText { display: grid; gap: 6px; padding: 16px 18px 18px; }
+.dakotaLinkPage .dakotaBoxText strong { font: 500 17px/1.3 var(--font-cinzel), Cinzel, serif; letter-spacing: .06em; color: var(--dakota-gold); }
+.dakotaLinkPage .dakotaBoxText small { font: 400 15.5px/1.38 var(--dakota-ui); color: #cfc6b6; }
+.dakotaLinkPage .dakotaBoxBuy { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 8px; }
+.dakotaLinkPage .dakotaBoxPrice { font: 600 17px/1.2 var(--dakota-ui); color: var(--dakota-ivory); }
+.dakotaLinkPage .dakotaBoxButton { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 22px; border-radius: 999px; background: var(--dakota-gold); color: #000; font: 600 15.5px/1 var(--dakota-ui); }
+
+/* The partner codes: two passes, each brand's logo on its own white card. */
+.dakotaLinkPage .dakotaPasses { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.dakotaLinkPage .dakotaPartnerTile.dakotaPass { min-height: 0; padding: 0 0 14px; border-radius: 20px; overflow: hidden; background: var(--dakota-card); border: 1px solid var(--dakota-line); box-shadow: none; justify-content: flex-start; }
+.dakotaLinkPage .dakotaPass .dakotaPartnerArt { display: block; box-sizing: border-box; width: 100%; height: 104px; margin: 0 0 12px; padding: 14px 16px; object-fit: contain; background: #fff; border: 0; aspect-ratio: auto; }
+.dakotaLinkPage .dakotaPass .dakotaPartnerName { font-size: 13px; letter-spacing: .08em; color: var(--dakota-gold); }
+.dakotaLinkPage .dakotaPass .dakotaPartnerCategory { font: 400 14px/1.3 var(--dakota-ui); font-style: normal; color: var(--dakota-muted); margin-top: 3px; }
+.dakotaLinkPage .dakotaPass .dakotaPartnerOffer { font: 600 16px/1.2 var(--dakota-ui); color: var(--dakota-ivory); margin: 8px 0 12px; }
+.dakotaLinkPage .dakotaPass .dakotaPartnerChip { min-height: 36px; min-width: 0; padding: 0 14px; border-radius: 999px; border: 1px solid var(--dakota-gold); color: var(--dakota-gold); font: 600 12px/1 var(--dakota-ui); letter-spacing: .04em; }
+.dakotaLinkPage .dakotaPass .dakotaPartnerChipCopied { background: var(--dakota-gold); color: #000; }
+
+/* All links: one folded list, like a settings group. */
+.dakotaLinkPage .dakotaAllLinks { margin-top: 26px; border-radius: 20px; background: var(--dakota-card); border: 1px solid var(--dakota-line); overflow: hidden; }
+.dakotaLinkPage .dakotaAllLinks summary { display: flex; align-items: center; justify-content: space-between; min-height: 56px; padding: 0 18px; cursor: pointer; list-style: none; font: 500 14.5px/1.4 var(--font-cinzel), Cinzel, serif; letter-spacing: .08em; color: var(--dakota-gold); text-transform: uppercase; }
+.dakotaLinkPage .dakotaAllLinks summary::-webkit-details-marker { display: none; }
+.dakotaLinkPage .dakotaAllLinks summary .dakotaChevron { transform: rotate(90deg); transition: transform 200ms ease; }
+.dakotaLinkPage .dakotaAllLinks[open] summary .dakotaChevron { transform: rotate(-90deg); }
+.dakotaLinkPage .dakotaAllLinks summary:focus-visible { outline: 2px solid var(--dakota-ivory); outline-offset: -4px; }
+.dakotaLinkPage .dakotaAllLinks ul { list-style: none; margin: 0; padding: 0 0 6px 18px; }
+.dakotaLinkPage .dakotaAllLinks li + li a { border-top: 1px solid rgba(239,230,212,.09); }
+.dakotaLinkPage .dakotaAllLinks a { display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 10px 18px 10px 0; }
+.dakotaLinkPage .dakotaAllLinks a span { flex: 1; min-width: 0; display: grid; gap: 2px; }
+.dakotaLinkPage .dakotaAllLinks strong { font: 500 16px/1.3 var(--dakota-ui); color: var(--dakota-ivory); }
+.dakotaLinkPage .dakotaAllLinks small { font: 400 14px/1.3 var(--dakota-ui); color: var(--dakota-muted); }
+@media (hover: hover) {
+  .dakotaLinkPage a.dakotaBox:hover { border-color: #e6c88c; }
+  .dakotaLinkPage .dakotaAllLinks a:hover strong { color: var(--dakota-gold); }
+}
+.dakotaLinkPage a.dakotaBox:active { transform: scale(.985); }
+@media (prefers-reduced-motion: reduce) { .dakotaLinkPage a.dakotaBox:active { transform: none; } .dakotaLinkPage .dakotaAllLinks summary .dakotaChevron { transition: none; } }
+
+/* Life Beyond Ink's card: its title lettering on the left, the line and the credit beside it. */
+.dakotaLinkPage .dakotaMainCard:has(.dakotaTitleArt) { grid-template-columns: 112px minmax(0,1fr) 12px; }
+.dakotaLinkPage .dakotaTitleArt { display: block; width: 112px; height: auto; mix-blend-mode: lighten; }
+.dakotaLinkPage .dakotaMainCard:has(.dakotaTitleArt) small { margin-top: 0; }
+.dakotaLinkPage .dakotaSrOnly { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
