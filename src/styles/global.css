@@ -1,9 +1,9 @@
 :root {
-  --paper: #000; --paper-2: #0c0c0c; --paper-3: #111;
-  --ink: #EDEDED; --ink-2: #9a9a9a;
+  --paper: #EFE6D0; --paper-2: #F7F1E2; --paper-3: #E6DABE;
+  --ink: #2A251E; --ink-2: #5A5143;
   --green: #17503D; --green-2: #0F3A2C; --green-soft: #B9C2A0;
   --red: #C23B2E; --brick: #8A3A24; --salmon: #E8B49A; --mustard: #E9B84A;
-  --rule: #333;
+  --rule: #2A251E;
   --display: 'Playfair Display', Georgia, serif;
   --gothic: 'League Gothic', 'Oswald', Impact, sans-serif;
   --script: 'Yellowtail', cursive;
@@ -15,7 +15,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 body { margin: 0; color: var(--ink); font-family: var(--serif); font-size: clamp(17px, 1.1vw + 12px, 19px); line-height: 1.55; -webkit-font-smoothing: antialiased;
-  background-color: #000; }
+  background-color: var(--paper); background-image: url('/media/linen.png'); background-size: 320px 320px; }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
 :focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
